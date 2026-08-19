@@ -1,13 +1,13 @@
-// 03-getters-setters.js — Validación con getters y setters
-// Acá el setter es como el guardia en la entrada: antes de guardar un valor,
-// revisa que sea razonable. Si no, tira un error y no deja pasar a nadie.
+// 03-getters-setters.js — Validacion con getters y setters
+// El setter es como el guardia en la entrada: antes de guardar un valor,
+// revisa que sea razonable. Si no, tira un error y no deja pasar.
 
 class Temperatura {
   #celsius;
 
   constructor(celsius) {
-    this.celsius = celsius;  // pasa por el setter (validación)
-    // Ojo: esto no asigna directo, se manda al setter, que valida.
+    this.celsius = celsius;  // pasa por el setter (validacion)
+    // No asigna directo: se manda al setter, que valida.
   }
 
   get celsius() {
@@ -15,14 +15,14 @@ class Temperatura {
   }
   set celsius(valor) {
     if (valor < -273) {
-      throw new Error('No existe temperatura menor a -273°C');
+      throw new Error('No existe temperatura menor a -273 C');
     }
     this.#celsius = valor;
   }
 
   // getter calculado (derivado)
-  // Este valor no se guarda: se calcula cada vez que lo pedís,
-  // como convertir pesos a dólares con el cambio del día.
+  // Este valor no se guarda: se calcula cada vez que lo pedis,
+  // como convertir pesos a dolares con el cambio del dia.
   get fahrenheit() {
     return (this.#celsius * 9) / 5 + 32;
   }

@@ -1,19 +1,19 @@
 /*
-Ejercicio 1 — Funciones básicas
-Armamos la calculadora casera: una función por cada operación, como tener
-cuatro recetas distintas en el cuaderno de cocina. Una función es una
-receta: le pasás ingredientes (los parámetros) y te devuelve el resultado
-(el return).
+Ejercicio 1 — Funciones basicas
+Armamos la calculadora casera: una funcion por cada operacion, como tener
+cuatro recetas distintas en el cuaderno de cocina.
 
 Paso a paso:
-1) Creá 4 funciones (podés usar arrow o la forma clásica con function):
-   - sumar(a, b)       → devuelve a + b
-   - restar(a, b)      → devuelve a - b
-   - multiplicar(a, b) → devuelve a * b
-   - dividir(a, b)     → devuelve a / b, PERO si b es 0 devolvé el texto
-                        "No se puede dividir por cero" (usá un if adentro)
-2) Llamá a cada función con los valores de prueba y mostrá el resultado
-   con console.log (uno por línea).
+1) Crea 4 funciones (podes usar arrow o la forma clasica con function):
+   - sumar(a, b)       -> devuelve a + b
+   - restar(a, b)      -> devuelve a - b
+   - multiplicar(a, b) -> devuelve a * b
+   - dividir(a, b)     -> devuelve a / b, PERO si b es 0 devuelve el texto
+                         "No se puede dividir por cero" (usa un if adentro)
+2) Llama a cada funcion con los valores de prueba y muestra el resultado
+   con console.log (uno por linea).
+3) Para practicar, define las funciones como EXPRESION DE FUNCION
+   (guardalas en const) en vez de usar la declaracion clasica.
 
 Valores de prueba:
 sumar(4,7), restar(10,3), multiplicar(6,2), dividir(9,2), dividir(9,0)
@@ -26,4 +26,4 @@ Resultado esperado:
 No se puede dividir por cero
 */
 
-// completá acá
+// completa aqui

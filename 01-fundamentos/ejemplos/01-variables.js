@@ -1,5 +1,5 @@
 // 01-variables.js — Variables y constantes
-// Corré: node ejemplos/01-variables.js
+// Corre: node ejemplos/01-variables.js
 //
 // Para guardar datos en JavaScript hay TRES palabras clave: var, let y const.
 // Son como tres tipos de cajas del almacén: eligen cuánto se puede tocar
@@ -8,15 +8,15 @@
 
 // ── const: la caja sellada ──────────────────────────────────────────
 // const viene de "constante": algo que no varía. Se crea UNA vez y ese
-// valor queda para siempre. Si intentás cambiarlo, el programa tira error.
-// Es la opción por defecto: usala siempre que el valor no vaya a cambiar.
+// valor queda para siempre. Si intentas cambiarlo, el programa tira error.
+// Es la opción por defecto: úsala siempre que el valor no vaya a cambiar.
 const nombre = 'Ana';
 // nombre = 'Beto';   // ERROR: no se puede reasignar una const
-//                     // (descomentá esa línea para verlo en vivo)
+//                     // (descomenta esa línea para verlo en vivo)
 
 // ── let: la caja que se abre ────────────────────────────────────────
 // let viene del inglés "to let" (dejar, permitir): deja que el valor
-// cambie. Se usa cuando sabés que el contenido va a ir variando,
+// cambie. Se usa cuando sabes que el contenido va a ir variando,
 // como la edad o un contador.
 let edad = 30;
 edad = 31;             // reasignación válida: cambiamos el contenido de la caja
@@ -30,7 +30,7 @@ console.log('edad después de reasignar:', edad);
 var viejo = 'no lo uses';
 
 // ── declarar sin valor ──────────────────────────────────────────────
-// Podés crear la caja vacía y llenarla después. Una variable declarada
+// Puedes crear la caja vacía y llenarla después. Una variable declarada
 // sin valor tiene undefined (la caja existe, pero está vacía).
 let ciudad;
 console.log('ciudad antes de llenarla:', ciudad);  // undefined
@@ -47,7 +47,7 @@ console.log('viejo:', viejo);
 
 // ── Tipos de números ────────────────────────────────────────────────
 // Los números también son valores: sin coma, con coma o bajo cero.
-const entero = 42;      // sin coma, como cuando contás bolitas de una en una
+const entero = 42;      // sin coma, como cuando cuentas bolitas de una en una
 const decimal = 3.14;   // con coma, como medir con una regla o una jarra
 const negativo = -7;    // bajo cero, como un termómetro en invierno
 

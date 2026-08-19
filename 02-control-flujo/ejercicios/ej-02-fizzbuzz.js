@@ -1,24 +1,28 @@
 /*
 Ejercicio 2 — FizzBuzz
-El clásico de las entrevistas, pero acá lo hacemos para aprender a usar el bucle.
+El clasico de las entrevistas, pero aca lo hacemos para aprender a usar el bucle.
 Un bucle (for) repite algo muchas veces, como contar del 1 al 20 con los dedos.
 
 La idea:
-- Recorré los números del 1 al 20, uno por uno.
-- Para cada número, mirá si es múltiplo de 3, de 5 o de los dos, y decidí qué imprimir:
-  - múltiplo de 3 (dividir por 3 da resto 0)      → imprimí "Fizz"
-  - múltiplo de 5 (dividir por 5 da resto 0)      → imprimí "Buzz"
-  - múltiplo de 3 Y de 5 a la vez                 → imprimí "FizzBuzz"
-  - si no es múltiplo de ninguno                  → imprimí el número
+- Recorre los numeros del 1 al 20, uno por uno.
+- Para cada numero, mira si es multiplo de 3, de 5 o de los dos, y decide que imprimir:
+  - multiplo de 3 (dividir por 3 da resto 0)       -> imprime "Fizz"
+  - multiplo de 5 (dividir por 5 da resto 0)       -> imprime "Buzz"
+  - multiplo de 3 Y de 5 a la vez                  -> imprime "FizzBuzz"
+  - si no es multiplo de ninguno                    -> imprime el numero
 
 Pistas:
-1) Para saber si un número es múltiplo de 3 usás el resto % (lo viste en
-   el módulo 01): te da lo que sobra de la división. Si sobra 0, es
-   múltiplo exacto. Escribí vos la condición completa.
-2) OJO CON EL ORDEN: preguntá PRIMERO si es múltiplo de 3 y de 5 (FizzBuzz),
-   porque ese caso también cumple las condiciones de Fizz y Buzz por separado.
-   Si preguntás primero por Fizz, el número 15 nunca llegaría a FizzBuzz.
-3) Imprimí cada resultado en su propia línea (console.log por vuelta).
+1) Para saber si un numero es multiplo de 3 usas el resto % (lo viste en
+   el modulo 01): te da lo que sobra de la division. Si sobra 0, es
+   multiplo exacto. Escribe la condicion completa.
+2) OJO CON EL ORDEN: pregunta PRIMERO si es multiplo de 3 y de 5 (FizzBuzz),
+   porque ese caso tambien cumple las condiciones de Fizz y Buzz por separado.
+   Si preguntas primero por Fizz, el numero 15 nunca llegaria a FizzBuzz.
+3) Imprime cada resultado en su propia linea (console.log por vuelta).
+4) Como practica extra: despues del bucle, usa && (short-circuit) para
+   guardar en una variable "primerPar" el primer numero par del 1 al 20.
+   Pista: encadena condiciones con &&: que sea par Y que primerPar aun
+   no este definido (undefined) antes de asignar.
 
 Resultado esperado:
 1
@@ -41,6 +45,12 @@ FizzBuzz
 Fizz
 19
 Buzz
+Primer par: 2
 */
 
-// completá acá
+// completa aqui
+
+
+// --- Prueba ---
+// Descomenta la linea de abajo al final para verificar tu resultado:
+// console.log('Primer par:', primerPar);

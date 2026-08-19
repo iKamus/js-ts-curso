@@ -2,9 +2,9 @@
 
 const hora = 14;
 
-// Elegimos el saludo según la hora, como decidir qué decir según la parte del día
+// Elegimos el saludo segun la hora, como decidir que decir segun la parte del dia
 if (hora < 12) {
-  console.log('Buenos días');
+  console.log('Buenos dias');
 } else if (hora < 18) {
   console.log('Buenas tardes');
 } else {
@@ -12,15 +12,15 @@ if (hora < 12) {
 }
 // Buenas tardes
 
-// condicion simple: una sola pregunta de sí o no
+// condicion simple: una sola pregunta de si o no
 const edad = 20;
 if (edad >= 18) {
   console.log('Mayor de edad');
 }
 
-// condición con operadores lógicos: se tienen que cumplir las dos, como en el kiosco
+// condicion con operadores logicos: se tienen que cumplir las dos, como en el kiosco
 const usuario = 'ana';
 const pass = 'clave123';
 if (usuario !== '' && pass.length >= 8) {
-  console.log('Login válido');
+  console.log('Login valido');
 }

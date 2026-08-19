@@ -1,19 +1,39 @@
-// 04-path.js — Descomponer rutas
+// 04-path.js — Descomponer y construir rutas
 // Las rutas son direcciones para llegar a un archivo. Acá vemos cómo
-// desarmarlas en partes, como leer la etiqueta de una carta y separar
-// nombre, calle y ciudad.
+// desarmarlas en partes y cómo armarlas bien, como leer la etiqueta
+// de una carta y separar nombre, calle y ciudad.
 
 const path = require('path');
 
 const archivo = 'C:\\proyecto\\src\\main.js';
 
-console.log(path.basename(archivo));   // main.js
-console.log(path.dirname(archivo));    // C:\proyecto\src
-console.log(path.extname(archivo));    // .js
-console.log(path.parse(archivo));      // { root, dir, base, ext, name }
+// --- basename, dirname, extname ---
+// Extraen partes de la ruta sin tener que andar cortando strings
+console.log(path.basename(archivo));   // main.js — nombre completo
+console.log(path.dirname(archivo));    // C:\proyecto\src — carpeta
+console.log(path.extname(archivo));    // .js — extension (con el punto)
 
-// construir rutas (maneja separadores por plataforma):
-// path.join arma la dirección completa, no importa si el sistema
-// usa \ o /, como un GPS que arma el recorrido por vos
-console.log(path.join('a', 'b', 'c.txt'));     // a\b\c.txt (Windows)
-console.log(path.resolve('modulos', '01.md')); // ruta absoluta desde cwd
+// --- parse ---
+// Devuelve un objeto con todas las partes de la ruta
+const partes = path.parse(archivo);
+console.log('\nparsed:', partes);
+// {
+//   root: 'C:\\',
+//   dir: 'C:\\proyecto\\src',
+//   base: 'main.js',
+//   ext: '.js',
+//   name: 'main'
+// }
+
+// --- join ---
+// Arma una ruta con el separador correcto de tu sistema operativo.
+// En Windows usa \, en Linux/Mac usa /.
+// No hace falta pensar en eso: join lo resuelve por vos.
+console.log('\njoin:', path.join('a', 'b', 'c.txt'));       // a\b\c.txt
+console.log('join con ..:', path.join('carpeta', '..', 'data', 'archivo.txt'));
+
+// --- resolve ---
+// Arma una ruta absoluta desde la carpeta actual (cwd).
+// Es como un GPS que parte de donde estas parado.
+console.log('\nresolve:', path.resolve('modulos', '01.md'));
+// Algo como: C:\Users\yo\proyecto\modulos\01.md

@@ -20,9 +20,11 @@ console.log(typeof arr);        // object (los arrays también son objetos, como
 console.log(typeof obj);        // object
 
 // Curiosidades numéricas
-console.log(0.1 + 0.2);         // 0.30000000000000004 (precisión flotante: el redondeo del compilador)
+console.log(0.1 + 0.2);         // 0.30000000000000004 (precisión flotante: limitación de todos los lenguajes, no un bug de JS)
 console.log(10 / 0);            // Infinity (dividir entre cero no explota, da infinito)
 console.log('abc' * 2);         // NaN (Not a Number: no se puede multiplicar texto por número)
+console.log(isNaN(NaN));        // true (NaN no es igual a sí mismo: NaN !== NaN)
+console.log(Number.isNaN(NaN)); // true (usa Number.isNaN en vez de isNaN: es más estricto)
 
 // Conversiones: pasar un valor de un material a otro
 console.log(Number('42'));      // 42 (texto a número: el "123" escrito pasa a ser el número 123)

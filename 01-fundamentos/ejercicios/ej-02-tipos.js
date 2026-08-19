@@ -1,37 +1,70 @@
 /*
-Ejercicio 2 — Tipos y conversiones
-Acá el tema es cambiar de "material": convertir texto a número y de vuelta,
-como pasar de anotado en papel a guardado en la calculadora.
+Ejercicio 2 — El detective de tipos
 
-Ya te dejé dos variables listas:
-  const numeroTexto = '123';   // ojo: está ENTRE COMILLAS, o sea que es un TEXTO
-  const b = true;              // un sí/no (booleano)
+Vas a recibir valores misteriosos y tu trabajo es: descubrir qué tipo
+son, convertirlos cuando haga falta, y responder preguntas sobre ellos.
+Todo con typeof, Number(), String(), Boolean(), parseInt y parseFloat.
 
-Lo que tenés que hacer, paso a paso:
-1) Convertí numeroTexto a número y guardalo en una variable nueva llamada numero.
-   Ojo: '123' es un TEXTO, así que no lo podés sumar directamente. Hay una
-   herramienta para cambiar de material, la viste en ejemplos/02-tipos.js
-   (fijate en la parte de "Conversiones"). Buscala y usala.
-2) Sumá numero + 1 y guardalo en una variable nueva llamada resultado.
-   Si no convertiste bien, acá te vas a dar cuenta: el resultado sería raro.
-3) Convertí b a texto y guardalo en una variable nueva llamada bTexto.
-   Misma idea que el paso 1, pero para el otro lado: del sí/no al texto.
-4) Imprimí con typeof cada una de las tres variables: numero, resultado y bTexto.
-   typeof te dice de qué tipo es cada valor (number, string, boolean...),
-   como la etiqueta del frasco que dice qué hay adentro.
-
-Formato de salida (en una línea por variable):
-  numero=123 type=number
-  resultado=124 type=number
-  bTexto=true type=string
-
-Resultado esperado:
-numero=123 type=number
-resultado=124 type=number
-bTexto=true type=string
+Tienes estos valores:
 */
 
-const numeroTexto = '123';
-const b = true;
+const valor1 = '42';
+const valor2 = 0;
+const valor3 = '';
+const valor4 = '3.14cm';
+const valor5 = null;
+const valor6 = '100px';
+const valor7 = true;
 
-// completá acá
+/*
+Paso a paso:
+1) Imprime typeof de cada valor (uno por línea, con etiqueta):
+   - tipo de valor1: ...
+   - tipo de valor2: ...
+   etc.
+
+2) Convierte y muestra:
+   - Convierte valor1 a número con Number() y guárdalo en num1.
+     Imprime: num1 y su tipo (typeof).
+   - Convierte valor4 con parseFloat() y guárdalo en decimal1.
+     Imprime: decimal1 y su tipo.
+   - Convierte valor6 con parseInt() y guárdalo en entero1.
+     Imprime: entero1 y su tipo.
+
+3) Responde con booleanos (guarda en variables con nombre descriptivo):
+   - esVerdadero1: ¿valor1 se comporta como verdadero? (guarda el resultado de
+    Boolean(valor1))
+   - esVerdadero2: ¿valor2 se comporta como verdadero?
+   - esVerdadero3: ¿valor3 se comporta como verdadero?
+   - esVerdadero5: ¿valor5 se comporta como verdadero?
+
+4) Para el paso 3, imprime cada resultado con un console.log que
+   diga algo como:
+   "valor1 = '42' → Boolean: true"
+
+Tips:
+- typeof retorna un STRING, así que compara con typeof x === 'number'.
+- parseFloat extrae el número decimal de un string: '3.14cm' → 3.14.
+- parseInt extrae el entero de un string: '100px' → 100.
+- Los valores que se comportan como falso son: false, 0, '', null, undefined, NaN.
+  Todo lo demás se comporta como verdadero (incluido [], {} y el string '0').
+- valor5 es null: typeof null es 'object' (bug histórico de JS).
+
+Resultado esperado:
+Tipo de valor1: string
+Tipo de valor2: number
+Tipo de valor3: string
+Tipo de valor4: string
+Tipo de valor5: object
+Tipo de valor6: string
+Tipo de valor7: boolean
+num1 = 42, tipo: number
+decimal1 = 3.14, tipo: number
+entero1 = 100, tipo: number
+valor1 = '42' → Boolean: true
+valor2 = 0 → Boolean: false
+valor3 = '' → Boolean: false
+valor5 = null → Boolean: false
+*/
+
+// completa aqui

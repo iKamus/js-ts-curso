@@ -1,15 +1,15 @@
 // 04-scope.js — Scope (alcance de las variables)
 
-// Scope es hasta dónde llega a vivir una variable, como el radio de la mochila: lo que guardás se queda ahí
+// Scope es hasta donde llega a vivir una variable, como el radio de la mochila: lo que guardas se queda ahi
 let global = 'puedo usarse en todo el archivo';
 
 function ejemplo() {
-  let local = 'solo dentro de la función';
+  let local = 'solo dentro de la funcion';
   console.log(global);  // ok (la mochila global se ve desde adentro)
-  console.log(local);   // ok (la local vive acá adentro)
+  console.log(local);   // ok (la local vive aca adentro)
 }
 ejemplo();
-// console.log(local); // ERROR: local no existe acá afuera (se quedó adentro de la función)
+// console.log(local); // ERROR: local no existe aca afuera (se quedo adentro de la funcion)
 
 // Bloques: let/const son de bloque (viven solo dentro de las llaves)
 {
@@ -17,9 +17,9 @@ ejemplo();
   var enVar = 'var escapa del bloque';
 }
 // console.log(enBloque); // ERROR
-console.log(enVar); // 'var escapa del bloque' → por eso no usamos var (rompe el radio de la mochila)
+console.log(enVar); // 'var escapa del bloque' -> por eso no usamos var (rompe el radio de la mochila)
 
-// Shadowing: una variable local tapa a la global (como el nombre del compañero tapa al del registro)
+// Shadowing: una variable local tapa a la global (como el nombre del companero tapa al del registro)
 let mensaje = 'global';
 function otra() {
   let mensaje = 'local';

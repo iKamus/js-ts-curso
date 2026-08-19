@@ -1,28 +1,51 @@
 /*
-Ejercicio 3 — Operadores
-Acá vas a mezclar cuentas de todos los días con preguntas de sí o no.
-Fijate cómo con el resto (%) sabés si un número es par: es lo que sobra
-de la división entre 2, como repartir bolitas en dos pilas parejas.
-1) Tené dos variables: a = 27, b = 5
-2) Calculá y mostrá las cinco operaciones. OJO: todas se hacen entre esos
-   DOS valores del paso 1, usando las variables a y b:
-   - suma: a + b
-   - resta: a - b
-   - producto (multiplicación): a * b
-   - división: a / b
-   - resto: a % b
-   Mostralas en una sola línea así:
-   "suma=32 resta=22 producto=135 division=5.4 resto=2"
-3) Verificá si a es par (a % 2 === 0) y mostrá el resultado
-4) Verificá si a > b Y b > 0, mostrá el resultado
+Ejercicio 3 -- Operadores y logica del cine
 
-Resultado esperado:
-suma=32 resta=22 producto=135 division=5.4 resto=2
-a es par: false
-a > b y b > 0: true
+Un cine calcula el precio de la entrada segun la edad y el dia.
+Vas a usar operadores aritmeticos, de comparacion, logicos,
+de asignacion acumulativa y ternario para calcular el precio.
+
+Datos base:
 */
 
-const a = 27;
-const b = 5;
+const precioBase = 1000;
+const edad = 17;
+const esJueves = true;
 
-// completá acá
+/*
+Reglas de precio:
+- Menores de 12: entrada gratis (precio = 0)
+- De 12 a 17 (incluidos): precio con 50% de descuento
+- De 18 a 59: precio base
+- De 60 en adelante: precio con 30% de descuento
+
+Ademas:
+- Si es jueves, se aplica un 10% extra de descuento sobre el precio
+  que ya se calculo (se aplica DESPUES del descuento por edad).
+
+Pasos:
+1) Con operadores de comparacion y un if/else o ternarios,
+   calcula el precio segun la edad.
+   Guárdalo en la variable precioSegunEdad.
+
+2) Si es jueves, aplica un 10% extra de descuento.
+   Usa el operador && (si es jueves, haz algo).
+
+3) Redondea el resultado a 2 decimales con toFixed(2).
+
+4) Imprime con template literal:
+   "Edad: 17 | Jueves: true | Precio final: $XXX.XX"
+
+Tips:
+- Primero calcula el precio por edad, DESPUES aplica el descuento
+  del jueves si corresponde.
+- Un ternario basico: condicion ? valorSiTrue : valorSiFalse
+- Para el descuento del jueves: precioSegunEdad *= 0.90 (o
+  precioSegunEdad = precioSegunEdad - precioSegunEdad * 0.10)
+- toFixed(2) devuelve un string, eso esta bien para el precio.
+
+Resultado esperado:
+Edad: 17 | Jueves: true | Precio final: $450.00
+*/
+
+// completa aqui

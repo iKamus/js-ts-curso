@@ -1,12 +1,13 @@
 /*
 Ejercicio 5 — Optional chaining
+
 Tenés una lista de viajes:
   const viajes = [
     { destino: 'Bariloche', aeropuerto: { nombre: 'Bari' } },
     { destino: 'Madryn' },
   ];
 Fijate: el primer viaje tiene aeropuerto (con su nombre adentro),
-pero el segundo NO tiene casilla aeropuerto. Si hicieras
+pero el segundo NO tiene la propiedad aeropuerto. Si hicieras
 viaje.aeropuerto.nombre en el segundo, el programa se rompe,
 porque no podés leer 'nombre' de algo que no existe.
 
@@ -21,8 +22,8 @@ Paso a paso:
    chaining: si el aeropuerto existe te da 'Bari'; si no existe te da
    undefined (sin romper).
 3) Si da undefined, mostrá 'sin aeropuerto'. Si no, mostrá el nombre.
-   Pista: podés usar el operador || como plan B: si el lado izquierdo
-   es undefined, toma el plan B. Escribí vos la expresión.
+   Pista: podés usar el operador || o ?? como plan B: si el lado
+   izquierdo es undefined, toma el plan B.
 4) Imprimí por cada viaje:
    "El viaje a <destino> usa el aeropuerto <nombre o 'sin aeropuerto'>"
 
@@ -36,4 +37,4 @@ const viajes = [
   { destino: 'Madryn' },
 ];
 
-// completá acá
+// completa aquí

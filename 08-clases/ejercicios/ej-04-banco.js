@@ -1,37 +1,40 @@
 /*
 Ejercicio 4 — Banco que maneja cuentas
-Creá una clase Banco que guarde las cuentas en un Map.
-El Map es como la libreta del banco: clave → valor, o sea,
-número de cuenta → saldo. Así el banco sabe cuánta plata tiene cada
+Crea una clase Banco que guarde las cuentas en un Map.
+El Map es como la libreta del banco: clave -> valor, o sea,
+numero de cuenta -> saldo. Asi el banco sabe cuanta plata tiene cada
 cuenta sin tener que buscar a mano.
 
 Paso a paso:
-1) Creá la clase Banco con un Map adentro:
+1) Crea la clase Banco con un Map adentro:
    el constructor lo guarda en una propiedad (this.cuentas).
-   Fijate cómo se escribe una clase en ejemplos/01-clase-basica.js
-   y cómo se usa el Map en 07-map-set/ejemplos/02-map.js.
-2) Agregale los métodos:
+   Fijate como se escribe una clase en ejemplos/01-clase-basica.js
+   y como se usa el Map en 07-map-set/ejemplos/02-map.js.
+2) Agrega los metodos:
    - crearCuenta(numero, saldoInicial): guarda la cuenta nueva
      en el Map (clave numero, valor saldoInicial).
    - depositar(numero, monto): le suma monto al saldo de esa cuenta.
-     Primero agarrá el saldo actual del Map, sumale monto y volvé
+     Primero agarrá el saldo actual del Map, sumale monto y volve
      a guardarlo con la misma clave.
    - retirar(numero, monto): si el saldo alcanza, restalo y guardalo.
-     Si NO alcanza (monto > saldo), mostrá "Saldo insuficiente".
+     Si NO alcanza (monto > saldo), muestra "Saldo insuficiente".
    - transferir(de, a, monto): pasar plata de una cuenta a otra,
-     como cuando le prestás unos pesos a un amigo y los restás de tu
-     bolsillo: retirar(de, monto) y después depositar(a, monto).
-   - saldoTotal(): suma todos los saldos del Map. Fijate cómo sacar
+     como cuando le prestas unos pesos a un amigo y los restas de tu
+     bolsillo: retirar(de, monto) y despues depositar(a, monto).
+   - saldoTotal(): suma todos los saldos del Map. Fijate como sacar
      todos los valores en 07-map-set/ejemplos/02-map.js (hay una
-     parte que los lista con el spread) y después reduce, como en
-     el módulo 04.
-3) Probá en este orden:
+     parte que los lista con el spread) y despues reduce, como en
+     el modulo 04.
+3) Prueba en este orden:
    crearCuenta('100', 100)
    crearCuenta('200', 200)
    depositar('100', 10)
    transferir('100', '200', 50)
    retirar('200', 60)
-4) Mostrá el saldo de cada cuenta y el total con el formato de abajo.
+4) Muestra el saldo de cada cuenta y el total con el formato de abajo.
+
+Tip: para saldoTotal, usa [...this.cuentas.values()] para obtener
+un array de saldos y despues reduce para sumarlos.
 
 Resultado esperado:
 Saldo cuenta 100: 60

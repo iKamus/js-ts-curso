@@ -8,21 +8,21 @@ y te devuelve un array con todos los resultados en orden. Si una sola
 falla, falla todo el combo.
 
 Paso a paso:
-1) Creá numero(valor, ms) que devuelva una promesa que se resuelve
-   con `valor` después de ms. Es la misma idea de esperar del
+1) Crear numero(valor, ms) que devuelva una promesa que se resuelve
+   con `valor` despues de ms. Es la misma idea de esperar del
    ejercicio 1, pero resolviendo con el valor que te pasaron.
-2) Creá tres promesas con:
+2) Crear tres promesas con:
    - valor 1 y 100 ms
    - valor 2 y 200 ms
    - valor 3 y 150 ms
-3) Juntalas con Promise.all y esperá el resultado. Fijate cómo se usa
+3) Juntalas con Promise.all y espera el resultado. Fijate como se usa
    en ejemplos/02-promesas.js (la parte de Promise.all): .then te da
-   el array con los resultados en el mismo orden que las pasaste,
-   no importa cuál termine primero.
-4) Mostrá la SUMA de los tres resultados.
+   el array con los resultados en el mismo orden que los pasaste,
+   no importa cual termine primero.
+4) Mostrar la SUMA de los tres resultados.
 
 Resultado esperado:
 6
 */
 
-// completá acá
+// completar aca

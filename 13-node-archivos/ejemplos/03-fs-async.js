@@ -1,7 +1,7 @@
-// 03-fs-async.js — fs/promises (asíncrono)
-// Acá la versión asíncrona: es como pedir el pedido en el mostrador.
-// No te quedás esperando clavado, seguís haciendo otras cosas y cuando
-// el pedido está listo, lo tomás con await.
+// 03-fs-async.js — fs/promises (asincrono)
+// La version asincrona es como pedir el pedido en el mostrador:
+// no te quedas esperando clavado, seguis haciendo otras cosas y cuando
+// el pedido esta listo, lo tomas con await.
 
 const fs = require('fs/promises');
 const path = require('path');
@@ -9,23 +9,33 @@ const path = require('path');
 async function main() {
   const ruta = path.join(__dirname, '..', 'data', 'datos.json');
 
-  // leer y desempacar el JSON: primero leés el texto y después lo
-  // convertís a un objeto con JSON.parse
+  // --- readFile ---
+  // Leemos el texto del JSON y lo convertimos a objeto con JSON.parse
   const texto = await fs.readFile(ruta, 'utf8');
   const datos = JSON.parse(texto);
-  console.log(datos); // { nombre: 'Smart LED', version: '2.0' }
+  console.log('datos leidos:', datos);
+  // { nombre: 'Smart LED', version: '2.0' }
 
-  // listar directorio: mirás qué hay dentro del cajón
+  // --- readdir ---
+  // Listamos los archivos de la carpeta actual
   const archivos = await fs.readdir(__dirname);
-  console.log('archivos de este módulo:', archivos);
+  console.log('\narchivos de este modulo:', archivos);
 
-  // crear carpeta (recursive = no falla si ya existe):
-  // como sacar una caja nueva del armario, si ya está, no te asustés
-  await fs.mkdir(path.join(__dirname, 'tmp'), { recursive: true });
+  // --- mkdir ---
+  // Crear una carpeta. recursive = true: no falla si ya existe
+  const carpetaTmp = path.join(__dirname, 'tmp');
+  await fs.mkdir(carpetaTmp, { recursive: true });
+  console.log('\ncarpeta tmp creada');
 
-  // stats del archivo: la ficha del cuaderno, cuánto pesa, cuándo se tocó
+  // --- stat ---
+  // La "ficha" del archivo: tamaño, si es archivo o carpeta, etc.
   const stats = await fs.stat(ruta);
-  console.log('tamaño:', stats.size, 'bytes');
+  console.log('\ntamaño de datos.json:', stats.size, 'bytes');
+  console.log('es archivo:', stats.isFile());       // true
+  console.log('es carpeta:', stats.isDirectory());   // false
+
+  // Limpiamos la carpeta temporal
+  await fs.rmdir(carpetaTmp);
 }
 
 main().catch(console.error);

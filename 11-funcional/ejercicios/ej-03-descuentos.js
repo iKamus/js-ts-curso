@@ -1,27 +1,30 @@
 /*
 Ejercicio 3 — Descuentos con funciones puras
 
-Vamos a simular una liquidación en un local: todos los precios con 10% off.
-Una función pura es una receta: mismos ingredientes → mismo plato, y no
+Vamos a simular una liquidacion en un local: todos los precios con 10% off.
+Una funcion pura es una receta: mismos ingredientes -> mismo plato, y no
 ensucia nada de afuera (no toca variables externas, solo recibe
-parámetros y devuelve un resultado). Acá vas a usar las tres grandes
+parametros y devuelve un resultado). Acas vas a usar las tres grandes
 juntas: map, reduce y filter.
 
 Tenés los precios:
   const precios = [100, 200, 150, 80];
 
 Paso a paso:
-1) Creá aplicarDescuento(precio, porcentaje) que devuelva el precio
-   con el descuento aplicado. Pensalo así: un 10% de descuento es
-   pagar el 90%, o sea multiplicar por 0.9. Escribí la cuenta vos:
-   al precio le restás la parte que se descuenta (porcentaje sobre 100).
-2) Aplicá el 10% a CADA precio con map: le pasás cada precio a
-   aplicarDescuento (la flecha de map puede llamar a tu función).
-   El map transforma cada elemento (le pasa la plancha a cada uno).
-3) Mostrá el total con reduce: sumá todos los precios con descuento.
-4) Filtrá con filter los que quedaron menores o iguales a 135 después
-   del descuento: la condición es comparar cada precio con 135.
-5) Mostrá los tres resultados con los formatos de abajo.
+1) Crear aplicarDescuento(precio, porcentaje) que devuelva el precio
+   con el descuento aplicado. Pensalo asi: un 10% de descuento es
+   pagar el 90%, o sea multiplicar por (1 - porcentaje/100). Escribi
+   la cuenta vos.
+2) Aplicar el 10% a CADA precio con map: le pasas cada precio a
+   aplicarDescuento (la flecha de map puede llamar a tu funcion).
+   El map transforma cada elemento.
+3) Mostrar el total con reduce: sumar todos los precios con descuento.
+4) Filtrar con filter los que quedaron menores o iguales a 135 despues
+   del descuento: la condicion es comparar cada precio con 135.
+5) Mostrar los tres resultados con los formatos de abajo.
+
+Tip: la funcion aplicarDescuento debe ser PURA: solo recibe precio y
+porcentaje, y devuelve un numero nuevo. No toca el array original.
 
 Resultado esperado:
 Con 10%: [ 90, 180, 135, 72 ]

@@ -14,15 +14,15 @@ class Animal {
 class Perro extends Animal {
   constructor(nombre, raza) {
     super(nombre);       // llama al constructor del padre
-    // super es como avisar al padre: "che, primero armá tu parte, que yo después pongo la mía".
+    // super es como avisar al padre: "che, primero armas tu parte, que yo despues pongo la mia".
     this.raza = raza;
   }
-  hablar() {             // override: redefine el método
-    // Acá pisamos el método del padre: mismo nombre, pero versión perruna.
+  hablar() {             // override: redefine el metodo
+    // Pisamos el metodo del padre: mismo nombre, pero version perruna.
     return `${this.nombre} dice guau`;
   }
-  describir() {          // método propio de Perro
-    // Esto es algo que solo sabe hacer el Perro, el Animal base no lo tiene.
+  describir() {          // metodo propio de Perro
+    // Algo que solo sabe hacer el Perro, el Animal base no lo tiene.
     return `${this.nombre} es un ${this.raza}`;
   }
 }

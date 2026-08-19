@@ -1,35 +1,32 @@
 /*
 Ejercicio 3 — Contar palabras de un archivo
-Vamos a contar cuántas palabras tiene un texto, como cuando contás
-cuántas cosas entran en tu mochila. Leé data/sample.txt y mostrá
-dos cosas.
+Leé data/sample.txt y contá cuantas palabras tiene en total, y cual
+es la mas repetida.
 
 Paso a paso:
-1) Armá la ruta y leé el archivo como en el ejercicio 1 (misma ruta
-   y misma lectura).
+1) Armá la ruta y leé el archivo como en el ejercicio 1.
+
 2) Contá la cantidad total de palabras:
-   - cortá el texto por los espacios (fijate que los espacios pueden
-     venir de a uno o de a varios seguidos: hay un "patrón" especial,
-     una expresión regular, que significa "uno o más espacios". Es
-     como el split de siempre pero con ese patrón adentro. Buscalo
-     si no te acordás cómo se escribe).
-   - contá los pedazos
+   - Cortá el texto por los espacios. Hay un "truco": podes usar
+     una expresion regular como patron de split para que corte por
+     uno o mas espacios seguidos. Busca como se escribe "uno o mas"
+     en expresiones regulares.
+   - Contá los pedazos del array.
    En data/sample.txt hay 9 palabras.
-3) Encontrá la palabra más repetida con un Map (como en el módulo 07):
+
+3) Encontrá la palabra mas repetida con un Map:
    - Recorré el array de palabras con for...of.
-   - Para cada palabra, sumale 1 a su cuenta en el Map: tomá lo que
-     había (o 0 si no había nada, con el plan B del ||) y sumale 1.
-     Escribí vos la línea con las operaciones del Map (get/set).
-   - Después recorré el Map y quedate con la palabra que tiene la
-     cuenta más alta (como el "más alto de la fila" del módulo 04,
-     pero comparando los valores del Map).
-4) Mostrá los dos resultados:
-   "Palabras: 9"
-   "Más repetida: hola"
+   - Para cada palabra, sumale 1 a su cuenta en el Map. Usa
+     map.get(palabra) || 0 para arrancar de 0 si no existia,
+     y map.set(palabra, cuenta + 1) para guardar.
+   - Despues recorré el Map y quedate con la palabra que tiene
+     la cuenta mas alta.
+
+4) Mostrá los dos resultados.
 
 Resultado esperado:
 Palabras: 9
-Más repetida: hola
+Mas repetida: hola
 */
 
 const fs = require('fs');

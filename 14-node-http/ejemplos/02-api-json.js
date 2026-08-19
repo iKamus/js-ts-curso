@@ -1,8 +1,9 @@
-// 02-api-json.js — API JSON con routing
-// Acá el servidor es como un mozo que conoce la carta entera: según la
-// URL que le pidas, te trae un plato u otro. Es el "routing" (rutas).
-// Corré: node ejemplos/02-api-json.js
-// Probá:
+// 02-api-json.js — API JSON con routing y query params
+// Este servidor reconoce varias rutas y responde distinto segun
+// lo que le pidas. Es como un mozo que conoce la carta entera.
+//
+// Corre: node ejemplos/02-api-json.js
+// Proba:
 //   curl.exe http://localhost:3000/tareas
 //   curl.exe http://localhost:3000/ping
 //   curl.exe "http://localhost:3000/saludo?nombre=Ana"
@@ -13,40 +14,43 @@ const http = require('http');
 
 const tareas = [
   { id: 1, titulo: 'Estudiar JS', done: false },
-  { id: 2, titulo: 'Terminar módulo 14', done: true },
+  { id: 2, titulo: 'Terminar modulo 14', done: true },
 ];
 
 const server = http.createServer((req, res) => {
-  const url = req.url;
+  // new URL: convierte el string de la URL en un objeto comodo
+  // El segundo argumento es la "base" (obligatoria, no importa cual sea)
+  const url = new URL(req.url, 'http://localhost');
+  const ruta = url.pathname; // el "camino": /saludo, /tareas, /ping, etc.
 
-  // query params: los datos que vienen en la URL después del ?
-  // /saludo?nombre=Ana → el "camino" es /saludo y el dato es nombre=Ana.
-  // new URL(url, base) convierte la URL en un objeto cómodo para leerlos,
-  // y searchParams.get('clave') te da el valor de esa clave (o null si no viene).
-  const urlCompleta = new URL(req.url, 'http://localhost');
-  const nombre = urlCompleta.searchParams.get('nombre');
-  if (urlCompleta.pathname === '/saludo') {
-    res.writeHead(200);
+  // --- Routing: segun la ruta y el metodo, hacemos una cosa u otra ---
+
+  // Ruta /saludo con query param ?nombre=...
+  // searchParams.get('nombre') busca el valor del param "nombre" en la URL
+  if (ruta === '/saludo') {
+    const nombre = url.searchParams.get('nombre');
+    res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
     res.end(JSON.stringify({ saludo: nombre ? `Hola, ${nombre}!` : 'Hola, mundo!' }));
+    return; // frenamos aca para que no siga evaluando las demas rutas
+  }
+
+  // Ruta /tareas: devuelve la lista de tareas
+  if (ruta === '/tareas' && req.method === 'GET') {
+    res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+    res.end(JSON.stringify(tareas));
     return;
   }
 
-  // decimos que la respuesta va en "idioma JSON"
-  res.setHeader('Content-Type', 'application/json; charset=utf-8');
-  res.setHeader('Access-Control-Allow-Origin', '*'); // CORS: dejamos entrar a cualquiera
-
-  // Según la URL, contestamos una cosa u otra. Si nada coincide,
-  // avisamos que no está en la carta (404).
-  if (url === '/tareas' && req.method === 'GET') {
-    res.writeHead(200);
-    res.end(JSON.stringify(tareas));
-  } else if (url === '/ping') {
-    res.writeHead(200);
+  // Ruta /ping: responde con ok y la hora actual
+  if (ruta === '/ping') {
+    res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
     res.end(JSON.stringify({ ok: true, hora: new Date().toISOString() }));
-  } else {
-    res.writeHead(404);
-    res.end(JSON.stringify({ error: 'No existe ' + url }));
+    return;
   }
+
+  // Si nada coincide: 404 (No Found)
+  res.writeHead(404, { 'Content-Type': 'application/json; charset=utf-8' });
+  res.end(JSON.stringify({ error: `No existe la ruta ${ruta}` }));
 });
 
 server.listen(3000, () => {

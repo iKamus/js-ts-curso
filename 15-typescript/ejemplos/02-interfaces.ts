@@ -6,8 +6,8 @@
 interface Persona {
   nombre: string;
   edad: number;
-  email?: string;       // opcional: puede no estar, como un teléfono de contacto
-  readonly id: number;  // no se puede reasignar: es el número de documento
+  email?: string;       // opcional: puede no estar
+  readonly id: number;  // no se puede reasignar
 }
 
 function presentar(p: Persona): string {
@@ -21,13 +21,18 @@ console.log(presentar(ana)); // Ana (30)
 // type alias para uniones: la caja acepta solo estos valores
 type Estado = 'activo' | 'inactivo' | 'pendiente';
 const estado: Estado = 'activo';
-// const otro: Estado = 'roto'; // ERROR: 'roto' no es un Estado válido
+// const otro: Estado = 'roto'; // ERROR: 'roto' no es un Estado valido
 
-// objetos con arrays tipados: campos que son listas de números
+// type alias para tipos compuestos
+type Coordenada = { x: number; y: number };
+const pos: Coordenada = { x: 10, y: 20 };
+console.log(pos);
+
+// objetos con arrays tipados
 interface Inventario {
   nombre: string;
   cantidades: number[];
 }
 
-const stock: Inventario = { nombre: 'Depósito', cantidades: [10, 20, 30] };
+const stock: Inventario = { nombre: 'Deposito', cantidades: [10, 20, 30] };
 console.log(stock);

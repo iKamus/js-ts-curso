@@ -1,7 +1,7 @@
 // 04-referencias.js — Referencias, copias y optional chaining
 
 // Los objetos se asignan por REFERENCIA
-// Ojo acá, que es el clásico: `alias` y `original` son dos nombres para el MISMO cuaderno.
+// Cuidado: `alias` y `original` son dos nombres para el MISMO cuaderno.
 const original = { saldo: 100 };
 const alias = original;
 alias.saldo = 50;
@@ -26,7 +26,7 @@ const usuario = {};
 console.log(usuario.perfil?.nombre); // undefined (sin error)
 // console.log(usuario.perfil.nombre); // ERROR: no se puede leer 'nombre' de undefined
 
-// con operador ?? (nullish): valor por defecto solo si es null/undefined
+// Con operador ?? (nullish): valor por defecto solo si es null/undefined
 // Como tener un plan B: si no hay valor, usás el que pasaste vos.
 const puerto = usuario.perfil?.puerto ?? 8080;
 console.log(puerto); // 8080

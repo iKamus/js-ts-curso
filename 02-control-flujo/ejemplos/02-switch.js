@@ -3,7 +3,7 @@
 const dia = 'martes';
 let actividad;
 
-// Como mirar el calendario y elegir el plan de cada día
+// Como mirar el calendario y elegir el plan de cada dia
 switch (dia) {
   case 'lunes':
     actividad = 'Arrancar la semana';
@@ -21,12 +21,12 @@ switch (dia) {
 
 console.log(actividad); // Entrenar
 
-// Ojo sin break: se "cae" al siguiente case
+// Sin break: se "cae" al siguiente case
 let mensaje;
 switch ('a') {
   case 'a':
     mensaje = 'primero';
   case 'b':
-    mensaje += ' y segundo'; // se ejecutó sin break (el flujo siguió de largo)
+    mensaje += ' y segundo'; // se ejecuto sin break (el flujo siguio de largo)
 }
 console.log(mensaje); // primero y segundo

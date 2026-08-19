@@ -31,19 +31,16 @@ Paso a paso:
    - Convierte valor6 con parseInt() y guárdalo en entero1.
      Imprime: entero1 y su tipo.
 
-3) Responde con booleanos: crea estas 4 variables usando Boolean():
-   - const esVerdadero1 = Boolean(valor1);
-   - const esVerdadero2 = Boolean(valor2);
-   - const esVerdadero3 = Boolean(valor3);
-   - const esVerdadero5 = Boolean(valor5);
-   Boolean() convierte cualquier valor a true o false siguiendo las reglas
-   de verdadero/falso que viste en la teoria.
+3) Responde con booleanos: crea 4 variables con estos nombres exactos
+   y guardales el resultado de usar Boolean() con cada valor indicado.
+   Boolean() toma cualquier valor y te devuelve true o false.
+   - esVerdadero1: pasale valor1 a Boolean()
+   - esVerdadero2: pasale valor2 a Boolean()
+   - esVerdadero3: pasale valor3 a Boolean()
+   - esVerdadero5: pasale valor5 a Boolean()
 
-4) Imprime cada resultado con este formato exacto:
-   console.log(`valor1 = '${valor1}' → Boolean: ${esVerdadero1}`);
-   console.log(`valor2 = ${valor2} → Boolean: ${esVerdadero2}`);
-   console.log(`valor3 = '${valor3}' → Boolean: ${esVerdadero3}`);
-   console.log(`valor5 = ${valor5} → Boolean: ${esVerdadero5}`);
+4) Imprime cada resultado, mostrando el valor original y su booleano:
+   "valor1 = '42' → Boolean: true" (o false, segun lo que de)
 
 Tips:
 - typeof retorna un STRING, así que compara con typeof x === 'number'.

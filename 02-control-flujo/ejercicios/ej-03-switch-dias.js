@@ -15,9 +15,11 @@ Paso a paso:
    - otro dia (que no existe o mal escrito) -> "Dia invalido" (default)
 2) Recuerda el break despues de cada case: si lo olvidas, el programa
    "se cae" al siguiente casillero y te asigna el plan del dia equivocado.
-3) Despues del switch, usa un ternario para decidir si el dia es laborable
-   (lunes a viernes) o no (fin de semana). Guarda el resultado en "tipoDia".
-   Pista: puedes usar una variable booleana que vayas actualizando con cada case.
+3) ANTES del switch, crea una variable let esLaborable = false; (sin valor real,
+   la vamos a ir cambiando). Dentro de cada case del switch, actualiza esa variable:
+   si es lunes a viernes, ponla en true; si es sabado o domingo, dejala en false.
+   Despues del switch, crea una variable "tipoDia" con un ternario:
+   const tipoDia = esLaborable ? 'laborable' : 'fin de semana';
 4) Imprime el resultado con el formato: "sabado -> Dormir hasta tarde"
    y luego "Tipo: laborable / fin de semana".
 

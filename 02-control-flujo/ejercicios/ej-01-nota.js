@@ -14,10 +14,11 @@ Paso a paso:
    - nota >= 7  -> "Muy bien"
    - nota >= 4  -> "Regular"
    - si ninguna se cumplio (nota menor a 4) -> "Desaprobado"
-2) Usar un operador ternario para guardar en una variable si esta "aprobado"
-   (nota >= 4) o "reprobado" (nota < 4). Esto practica el ternario.
+2) Crear una variable "aprobado" con un ternario: si nota >= 4 guarda true,
+   si no guarda false. Es decir: const aprobado = nota >= 4 ? true : false;
 3) Imprimir el resultado con el formato: "nota -> concepto" y luego
-   "Ternario: esta -> aprobado/reprobado".
+   "Ternario: esta -> aprobado" o "Ternario: esta -> reprobado"
+   (usando un ternario que muestre "aprobado" si aprobado es true, o "reprobado" si es false).
 
 Probando con estos valores:
 nota = 10 -> Excelente, esta aprobado

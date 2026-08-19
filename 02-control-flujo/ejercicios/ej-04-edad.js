@@ -16,10 +16,11 @@ Paso a paso:
    sabes que es 13 o mas. Entonces para el segundo rango alcanza con
    preguntar edad <= 19 (ya sabemos que no es menor a 13).
    Asi vas encadenando: cada pregunta descarta lo de arriba.
-3) Usar un operador ternario para guardar en "pagaEntrada" si la persona
-   paga entrada completa (edad >= 12) o entrada reducida (edad < 12).
+3) Crear una variable "pagaEntrada" con un ternario: si edad >= 12 guarda
+   el string 'entrada completa', si no guarda 'entrada reducida'.
+   Es decir: const pagaEntrada = edad >= 12 ? 'entrada completa' : 'entrada reducida';
 4) Imprimir el resultado con el formato: "30 -> Adulto"
-   y luego "Paga entrada completa" o "Paga entrada reducida".
+   y luego "Paga entrada completa" o "Paga entrada reducida" (usando la variable).
 
 Probando con: 5, 15, 30, 70
 

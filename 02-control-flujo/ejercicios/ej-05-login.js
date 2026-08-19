@@ -17,12 +17,11 @@ Paso a paso:
 1) Arma UNA condicion con && que junte las tres reglas.
    && significa "y": si una sola falla, todo es falso.
 2) Con if imprime "Acceso permitido", y con else "Acceso denegado".
-3) Despues, usa un operador ternario para guardar en "mensaje" un texto
-   personalizado: si el usuario es 'admin' y el password es '1234',
-   el mensaje debe ser "Combo debil detectado". Si no, el mensaje
-   debe ser el nombre del usuario (variable usuario).
-   Esto practica el ternario junto con &&.
-4) Imprimir el mensaje del ternario despues del resultado de acceso.
+3) Crear una variable "mensaje" con un ternario: si el usuario es 'admin' Y el
+   password es '1234', guarda el string 'Combo debil detectado'. Si no, guarda
+   el valor de la variable usuario (el string con el nombre).
+   Es decir: const mensaje = (usuario === 'admin' && password === '1234') ? 'Combo debil detectado' : usuario;
+4) Imprimir el valor de mensaje despues del resultado de acceso.
 
 Casos para probar (cambiando las variables):
 usuario='ana'     pass='clave1234' -> permitido, ana

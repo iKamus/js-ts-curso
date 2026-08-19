@@ -2,8 +2,12 @@
 Ejercicio 3 -- Operadores y logica del cine
 
 Un cine calcula el precio de la entrada segun la edad y el dia.
-Vas a usar operadores aritmeticos, de comparacion, logicos,
-de asignacion acumulativa y ternario para calcular el precio.
+Vas a usar operadores aritmeticos, de comparacion, logicos
+y de asignacion acumulativa para calcular el precio.
+
+Las reglas por rango de edad (menor a 12, entre 12 y 17, etc.)
+las vas a resolver recien en el modulo 02 con if/else.
+Aca el foco es PRACTICAR OPERADORES.
 
 Datos base:
 */
@@ -13,39 +17,35 @@ const edad = 17;
 const esJueves = true;
 
 /*
-Reglas de precio:
-- Menores de 12: entrada gratis (precio = 0)
-- De 12 a 17 (incluidos): precio con 50% de descuento
-- De 18 a 59: precio base
-- De 60 en adelante: precio con 30% de descuento
-
-Ademas:
-- Si es jueves, se aplica un 10% extra de descuento sobre el precio
-  que ya se calculo (se aplica DESPUES del descuento por edad).
-
 Pasos:
-1) Con operadores de comparacion y un if/else o ternarios,
-   calcula el precio segun la edad.
-   Guárdalo en la variable precioSegunEdad.
+1) Crea una variable "tieneDescuento" que guarde true o false
+   segun si la edad esta entre 12 y 17 (incluidos).
+   Necesitas dos comparaciones y un && para unir ambas.
 
-2) Si es jueves, aplica un 10% extra de descuento.
-   Usa el operador && (si es jueves, haz algo).
+2) Crea una variable "precio" que sea:
+   - precioBase dividido 2 (osea 500) si tieneDescuento es true
+   - precioBase completa (1000) si tieneDescuento es false
+   Usa operadores logicos para lograrlo sin if/else.
 
-3) Redondea el resultado a 2 decimales con toFixed(2).
+3) Si es jueves, al precio hay que quitarle un 10% extra.
+   Es decir: precio = precio - (precio * 0.10).
+   Usa && para que esto solo pase cuando esJueves sea true.
+   Pista: && puede "ejecutar" una operacion solo si lo de la izquierda es true.
 
-4) Imprime con template literal:
-   "Edad: 17 | Jueves: true | Precio final: $XXX.XX"
+4) Redondea el resultado a 2 decimales con toFixed(2).
+
+5) Imprime con template literal:
+   "Edad: 17 | Jueves: true | Precio final: $450.00"
+   "Tiene descuento por edad: true"
 
 Tips:
-- Primero calcula el precio por edad, DESPUES aplica el descuento
-  del jueves si corresponde.
-- Un ternario basico: condicion ? valorSiTrue : valorSiFalse
-- Para el descuento del jueves: precioSegunEdad *= 0.90 (o
-  precioSegunEdad = precioSegunEdad - precioSegunEdad * 0.10)
-- toFixed(2) devuelve un string, eso esta bien para el precio.
+- && y || pueden devolver valores, no solo true/false.
+  Por ejemplo: false || 100 te da 100. Y true && 500 te da 500.
+- toFixed(2) devuelve un string, esta bien para mostrar el precio.
 
 Resultado esperado:
 Edad: 17 | Jueves: true | Precio final: $450.00
+Tiene descuento por edad: true
 */
 
 // completa aqui

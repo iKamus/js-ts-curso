@@ -31,16 +31,19 @@ Paso a paso:
    - Convierte valor6 con parseInt() y guárdalo en entero1.
      Imprime: entero1 y su tipo.
 
-3) Responde con booleanos (guarda en variables con nombre descriptivo):
-   - esVerdadero1: ¿valor1 se comporta como verdadero? (guarda el resultado de
-    Boolean(valor1))
-   - esVerdadero2: ¿valor2 se comporta como verdadero?
-   - esVerdadero3: ¿valor3 se comporta como verdadero?
-   - esVerdadero5: ¿valor5 se comporta como verdadero?
+3) Responde con booleanos: crea estas 4 variables usando Boolean():
+   - const esVerdadero1 = Boolean(valor1);
+   - const esVerdadero2 = Boolean(valor2);
+   - const esVerdadero3 = Boolean(valor3);
+   - const esVerdadero5 = Boolean(valor5);
+   Boolean() convierte cualquier valor a true o false siguiendo las reglas
+   de verdadero/falso que viste en la teoria.
 
-4) Para el paso 3, imprime cada resultado con un console.log que
-   diga algo como:
-   "valor1 = '42' → Boolean: true"
+4) Imprime cada resultado con este formato exacto:
+   console.log(`valor1 = '${valor1}' → Boolean: ${esVerdadero1}`);
+   console.log(`valor2 = ${valor2} → Boolean: ${esVerdadero2}`);
+   console.log(`valor3 = '${valor3}' → Boolean: ${esVerdadero3}`);
+   console.log(`valor5 = ${valor5} → Boolean: ${esVerdadero5}`);
 
 Tips:
 - typeof retorna un STRING, así que compara con typeof x === 'number'.
@@ -68,3 +71,23 @@ valor5 = null → Boolean: false
 */
 
 // completa aqui
+
+console.log(`Tipo de valor1: ${typeof(valor1)}`)
+console.log(`Tipo de valor2: ${typeof(valor2)}`)
+console.log(`Tipo de valor3: ${typeof(valor3)}`)
+console.log(`Tipo de valor4: ${typeof(valor4)}`)
+console.log(`Tipo de valor5: ${typeof(valor5)}`)
+console.log(`Tipo de valor6: ${typeof(valor6)}`)
+console.log(`Tipo de valor7: ${typeof(valor7)}`)
+
+const num1 = Number(valor1)
+
+console.log(`num1 = ${num1}, tipo: ${typeof(num1)}`)
+
+const decimal1 = parseFloat(valor4)
+
+console.log(`decimal1 = ${decimal1}, tipo: ${typeof(decimal1)}`)
+
+const entero1 = parseInt(valor6)
+
+console.log(`entero1 = ${entero1}, tipo: ${typeof(entero1)}`)

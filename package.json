@@ -1,0 +1,31 @@
+{
+  "name": "curso-js-ts-interactivo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Curso interactivo de JavaScript y TypeScript: app web local con editor embebido y ejecución real en el navegador",
+  "scripts": {
+    "vendor": "node tools/build-vendor.mjs",
+    "start": "serve .",
+    "qa": "node tools/qa.mjs"
+  },
+  "devDependencies": {
+    "@codemirror/autocomplete": "^6.18.0",
+    "@codemirror/commands": "^6.6.0",
+    "@codemirror/lang-javascript": "^6.2.2",
+    "@codemirror/language": "^6.10.2",
+    "@codemirror/lint": "^6.8.1",
+    "@codemirror/search": "^6.5.6",
+    "@codemirror/state": "^6.4.1",
+    "@codemirror/theme-one-dark": "^6.1.2",
+    "@codemirror/view": "^6.34.0",
+    "esbuild": "^0.24.0",
+    "http-server": "^14.1.1",
+    "jsdom": "^25.0.1",
+    "serve": "^14.2.4",
+    "typescript": "^5.6.2"
+  },
+  "allowScripts": {
+    "esbuild@0.24.2": true
+  }
+}

@@ -1,5 +1,5 @@
 node_modules/
-dist/
-soluciones/
-*.tmp
+vendor/
 *.log
+.DS_Store
+Thumbs.db

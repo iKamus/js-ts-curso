@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Curso interactivo: JavaScript y TypeScript</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar" aria-label="Navegación del curso"></aside>
+    <main class="contenido" id="contenido"></main>
+  </div>
+  <div class="zona-ejecucion" hidden>
+    <iframe id="sandbox" title="zona de ejecución aislada" sandbox="allow-scripts"></iframe>
+  </div>
+  <script src="vendor/typescript.js" defer></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

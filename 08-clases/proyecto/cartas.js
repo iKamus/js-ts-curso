@@ -1,75 +1,75 @@
 /*
 Proyecto — Juego de cartas
 
-Un juego de cartas como el blackjack: tenes cartas de distintos tipos
+Un juego de cartas como el blackjack: tienes cartas de distintos tipos
 y formas manos para sumar puntos. Cada tipo de carta calcula su puntaje
 de forma distinta.
 
 La jerarquia de clases es:
-  Carta (base) -> NumeroCard (hija) ->FaceCard (hija)
+  Carta (base) -> NumeroCard (hija) y FaceCard (hija)
 
 Carta tiene el palo como campo privado.
 NumeroCard tiene un numero (1-10) como campo privado, su puntaje es el numero.
 FaceCard tiene un tipo ("J", "Q", "K") como campo privado, su puntaje es 10.
 Mano administra un array de cartas y calcula el puntaje total.
 
-Completa las partes marcadas con // completa aca.
+Completa las partes marcadas con // completa aqui.
 */
 
 // --- Carta base ---
 class Carta {
-  // completa aca: campo privado #palo
+  // completa aqui: campo privado #palo
 
   constructor(palo) {
-    // completa aca: guardar #palo
+    // completa aqui: guardar #palo
   }
 
-  // completa aca: getter palo (devuelve #palo)
+  // completa aqui: getter palo (devuelve #palo)
 
-  // completa aca: metodo describir() que devuelva "Carta de <palo>"
+  // completa aqui: metodo describir() que devuelva "Carta de <palo>"
 }
 
 // --- Carta de numero (1-10) ---
 class NumeroCard extends Carta {
-  // completa aca: campo privado #numero
+  // completa aqui: campo privado #numero
 
   constructor(palo, numero) {
-    // completa aca: llamar super(palo) y guardar #numero
+    // completa aqui: llamar super(palo) y guardar #numero
   }
 
-  // completa aca: getter puntaje que devuelva #numero
+  // completa aqui: getter puntaje que devuelva #numero
 
-  // completa aca: override de describir() que devuelva "<numero> de <palo>"
+  // completa aqui: override de describir() que devuelva "<numero> de <palo>"
 }
 
 // --- Carta figura (J, Q, K) ---
 class FaceCard extends Carta {
-  // completa aca: campo privado #tipo
+  // completa aqui: campo privado #tipo
 
   constructor(palo, tipo) {
-    // completa aca: llamar super(palo) y guardar #tipo
+    // completa aqui: llamar super(palo) y guardar #tipo
   }
 
-  // completa aca: getter puntaje que devuelva 10
+  // completa aqui: getter puntaje que devuelva 10
 
-  // completa aca: override de describir() que devuelva "<tipo> de <palo>"
+  // completa aqui: override de describir() que devuelva "<tipo> de <palo>"
 }
 
 // --- Mano (maneja varias cartas) ---
 class Mano {
-  // completa aca: campo privado #cartas (array vacio)
+  // completa aqui: campo privado #cartas (array vacio)
 
   agregar(carta) {
-    // completa aca: hacer push de carta a #cartas
+    // completa aqui: hacer push de carta a #cartas
   }
 
-  // completa aca: getter cantidad que devuelva la longitud de #cartas
+  // completa aqui: getter cantidad que devuelva la longitud de #cartas
 
-  // completa aca: getter total que sume el puntaje de todas las cartas
+  // completa aqui: getter total que sume el puntaje de todas las cartas
   // usa reduce y el getter puntaje de cada carta
 
   describir() {
-    // completa aca: recorrer #cartas y para cada una:
+    // completa aqui: recorrer #cartas y para cada una:
     // - usar instanceof para saber si es NumeroCard o FaceCard
     // - mostrar "[NumeroCard] " o "[FaceCard] " segun el tipo
     // - mostrar la descripcion de la carta y su puntaje

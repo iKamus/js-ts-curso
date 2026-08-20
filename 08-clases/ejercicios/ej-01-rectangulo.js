@@ -1,6 +1,6 @@
 /*
 Ejercicio 1 — Clase Rectangulo
-Crea una clase Rectangulo. Una clase es como un molde: definis la forma
+Crea una clase Rectangulo. Una clase es como un molde: defines la forma
 una vez, y despues haces todos los rectangulos que quieras con new.
 
 Paso a paso:
@@ -20,7 +20,7 @@ Paso a paso:
 4) Muestra los resultados con el formato:
    "area 4x6=24 perimetro=20 esCuadrado=false"
 
-Tip: un getter puede ser util para esCuadrado, pero tambien podes
+Tip: un getter puede ser util para esCuadrado, pero tambien puedes
 hacerlo como metodo normal con parentesis.
 
 Resultado esperado:
@@ -28,4 +28,4 @@ area 4x6=24 perimetro=20 esCuadrado=false
 area 5x5=25 perimetro=20 esCuadrado=true
 */
 
-// completá acá
+// completa aqui

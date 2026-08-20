@@ -2,13 +2,13 @@
 Ejercicio 2 — Factory de multiplicadores (currying)
 
 Vas a hacer una fabrica de multiplicadores: le pasas el numero por
-el que queres multiplicar y te devuelve una funcion lista para usar,
+el que quieres multiplicar y te devuelve una funcion lista para usar,
 como preparar la maquina antes de arrancar a trabajar.
 
 Una factory es una funcion que devuelve otra funcion. La funcion que
-devolves se "acuerda" del factor gracias al closure (lo viste en el
-ejercicio 1). Fijate como esta armada la factory en
-ejemplos/03-closures-currying.js.
+devuelves se "acuerda" del factor gracias al closure (lo viste en el
+ejercicio 1). Observa como esta armada la factory en la seccion
+Currying del README del modulo.
 
 Paso a paso:
 1) Crear multiplicador(factor) que devuelva una funcion que:
@@ -34,4 +34,4 @@ Resultado esperado:
 5
 */
 
-// completá acá
+// completa aqui

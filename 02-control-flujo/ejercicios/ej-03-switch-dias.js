@@ -1,6 +1,6 @@
 /*
 Ejercicio 3 — switch de dias
-Fijate el dia y elegi el plan, como mirar el calendario antes de armar la semana.
+Observa el dia y elige el plan, como mirar el calendario antes de armar la semana.
 Un switch es como un tablero con casilleros: miras que dia tienes, vas al
 casillero que corresponde y agarras el plan de ese dia.
 
@@ -9,7 +9,7 @@ Ya te dejo la variable lista:
 
 Paso a paso:
 1) Escribe un switch que revise la variable dia y asigne el plan segun el dia:
-   - lunes a viernes  -> "Dia de laburo"     (cada dia es un case aparte)
+   - lunes a viernes  -> "Dia de trabajo"    (cada dia es un case aparte)
    - sabado           -> "Dormir hasta tarde"
    - domingo          -> "Comer asado"
    - otro dia (que no existe o mal escrito) -> "Dia invalido" (default)

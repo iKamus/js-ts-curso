@@ -8,8 +8,7 @@ el try/catch es tu red de contencion y te avisa que paso.
 
 Paso a paso:
 1) Crear obtenerPosts() como funcion async (va a usar await).
-2) Adentro, en un try, segui el patron de ejemplos/04-fetch.js
-   (la funcion obtenerDatos de ese ejemplo hace exactamente esto):
+2) Adentro, en un try, sigue el patron de la seccion fetch del README:
    a) Espera la respuesta de fetch contra esa misma URL.
       (esto tarda: estas yendo a buscar datos de verdad)
    b) Revisa si salio bien: la respuesta tiene una propiedad que
@@ -28,4 +27,4 @@ Resultado esperado (si hay internet):
 Cantidad de posts: 100
 */
 
-// completar aca
+// completa aqui

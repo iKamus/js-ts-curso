@@ -14,24 +14,24 @@ Rutas:
 
 Paso a paso:
 1) Crea el servidor en el puerto 3000 (como en el ejercicio 1).
-2) Fijate que metodo es (req.method) y que URL (req.url):
+2) Observa que metodo es (req.method) y que URL (req.url):
    - POST y url === '/notas': hay que LEER EL BODY (los datos que
      manda el cliente). El body llega por partes, como un paquete en
      varios bultos. La respuesta (res) tiene eventos para escuchar
      partes ("data") y el aviso de que llego todo ("end"). En los
-     callbacks vas juntando los pedazos en un string y cuando llega
-     "end" ya tenes todo el body.
-     Despues convertis el body a objeto con JSON.parse(cuerpo),
-     le das un id nuevo a la nota (podes usar notas.length + 1),
-     la agregas con notas.push(...) y respondes 201 con la nota.
+callbacks vas juntando los pedazos en un string y cuando llega
+      "end" ya tienes todo el body.
+      Despues conviertes el body a objeto con JSON.parse(cuerpo),
+      le das un id nuevo a la nota (puedes usar notas.length + 1),
+      la agregas con notas.push(...) y respondes 201 con la nota.
    - GET y url === '/notas': responde todo el array con JSON.stringify(notas).
    - GET y url empieza con '/notas/': agarra el id de la parte de
-     atras (pensa en el split que ya conocias, o en como partir una
+     atras (piensa en el split que ya conocias, o en como partir una
      URL), convertilo a numero con Number(...), busca la nota con
      .find (lo viste en el modulo 04), y si no existe -> 404.
 3) Ojo con los Content-Type: 'application/json; charset=utf-8'.
 
-Tip: para sacar el id de una URL como "/notas/3", podes usar:
+Tip: para sacar el id de una URL como "/notas/3", puedes usar:
   const partes = url.split('/');
   const id = Number(partes[partes.length - 1]);
 
@@ -52,4 +52,4 @@ Resultado esperado:
 
 const http = require('http');
 
-// completá acá
+// completa aqui

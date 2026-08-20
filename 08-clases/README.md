@@ -1,8 +1,8 @@
 # Modulo 08 — Clases
 
 ## class
-- **Que es**: Un molde para crear objetos con la misma estructura y comportamiento. Es como un plano de casas: el plano define las habitaciones y el garage, y con ese mismo plano construis todas las casas que quieras.
-- **Cuándo usarlo**: Cuando necesitas crear muchos objetos parecidos que comparten propiedades y metodos. Si tenes que representar personas, cuentas, productos o cualquier cosa que se repita, una clase te ahorra reescribir codigo.
+- **Que es**: Un molde para crear objetos con la misma estructura y comportamiento. Es como un plano de casas: el plano define las habitaciones y el garage, y con ese mismo plano construyes todas las casas que quieras.
+- **Cuándo usarlo**: Cuando necesitas crear muchos objetos parecidos que comparten propiedades y metodos. Si tienes que representar personas, cuentas, productos o cualquier cosa que se repita, una clase te ahorra reescribir codigo.
 - **Sintaxis**:
 ```js
 class Persona {
@@ -23,7 +23,7 @@ ana.saludar();                    // "Hola, soy Ana"
 - **Metodos internos**: Ninguno propio de la clase (es una estructura base).
 - **Errores comunes**:
   - Olvidar `new` al crear una instancia: `Persona('Ana')` tira error.
-  - Definir metodos con flecha (`saludar = () => {}`): no comparten prototype y romen `this`.
+  - Definir metodos con flecha (`saludar = () => {}`): no comparten prototype y rompen `this`.
   - Confundir clase con objeto: la clase es el molde, `new` crea la galletita.
 - **Buenas practicas**:
   - Nombres de clases en PascalCase (`Persona`, `CuentaBancaria`).
@@ -83,11 +83,12 @@ class Circulo {
   - Confundir propiedades de la instancia con variables locales.
 - **Buenas practicas**:
   - Nombrar propiedades con sustantivos (`nombre`, `precio`) y metodos con verbos (`calcular`, `describir`).
-  - Mantener los metodos cortos: si un metodo hace muchas cosas, dividilo.
+  - Mantener los metodos cortos: si un metodo hace muchas cosas, dividelo.
   - Preferir propiedades calculadas (getters) a guardar valores derivados.
 
 ## campos privados (#)
-- **Que es**: Propiedades que solo se pueden leer y modificar desde adentro de la clase. Es como el cajon con llave de tu cuarto: nadie de afuera mete la mano, solo vos con la llave.
+- **Que es**: Propiedades que solo se pueden leer y modificar desde adentro de la clase. Es como el cajon con llave de tu cuarto: nadie de afuera mete la mano, solo tu con la llave.
+- **Nota**: los campos privados con `#` requieren JavaScript moderno (ES2022+). Cualquier Node.js reciente (16 o superior) los soporta, pero en navegadores o entornos viejos tiran error de sintaxis.
 - **Cuándo usarlo**: Cuando el dato es interno y no deberia cambiar desde afuera sin control. Por ejemplo, el saldo de una cuenta bancaria: nadie deberia poder hacer `cuenta.saldo = 999999` directamente.
 - **Sintaxis**:
 ```js
@@ -195,7 +196,7 @@ Calculadora.PI;            // 3.14159
 
 ## herencia (extends)
 - **Que es**: Una clase hija hereda propiedades y metodos de una clase padre, como un hijo que hereda los ojos o el gusto por el asado. La hija es el padre, pero con sus propias particularidades.
-- **Cuándo usarlo**: Cuando tenes objetos que comparten comportamiento base pero diferencian en algunos detalles. Por ejemplo, todos los vehiculos tienen marca y modelo, pero un Auto tiene puertas y una Moto tiene cilindrada.
+- **Cuándo usarlo**: Cuando tienes objetos que comparten comportamiento base pero diferencian en algunos detalles. Por ejemplo, todos los vehiculos tienen marca y modelo, pero un Auto tiene puertas y una Moto tiene cilindrada.
 - **Sintaxis**:
 ```js
 class Animal {
@@ -232,7 +233,7 @@ class Perro extends Animal {
   - Mantener la cadena de herencia razonable (no 5 niveles de profundidad).
 
 ## super
-- **Que es**: Una palabra clave que llama al constructor o a metodos de la clase padre. Es como avisar al padre: "che, primero armas tu parte, que yo despues pongo la mia".
+- **Que es**: Una palabra clave que llama al constructor o a metodos de la clase padre. Es como avisar al padre: "primero armas tu parte, que yo despues pongo la mia".
 - **Cuándo usarlo**: En el constructor de una clase hija (para inicializar el padre) y dentro de metodos override (para acceder al metodo del padre).
 - **Sintaxis**:
 ```js
@@ -267,7 +268,7 @@ class Auto extends Vehiculo {
   - Llamar `super()` dos veces: solo se puede llamar una vez en el constructor.
 - **Buenas practicas**:
   - Siempre llamar `super()` primero en el constructor de la hija.
-  - Usar `super.metodo()` cuando queres extender el comportamiento del padre, no reemplazarlo.
+  - Usar `super.metodo()` cuando quieres extender el comportamiento del padre, no reemplazarlo.
   - No abusar de `super` en metodos: si el padre hace todo bien, no lo llames.
 
 ## override
@@ -318,15 +319,156 @@ firulais instanceof Array;    // false
   - Usar con primitivos: `"hola" instanceof String` es `false` (usa `typeof` para primitivos).
 - **Buenas practicas**:
   - Usar `instanceof` cuando necesites comportamiento distinto segun el tipo.
-  - No abusar: si tenes muchos `instanceof` encadenados, tal vez necesitas un patron distinto.
+  - No abusar: si tienes muchos `instanceof` encadenados, tal vez necesitas un patron distinto.
   - Combinar con polimorfismo: en vez de `instanceof`, preferi que cada clase tenga su propio metodo.
 
-## Ejemplos
-| Archivo | Tema |
-|---|---|
-| `ejemplos/01-clase-basica.js` | class, constructor, propiedades, metodos, privados, getters, static |
-| `ejemplos/02-herencia.js` | extends, super, override, instanceof |
-| `ejemplos/03-getters-setters.js` | validacion con setters, getters calculados |
+## Ejemplos integrados
+
+Todo lo que necesitas para los ejercicios, en un solo lugar. Podes copiar y correr cada bloque para ver la salida.
+
+### 01 -- Clase basica, privados, getters, static
+
+```js
+// Armamos una clase Persona: el molde para crear personas de ejemplo.
+// Con new sacas cada persona; el constructor es el momento de armar esa persona nueva.
+class Persona {
+  #dni;   // campo privado: solo accesible dentro de la clase
+  // Como el cajon con llave: nadie de afuera puede tocar el DNI.
+
+  constructor(nombre, edad, dni) {
+    this.nombre = nombre;
+    this.edad = edad;
+    this.#dni = dni;
+  }
+
+  saludar() {
+    return `Hola, soy ${this.nombre}`;
+  }
+
+  // getter: se usa como propiedad, sin parentesis
+  // Un cartelito que se lee directo: no llamas una funcion, solo miras el valor.
+  get mayorDeEdad() {
+    return this.edad >= 18;
+  }
+
+  // setter: permite validar al asignar
+  // La entrada de la cancha: antes de dejar pasar (guardar), revisa el carnet.
+  set cambiarNombre(nuevo) {
+    if (!nuevo || nuevo.trim() === '') {
+      throw new Error('El nombre no puede estar vacio');
+    }
+    this.nombre = nuevo;
+  }
+
+  // metodo estatico: se llama en la clase, no en la instancia
+  // Un dato de la especie en general: no hace falta crear una persona para preguntarlo.
+  static especie() {
+    return 'Homo sapiens';
+  }
+}
+
+const ana = new Persona('Ana', 30, '12345');
+console.log(ana.saludar());       // Hola, soy Ana
+console.log(ana.mayorDeEdad);     // true
+ana.cambiarNombre = 'Ana Sofia';
+console.log(ana.nombre);          // Ana Sofia
+// console.log(ana.#dni);         // ERROR: #dni es privado
+console.log(Persona.especie());   // Homo sapiens
+console.log(ana instanceof Persona); // true
+```
+
+### 02 -- Herencia con extends y super
+
+```js
+// La herencia es como los hijos que heredan rasgos de los padres:
+// Perro y Gato heredan todo de Animal, y encima agregan lo suyo.
+class Animal {
+  constructor(nombre) {
+    this.nombre = nombre;
+  }
+  hablar() {
+    return `${this.nombre} hace un sonido`;
+  }
+}
+
+class Perro extends Animal {
+  constructor(nombre, raza) {
+    super(nombre);       // llama al constructor del padre
+    // super es como avisar al padre: "primero armas tu parte, que yo despues pongo la mia".
+    this.raza = raza;
+  }
+  hablar() {             // override: redefine el metodo
+    // Pisamos el metodo del padre: mismo nombre, pero version perruna.
+    return `${this.nombre} dice guau`;
+  }
+  describir() {          // metodo propio de Perro
+    // Algo que solo sabe hacer el Perro, el Animal base no lo tiene.
+    return `${this.nombre} es un ${this.raza}`;
+  }
+}
+
+class Gato extends Animal {
+  hablar() {
+    return `${this.nombre} dice miau`;
+  }
+}
+
+const firulais = new Perro('Firulais', 'caniche');
+const michi = new Gato('Michi');
+
+console.log(firulais.hablar());    // Firulais dice guau
+console.log(firulais.describir()); // Firulais es un caniche
+console.log(michi.hablar());       // Michi dice miau
+
+// instanceof mira la cadena de herencia: Firulais viene de Perro y de Animal.
+console.log(firulais instanceof Animal); // true
+console.log(firulais instanceof Perro);  // true
+console.log(michi instanceof Perro);     // false
+```
+
+### 03 -- Validacion con getters y setters
+
+```js
+// El setter es como el guardia en la entrada: antes de guardar un valor,
+// revisa que sea razonable. Si no, tira un error y no deja pasar.
+class Temperatura {
+  #celsius;
+
+  constructor(celsius) {
+    this.celsius = celsius;  // pasa por el setter (validacion)
+    // No asigna directo: se manda al setter, que valida.
+  }
+
+  get celsius() {
+    return this.#celsius;
+  }
+  set celsius(valor) {
+    if (valor < -273) {
+      throw new Error('No existe temperatura menor a -273 C');
+    }
+    this.#celsius = valor;
+  }
+
+  // getter calculado (derivado)
+  // Este valor no se guarda: se calcula cada vez que lo pides,
+  // como convertir pesos a dolares con el cambio del dia.
+  get fahrenheit() {
+    return (this.#celsius * 9) / 5 + 32;
+  }
+}
+
+const t = new Temperatura(25);
+console.log(t.celsius);     // 25
+console.log(t.fahrenheit);  // 77
+t.celsius = 30;
+console.log(t.fahrenheit);  // 86
+
+try {
+  t.celsius = -300;         // el setter valida y tira error
+} catch (e) {
+  console.log('Error:', e.message);
+}
+```
 
 ## Ejercicios
 | Archivo | Consigna |

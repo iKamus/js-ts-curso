@@ -18,7 +18,8 @@ Paso a paso:
    Asi vas encadenando: cada pregunta descarta lo de arriba.
 3) Crear una variable "pagaEntrada" con un ternario: si edad >= 12 guarda
    el string 'entrada completa', si no guarda 'entrada reducida'.
-   Es decir: const pagaEntrada = edad >= 12 ? 'entrada completa' : 'entrada reducida';
+   Pista: la condicion es la comparacion edad >= 12; en la rama verdadera
+   va un string y en la falsa el otro.
 4) Imprimir el resultado con el formato: "30 -> Adulto"
    y luego "Paga entrada completa" o "Paga entrada reducida" (usando la variable).
 

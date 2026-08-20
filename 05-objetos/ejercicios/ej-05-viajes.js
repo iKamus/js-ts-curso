@@ -1,31 +1,33 @@
 /*
-Ejercicio 5 — Optional chaining
+Ejercicio 5 — Aeropuertos (verificacion explicita)
 
-Tenés una lista de viajes:
+Tienes una lista de viajes:
   const viajes = [
     { destino: 'Bariloche', aeropuerto: { nombre: 'Bari' } },
     { destino: 'Madryn' },
   ];
-Fijate: el primer viaje tiene aeropuerto (con su nombre adentro),
+Observa: el primer viaje tiene aeropuerto (con su nombre adentro),
 pero el segundo NO tiene la propiedad aeropuerto. Si hicieras
 viaje.aeropuerto.nombre en el segundo, el programa se rompe,
-porque no podés leer 'nombre' de algo que no existe.
+porque no puedes leer 'nombre' de algo que no existe.
 
-Para eso existe el optional chaining (?.). Es como preguntar sin que
-te corten el teléfono: si lo que buscás no existe, en vez de romperte
-el programa te devuelve undefined y seguís de largo. Fijate cómo se
-escribe en ejemplos/04-referencias.js (la parte de optional chaining).
+Para eso existe un truco simple: preguntar PRIMERO si el aeropuerto
+existe. Si existe, lees el nombre; si no existe, usas el plan B.
+Es como mirar si la casilla esta vacia antes de leerla: si no hay
+nada adentro, no la abres y pasas a la siguiente.
 
 Paso a paso:
-1) Recorré el array de viajes con for...of (o forEach).
-2) Para cada viaje, leé el nombre del aeropuerto con el optional
-   chaining: si el aeropuerto existe te da 'Bari'; si no existe te da
-   undefined (sin romper).
-3) Si da undefined, mostrá 'sin aeropuerto'. Si no, mostrá el nombre.
-   Pista: podés usar el operador || o ?? como plan B: si el lado
-   izquierdo es undefined, toma el plan B.
-4) Imprimí por cada viaje:
+1) Recorre el array de viajes con for...of (o forEach).
+2) Para cada viaje, verifica si viaje.aeropuerto existe (un if o la
+   condicion de un ternario: condicion ? valorSi : valorSiNo).
+   - Si existe, toma viaje.aeropuerto.nombre ('Bari').
+   - Si no existe, el resultado es 'sin aeropuerto'.
+3) Muestra por cada viaje:
    "El viaje a <destino> usa el aeropuerto <nombre o 'sin aeropuerto'>"
+
+Pista: tambien puedes usar el operador || como plan B: si el lado
+izquierdo es falsy, toma el plan B. Pero la verificacion explicita
+con if o ternario es la mas clara.
 
 Resultado esperado:
 El viaje a Bariloche usa el aeropuerto Bari
@@ -37,4 +39,4 @@ const viajes = [
   { destino: 'Madryn' },
 ];
 
-// completa aquí
+// completa aqui

@@ -9,13 +9,13 @@ Un servidor HTTP es como un mozo en un restaurante: recibe el pedido del cliente
 - **Que es**: Funcion de Node que levanta un servidor HTTP. Es como abrir la puerta del restaurante y ponerse a atender.
 - **Cuando usarlo**: Siempre que necesites que tu programa responda peticiones de la web (navegadores, curl, apps, etc.).
 - **Sintaxis**:
-  ```js
-  const http = require('http');
-  const server = http.createServer((req, res) => {
-    res.end('Hola');
-  });
-  server.listen(3000);
-  ```
+```js
+const http = require('http');
+const server = http.createServer((req, res) => {
+  res.end('Hola');
+});
+server.listen(3000);
+```
 - **Errores comunes**:
   - Olvidar `server.listen()` — el servidor nunca arranca y no pasa nada.
   - No cerrar `res.end()` — el cliente queda colgado esperando respuesta para siempre.
@@ -30,11 +30,11 @@ Un servidor HTTP es como un mozo en un restaurante: recibe el pedido del cliente
 - **Que es**: Objeto que representa lo que el cliente te pide. Es como el papelito con el pedido del mozo: dice que URL pidio, que metodo usa (GET, POST, etc.) y que datos trae.
 - **Cuando usarlo**: Siempre que necesites saber *que* pidio el cliente.
 - **Propiedades principales**:
-  | Propiedad | Que es | Ejemplo |
-  |---|---|---|
-  | `req.method` | Metodo HTTP (GET, POST, PUT, DELETE) | `"GET"` |
-  | `req.url` | URL completa como texto | `"/tareas?orden=fecha"` |
-  | `req.headers` | Cabeceras HTTP (objeto) | `{ "content-type": "..." }` |
+| Propiedad | Que es | Ejemplo |
+|---|---|---|
+| `req.method` | Metodo HTTP (GET, POST, PUT, DELETE) | `"GET"` |
+| `req.url` | URL completa como texto | `"/tareas?orden=fecha"` |
+| `req.headers` | Cabeceras HTTP (objeto) | `{ "content-type": "..." }` |
 - **Errores comunes**:
   - `req.url` es un string crudo, no un objeto. Para leer query params hay que parsearla con `new URL(req.url, 'http://localhost')`.
 - **Buenas practicas**:
@@ -47,11 +47,11 @@ Un servidor HTTP es como un mozo en un restaurante: recibe el pedido del cliente
 - **Que es**: Objeto que usas para contestar al cliente. Es como el plato que le devolves al mozo para que se lo lleve al cliente.
 - **Cuando usarlo**: Siempre que necesites enviar algo al cliente (texto, JSON, HTML, errores, etc.).
 - **Metodos principales**:
-  | Metodo | Que hace | Ejemplo |
-  |---|---|---|
-  | `res.writeHead(codigo, headers)` | Define el codigo de estado y las cabeceras | `res.writeHead(200, { 'Content-Type': 'text/plain' })` |
-  | `res.setHeader(nombre, valor)` | Setea una cabecera individual | `res.setHeader('Content-Type', 'application/json')` |
-  | `res.end(dato)` | Envia la respuesta y cierra la conexion | `res.end(JSON.stringify({ok: true}))` |
+| Metodo | Que hace | Ejemplo |
+|---|---|---|
+| `res.writeHead(codigo, headers)` | Define el codigo de estado y las cabeceras | `res.writeHead(200, { 'Content-Type': 'text/plain' })` |
+| `res.setHeader(nombre, valor)` | Setea una cabecera individual | `res.setHeader('Content-Type', 'application/json')` |
+| `res.end(dato)` | Envia la respuesta y cierra la conexion | `res.end(JSON.stringify({ok: true}))` |
 - **Errores comunes**:
   - Llamar a `res.end()` mas de una vez por request — tira error "headers already sent".
   - Olvidar el `Content-Type` — el cliente no sabe que tipo de datos le llegan.
@@ -66,12 +66,12 @@ Un servidor HTTP es como un mozo en un restaurante: recibe el pedido del cliente
 - **Que es**: Cada peticion trae un "verbo" que dice que quiere hacer el cliente. Es como si en el restaurante pudieras pedir "ver el menu" (GET), "hacer un pedido nuevo" (POST), "cambiar un pedido" (PUT) o "cancelar un pedido" (DELETE).
 - **Cuando usarlo**: Para decidir que hacer segun la accion del cliente.
 - **Tabla de metodos**:
-  | Metodo | Que hace | Ejemplo de uso |
-  |---|---|---|
-  | `GET` | Pide datos (lee) | Ver todas las tareas |
-  | `POST` | Crea un recurso nuevo | Agregar una tarea |
-  | `PUT` | Actualiza un recurso existente | Marcar una tarea como hecha |
-  | `DELETE` | Borra un recurso | Eliminar una tarea |
+| Metodo | Que hace | Ejemplo de uso |
+|---|---|---|
+| `GET` | Pide datos (lee) | Ver todas las tareas |
+| `POST` | Crea un recurso nuevo | Agregar una tarea |
+| `PUT` | Actualiza un recurso existente | Marcar una tarea como hecha |
+| `DELETE` | Borra un recurso | Eliminar una tarea |
 - **Errores comunes**:
   - No validar `req.method` — alguien puede hacer GET a una ruta que espera POST, y el servidor se rompe.
 - **Buenas practicas**:
@@ -85,13 +85,13 @@ Un servidor HTTP es como un mozo en un restaurante: recibe el pedido del cliente
 - **Que es**: La URL es la direccion del pedido. Los query params son datos extra que vienen despues del `?` en la URL. Es como pedir "un sandwich" (la ruta) "con tomate sin cebolla" (los query params).
 - **Cuando usarlo**: Cuando necesitas enviar datos al servidor por la URL (filtros, opciones, busquedas).
 - **Sintaxis**:
-  ```js
-  // URL: /saludo?nombre=Ana&edad=25
-  const url = new URL(req.url, 'http://localhost');
-  const nombre = url.searchParams.get('nombre');  // "Ana"
-  const edad = url.searchParams.get('edad');      // "25"
-  const ruta = url.pathname;                      // "/saludo"
-  ```
+```js
+// URL: /saludo?nombre=Ana&edad=25
+const url = new URL(req.url, 'http://localhost');
+const nombre = url.searchParams.get('nombre');  // "Ana"
+const edad = url.searchParams.get('edad');      // "25"
+const ruta = url.pathname;                      // "/saludo"
+```
 - **Errores comunes**:
   - Olvidar el segundo argumento a `new URL()` (la base) — tira error.
   - Los query params siempre son strings. Para tener un numero hay que convertirlo: `Number(valor)`.
@@ -106,14 +106,14 @@ Un servidor HTTP es como un mozo en un restaurante: recibe el pedido del cliente
 - **Que es**: Formato de texto para intercambiar datos entre servidor y cliente. Es como un formulario ordenado: todo tiene nombre y valor. Es el "idioma" que hablan las APIs web.
 - **Cuando usarlo**: Siempre que necesites enviar o recibir datos estructurados (objetos, arrays).
 - **Sintaxis**:
-  ```js
-  // Enviar JSON al cliente:
-  res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-  res.end(JSON.stringify({ mensaje: 'Hola' }));
+```js
+// Enviar JSON al cliente:
+res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+res.end(JSON.stringify({ mensaje: 'Hola' }));
 
-  // Recibir JSON del cliente (dentro de eventos 'end'):
-  const datos = JSON.parse(cuerpo);
-  ```
+// Recibir JSON del cliente (dentro de eventos 'end'):
+const datos = JSON.parse(cuerpo);
+```
 - **Errores comunes**:
   - Olvidar `JSON.stringify()` — el cliente recibe "[object Object]".
   - Olvidar `JSON.parse()` — intentas usar datos que siguen siendo un string.
@@ -129,14 +129,14 @@ Un servidor HTTP es como un mozo en un restaurante: recibe el pedido del cliente
 - **Que es**: Cuando el cliente manda datos (un POST o PUT), el body no llega de una — llega por pedazos, como un paquete en varios bultos. Los vas juntando hasta que llega todo.
 - **Cuando usarlo**: Siempre que necesites leer los datos que manda el cliente en un POST o PUT.
 - **Sintaxis**:
-  ```js
-  let body = '';
-  req.on('data', (chunk) => { body += chunk; });
-  req.on('end', () => {
-    const datos = JSON.parse(body);
-    // acá ya tenés los datos como objeto
-  });
-  ```
+```js
+let body = '';
+req.on('data', (chunk) => { body += chunk; });
+req.on('end', () => {
+  const datos = JSON.parse(body);
+  // aquí ya tienes los datos como objeto
+});
+```
 - **Errores comunes**:
   - Olvidar `req.on('end')` — nunca terminas de armar el body.
   - No hacer `JSON.parse()` dentro de `on('end')` — el body todavia no esta completo.
@@ -152,14 +152,14 @@ Un servidor HTTP es como un mozo en un restaurante: recibe el pedido del cliente
 - **Que es**: Numero de tres digitos que accompany la respuesta. Le dice al cliente si todo salio bien o que salio mal. Es como el semaforo del mozo: verde (todo bien), amarillo (algo raro), rojo (no puede).
 - **Cuando usarlo**: Siempre. Cada respuesta debe traer un codigo claro.
 - **Tabla de codigos**:
-  | Codigo | Significado | Cuando usar |
-  |---|---|---|
-  | `200` | OK | Todo salio bien (lectura, respuesta normal) |
-  | `201` | Created | Se creo un recurso nuevo (POST exitoso) |
-  | `400` | Bad Request | El cliente mando datos invalidos |
-  | `404` | Not Found | La ruta no existe |
-  | `405` | Method Not Allowed | El metodo HTTP no es el correcto |
-  | `500` | Internal Server Error | Algo se rompio en el servidor |
+| Codigo | Significado | Cuando usar |
+|---|---|---|
+| `200` | OK | Todo salio bien (lectura, respuesta normal) |
+| `201` | Created | Se creo un recurso nuevo (POST exitoso) |
+| `400` | Bad Request | El cliente mando datos invalidos |
+| `404` | Not Found | La ruta no existe |
+| `405` | Method Not Allowed | El metodo HTTP no es el correcto |
+| `500` | Internal Server Error | Algo se rompio en el servidor |
 - **Errores comunes**:
   - Responder siempre con 200 aunque haya errores — el cliente no puede distinguir que paso.
   - Olvidar `writeHead()` — Node usa 200 por defecto, que puede no ser el caso correcto.
@@ -174,16 +174,16 @@ Un servidor HTTP es como un mozo en un restaurante: recibe el pedido del cliente
 - **Que es**: Decidir que hacer segun la URL y el metodo que pide el cliente. Es como el mozo que segun lo que le pidas, va a la barra, a la cocina o a la caja.
 - **Cuando usarlo**: Siempre que tu servidor tenga mas de una ruta.
 - **Sintaxis basica**:
-  ```js
-  if (url === '/tareas' && req.method === 'GET') {
-    // devolver tareas
-  } else if (url === '/tareas' && req.method === 'POST') {
-    // crear tarea
-  } else {
-    res.writeHead(404);
-    res.end('No encontrado');
-  }
-  ```
+```js
+if (url === '/tareas' && req.method === 'GET') {
+  // devolver tareas
+} else if (url === '/tareas' && req.method === 'POST') {
+  // crear tarea
+} else {
+  res.writeHead(404);
+  res.end('No encontrado');
+}
+```
 - **Errores comunes**:
   - No validar el metodo HTTP — cualquiera puede hacer GET a una ruta de POST.
   - No poner un caso "por defecto" (404) — las rutas inexistentes quedan sin respuesta.
@@ -194,14 +194,7 @@ Un servidor HTTP es como un mozo en un restaurante: recibe el pedido del cliente
 
 ---
 
-## Ejemplos
-
-| Archivo | Tema |
-|---|---|
-| `ejemplos/01-servidor-basico.js` | Primer servidor HTTP, req y res |
-| `ejemplos/02-api-json.js` | API JSON con routing, query params, metodos |
-
-## Ejercicios (todos en puerto 3000; se prueban con curl)
+## Ejercicios
 
 | Archivo | Consigna |
 |---|---|
@@ -210,4 +203,54 @@ Un servidor HTTP es como un mozo en un restaurante: recibe el pedido del cliente
 | `ejercicios/ej-03-notas.js` | API de notas (GET/POST) |
 | `ejercicios/ej-04-html.js` | Servir un archivo HTML |
 
-Para frenar un servidor: `Ctrl+C` en la terminal donde corre. Si algo no responde, revisa que URL estas pidiendo y que metodo estas usando.
+## Proyecto
+
+| Archivo | Consigna |
+|---|---|
+| `proyecto/api-rest.js` | API REST completa: CRUD de tareas, JSON, query params, rutas REST |
+
+---
+
+Ejemplo de servidor con rutas:
+```js
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  if (req.url === '/' && req.method === 'GET') {
+    res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+    res.end('Bienvenido a mi servidor');
+  } else if (req.url === '/hora' && req.method === 'GET') {
+    res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+    res.end(JSON.stringify({ hora: new Date().toISOString() }));
+  } else {
+    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+    res.end('No encontrado');
+  }
+});
+
+server.listen(3000, () => {
+  console.log('Servidor en http://localhost:3000');
+});
+```
+
+Para probar los ejercicios:
+```
+# Servidor 1
+node ejercicios/ej-01-rutas.js
+
+# Servidor 2 (saludo con query param)
+node ejercicios/ej-02-saludo.js
+
+# Servidor 3 (API de notas)
+node ejercicios/ej-03-notas.js
+
+# Servidor 4 (HTML)
+node ejercicios/ej-04-html.js
+```
+
+Cada servidor se prueba con curl (en Windows usa `curl.exe`):
+```bash
+curl.exe http://localhost:3000/
+curl.exe http://localhost:3000/hora
+curl.exe "http://localhost:3000/saludo?nombre=Ana"
+```

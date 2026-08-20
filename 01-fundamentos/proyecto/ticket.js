@@ -6,24 +6,18 @@ Arma el ticket de compra de un almacen.
 Lee el README.md de esta carpeta para ver los requisitos, tips y el
 resultado esperado.
 
-Pistas para arrancar:
-- Declara los 3 productos con const (nombre, cantidad, precio).
-- Calcula el precio total de cada producto (cantidad * precio unitario).
-- Calcula el subtotal (suma de los 3 precios totales).
-- Si el subtotal supera 1000, aplica 10% de descuento.
-- Calcula la base imponible (subtotal - descuento) y el IVA (21%).
-- Arma el ticket con template literals.
+Resumen de lo que tienes que hacer:
+1. Declara los 3 productos con const (nombre, cantidad, precioUnitario):
+   - Leche: cantidad 2, precio 350
+   - Pan: cantidad 1, precio 250
+   - Aceite: cantidad 1, precio 600
+2. Calcula el subtotal (cantidad * precioUnitario de cada uno, sumados).
+3. Calcula el descuento (10% del subtotal SOLO si el subtotal supera 1000).
+   Recuerda: sin if. Usa el truco de (subtotal > 1000) que se comporta
+   como 1 o 0 al multiplicar.
+4. Calcula base imponible = subtotal - descuento, e IVA = base * 0.21.
+5. Calcula total = base imponible + IVA.
+6. Imprime el ticket con UN solo console.log y template literals.
 */
 
-// ── Productos ──────────────────────────────────────────────
-// Declara aqui las constantes de los 3 productos
-
-
-// ── Calculos ───────────────────────────────────────────────
-// Declara con let las variables de subtotal, descuento, base imponible,
-// IVA y total. Calcula cada una.
-
-
-// ── Ticket ─────────────────────────────────────────────────
-// Imprime el ticket completo con un solo console.log usando template literal.
-// Debe verse exactamente como el resultado esperado del README.
+// completa aqui

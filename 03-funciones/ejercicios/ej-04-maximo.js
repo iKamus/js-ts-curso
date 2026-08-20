@@ -1,33 +1,22 @@
 /*
-Ejercicio 4 — El mayor con rest params
-Aca probamos los rest params: la funcion acepta TODOS los numeros que le
-passes, sin importar cuantos sean. El ...numeros los junta a todos en un
-array, como juntar las monedas que sobran en la bolsa.
+Ejercicio 4 — Maximo entre dos numeros
+Buscamos el mas grande de dos valores. Es como ver dos productos y
+elegir el que vale mas, aunque sean de distinto tipo.
 
 Paso a paso:
-1) Crea maximo(...numeros):
-   - numeros va a ser un array con todos los numeros que le pasaste.
-   - Si el array esta vacio (no le pasaron nada) -> devuelve null.
-   - Si no, recorre el array (por ejemplo con un for o un for...of)
-     y quedate con el mas grande. Una forma facil: agarra una variable
-     maximo que arranque en el primer elemento, y cada vez que
-     encuentres un numero mas grande, actualizala.
-   Ojo: aca NO se puede usar Math.max(...numeros), el ejercicio es para
-   practicar el recorrido a mano. Es como elegir el mejor postre de toda
-   la vidriera: los miras todos de a uno y te quedas con el que mas te gusta.
-2) Muestra el resultado de cada llamada con console.log (una por linea).
-3) Usa una ARROW FUNCTION para definir maximo.
+1) Crea funcion maximo(a, b) que devuelva el mayor de los dos valores.
+   Pista: el operador ternario (condicion ? valor1 : valor2) es perfecto
+   para este caso: pregunta si a > b, y si es verdad devuelve a,
+   sino devuelve b.
+2) Muestra los tres resultados con el formato "a, b -> max"
+   (un console.log por par).
 
-Pista: si numeros esta vacio, `numeros.length` es 0. Para el recorrido,
-pensa en como ir comparando uno por uno, como en una competencia donde
-el ganador se queda con la corona.
-
-Probá: maximo(1,5,3), maximo(10,2,8,7,9), maximo()
+Prueba con: (3, 8), (-5, 2), (10, 10)
 
 Resultado esperado:
-5
-10
-null
+3, 8 -> 8
+-5, 2 -> 2
+10, 10 -> 10
 */
 
 // completa aqui

@@ -24,7 +24,8 @@ Paso a paso:
    Los resultados se muestran con console.log (uno por linea).
 
 Tip: el getter te permite leer el saldo como si fuera una propiedad,
-sin parentesis. Mira ejemplos/01-clase-basica.js para ver como funciona.
+sin parentesis. Observa el README del modulo (secciones campos privados
+y getters y setters) para ver como funciona.
 
 Resultado esperado:
 Saldo: 120
@@ -32,4 +33,4 @@ Saldo insuficiente
 Saldo final: 120
 */
 
-// completá acá
+// completa aqui

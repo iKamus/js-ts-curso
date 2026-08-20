@@ -4,8 +4,7 @@
   "private": true,
   "description": "Módulo 15 — TypeScript",
   "scripts": {
-    "build": "tsc",
-    "ejemplo": "tsc && node dist/ejemplos/01-tipos-basicos.js"
+    "build": "tsc"
   },
   "devDependencies": {
     "typescript": "^5.5.4"

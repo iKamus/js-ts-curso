@@ -15,8 +15,8 @@ Paso a paso:
    - valor 1 y 100 ms
    - valor 2 y 200 ms
    - valor 3 y 150 ms
-3) Juntalas con Promise.all y espera el resultado. Fijate como se usa
-   en ejemplos/02-promesas.js (la parte de Promise.all): .then te da
+3) Juntalas con Promise.all y espera el resultado. Observa como se usa
+   en la seccion Promise.all del README: .then te da
    el array con los resultados en el mismo orden que los pasaste,
    no importa cual termine primero.
 4) Mostrar la SUMA de los tres resultados.
@@ -25,4 +25,4 @@ Resultado esperado:
 6
 */
 
-// completar aca
+// completa aqui

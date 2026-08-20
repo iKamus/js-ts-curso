@@ -20,7 +20,8 @@ Paso a paso:
 3) Crear una variable "mensaje" con un ternario: si el usuario es 'admin' Y el
    password es '1234', guarda el string 'Combo debil detectado'. Si no, guarda
    el valor de la variable usuario (el string con el nombre).
-   Es decir: const mensaje = (usuario === 'admin' && password === '1234') ? 'Combo debil detectado' : usuario;
+   Pista: la condicion del ternario combina dos comparaciones con &&
+   (usuario === 'admin' && password === '1234'); elige que devolver en cada rama.
 4) Imprimir el valor de mensaje despues del resultado de acceso.
 
 Casos para probar (cambiando las variables):

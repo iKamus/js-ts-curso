@@ -2,12 +2,13 @@
 
 Primer módulo: las piezas básicas con las que se arma TODO programa en JS. Guardar datos, saber de qué tipo son, hacer cuentas y armar texto. Piénsalo como aprender las letras antes de formar palabras.
 
-## Cómo correr
-Node ejecuta JS línea por línea, sin pasar por un compilador. Desde esta carpeta:
+## Ejemplo de uso
+```js
+const nombre = 'Ana';
+const edad = 30;
+console.log(`Hola, soy ${nombre} y tengo ${edad} años.`);
+// Hola, soy Ana y tengo 30 años.
 ```
-node ejemplos/01-variables.js
-```
-El comando se corre SIEMPRE desde la carpeta del módulo (donde está este README), porque las rutas como `ejemplos/...` son relativas a esa carpeta.
 
 ---
 
@@ -20,11 +21,12 @@ El comando se corre SIEMPRE desde la carpeta del módulo (donde está este READM
 const PI = 3.14;
 const nombre = 'Ana';
 // PI = 3.1415;  // ERROR: Assignment to constant variable
+console.log(nombre);  // Ana
 ```
 
 - **Errores comunes**:
   - Olvidar el valor inicial: `const x;` tira `SyntaxError`. Siempre declara con valor.
-  - Pensar que `const` no cambia: no cambia la *referencia* (la caja no se reemplaza), pero si el contenido es un objeto o array, sus *propiedades internas sí se pueden modificar* (lo ves en módulo 05).
+  - Pensar que `const` no cambia: no cambia la *referencia* (la caja no se reemplaza), pero si el contenido es un objeto o array, sus *propiedades internas sí se pueden modificar*.
 - **Buenas prácticas**: usa `const` siempre. Solo cambia a `let` si sabes que el valor va a reasignarse.
 
 ---
@@ -49,18 +51,18 @@ console.log(saldo);   // 70
 
 ## var
 - **Qué es**: la variable vieja del JavaScript original (antes de 2015). Funciona parecido a `let` pero tiene trampas: se escapa del bloque `{ }` en el que se declara y genera bugs difíciles de encontrar.
-- **Cuándo usarlo**: **casi nunca**. Solo en código heredado (que alguien escribió antes). En código nuevo, no la uses.
+- **Cuándo usarlo**: **casi nunca**. Solo en código heredado. En código nuevo, no la uses.
 - **Sintaxis**: `var vieja = 'no la uses';`
 
 ```js
-if (true) {
+{
   var escapa = 'aquí';
 }
-console.log(escapa); // 'aquí' ← ¡oops! La variable se salió del if
+console.log(escapa); // 'aquí' ← ¡oops! La variable se salió del bloque
 // Con let pasaría: console.log(escapa); // ReferenceError
 ```
 
-- **Errores comunes**: la trampa principal es que `var` ignora los bloques `{ }`. Si la declaras dentro de un `if` o un `for`, afuera sigue existiendo. `let` y `const` no: se quedan dentro del bloque.
+- **Errores comunes**: la trampa principal es que `var` ignora los bloques `{ }`. Si la declaras dentro de un bloque (o después, dentro de un `if` o un `for` del módulo 02), afuera sigue existiendo. `let` y `const` no: se quedan dentro del bloque.
 - **Buenas prácticas**: bórrala de tu vocabulario. Usa `const` por defecto, `let` cuando necesites reasignar.
 
 ---
@@ -74,7 +76,7 @@ console.log(escapa); // 'aquí' ← ¡oops! La variable se salió del if
   - JavaScript es **case-sensitive**: `nombre` y `Nombre` son dos variables distintas.
 - **Convenciones** (no son reglas de JS, pero todo el mundo las usa):
   - `camelCase` para variables y funciones: `precioFinal`, `calcularTotal()`.
-  - `PascalCase` para clases (lo ves en módulo 08): `class Persona`.
+  - `PascalCase` para clases (módulo 08): `class Persona`.
   - `SCREAMING_SNAKE_CASE` para constantes globales reales: `const API_URL = '...'`.
 
 ---
@@ -89,7 +91,7 @@ typeof 42;          // 'number'
 typeof 'hola';      // 'string'
 typeof true;        // 'boolean'
 typeof undefined;   // 'undefined'
-typeof null;        // 'object'  ← ¡BUG HISTÓRICO de JS! null no es un objeto
+typeof null;        // 'object'  ← BUG HISTÓRICO de JS! null no es un objeto
 typeof [1, 2];      // 'object'  (los arrays son objetos en JS)
 typeof {};           // 'object'
 ```
@@ -190,7 +192,7 @@ console.log(saludo.length);  // 10
   - `replace` sin `replaceAll` solo cambia la primera aparición. Si necesitas cambiar todas, usa `replaceAll`.
   - `'123'` es un string, no un número. Para operar como número, convierte: `Number('123')` o `+'123'`.
   - `trim()` saca espacios, tabs (`\t`) y saltos de línea (`\n`, `\r`) de los extremos, no solo espacios.
-- **Buenas prácticas**: usa template literals para armar textos con variables (ver keyword más abajo). Para medir texto, usa `.length`. Para cortar, `.slice()` (no `.substring()` que es más viejo y confuso).
+- **Buenas prácticas**: usa template literals para armar textos con variables. Para medir texto, usa `.length`. Para cortar, `.slice()`.
 
 ---
 
@@ -216,10 +218,10 @@ const tieneDescuento = false;
 | `Boolean(undefined)` | undefined se comporta como falso | `Boolean(undefined)` | `false` |
 | `Boolean(NaN)` | NaN se comporta como falso | `Boolean(NaN)` | `false` |
 | `Boolean([])` | array vacío se comporta como verdadero | `Boolean([])` | `true` |
-| `Boolean({}`) | objeto vacío se comporta como verdadero | `Boolean({})` | `true` |
+| `Boolean({})` | objeto vacío se comporta como verdadero | `Boolean({})` | `true` |
 
 - **Errores comunes**: `Boolean([])` y `Boolean({})` dan `true` aunque estén vacíos. Un array vacío y un objeto vacío se consideran "algo" (no son "nada").
-- **Buenas prácticas**: no seas redundante. En vez de `if (activo === true)`, escribe `if (activo)`. En vez de `if (nombre !== '')`, escribe `if (nombre)`.
+- **Buenas prácticas**: no seas redundante. `Boolean(activo)` y `!!activo` ya te dan el booleano, no hace falta comparar con `true` ni con `''`. (Los usos de esto dentro de condiciones los verás en el módulo 02.)
 
 ---
 
@@ -346,21 +348,22 @@ console.log(null === undefined); // false (son tipos distintos)
 | Operador | Qué hace | Ejemplo | Resultado |
 |---|---|---|---|
 | `&&` | Y (ambas deben ser true) | `true && false` | `false` |
-| `\|\|` | O (al menos una true) | `true \|\| false` | `true` |
+| `||` | O (al menos una true) | `true \|\| false` | `true` |
 | `!` | NO (da vuelta el valor) | `!true` | `false` |
 
 ```js
 const edad = 25;
 const tienePermiso = true;
-if (edad >= 18 && tienePermiso) { /* entra */ }
+console.log(edad >= 18 && tienePermiso); // true
 
 const llueve = false;
 const tieneParaguas = true;
-if (llueve || tieneParaguas) { /* sales tranquilo */ }
+console.log(llueve || tieneParaguas); // true
 
 const estaActivo = false;
-if (!estaActivo) { /* no está activo */ }
+console.log(!estaActivo); // true
 ```
+(Estos booleanos los usarás para tomar decisiones con `if` en el módulo 02.)
 
 ### Short-circuit (circuitos cortos)
 JavaScript no evalúa todo si ya tiene la respuesta:
@@ -491,25 +494,76 @@ console.log(true + 1);  // 2     (boolean → number: true=1)
 
 ---
 
-## Ejemplos
-| Archivo | Tema |
-|---|---|
-| `ejemplos/01-variables.js` | const/let/var, tipos de números |
-| `ejemplos/02-tipos.js` | tipos y `typeof`, conversiones |
-| `ejemplos/03-operadores.js` | aritmética, comparación, lógicos |
-| `ejemplos/04-template-literals.js` | backticks, interpolación, métodos de string |
-
-## Ejercicios
-| Archivo | Consigna |
-|---|---|
-| `ejercicios/ej-01-variables.js` | El área de un círculo: como calcular cuánta tela necesitas para una mesa redonda |
-| `ejercicios/ej-02-tipos.js` | Conversión de tipos: pasar de un material a otro, de texto a número y de vuelta |
-| `ejercicios/ej-03-operadores.js` | Operaciones y comparaciones: cuentas de la vida diaria y preguntas de sí o no |
-| `ejercicios/ej-04-string.js` | Strings y plantillas: armar y medir texto, como redactar y contar palabras |
-
 ## Proyecto
-| Archivo | Consigna |
-|---|---|
-| `proyecto/` | **Ticket del almacén**: simula la compra de 3 productos con subtotal, IVA, descuento y ticket final |
 
-Resuelve los ejercicios, corre `node ejercicios/ej-XX.js` y compara con el resultado esperado. Cuando los tengas, enfrenta el proyecto del módulo para asentar todo. Si algo no te da igual, lee el mensaje y fíjate qué paso se te escapó: así se aprende. Cuando los tengas, avisa para revisar.
+### Ticket del almacen
+
+**Contexto**: Armaste las bases: variables, tipos, operadores, template literals y metodos de string. Ahora es momento de juntar todo en algo practico: simular el ticket de compra de un almacen.
+
+**Que vas a hacer**: Un programa que calcule el ticket de compra de 3 productos, aplique un descuento si el total supera cierto monto, calcule el IVA, e imprima un ticket formateado.
+
+**Requisitos funcionales** (detalle completo en `proyecto/README.md`):
+
+1. Declara 3 productos con const: `nombre`, `cantidad` y `precioUnitario`.
+   - Leche: cantidad 2, precio 350
+   - Pan: cantidad 1, precio 250
+   - Aceite: cantidad 1, precio 600
+
+2. Calcula el subtotal: suma el precio total de cada producto (cantidad × precioUnitario).
+
+3. Si el subtotal supera los 1000, aplica un 10% de descuento. Si es 1000 o menos, descuento = 0.
+   IMPORTANTE: no uses `if` (eso es del modulo 02). En JS, `true` se comporta como 1 y `false` como 0 al multiplicar: `(subtotal > 1000) * subtotal * 0.10` te da el descuento correcto en ambos casos.
+
+4. Calcula el IVA (21% sobre la base imponible).
+   - Base imponible = subtotal - descuento
+   - IVA = base imponible × 0.21
+
+5. Calcula el total = base imponible + IVA.
+
+6. Redondea todos los valores a 2 decimales con `toFixed(2)`.
+
+7. Imprime el ticket con un solo `console.log` usando template literal. Debe verse EXACTAMENTE asi:
+
+```
+=== TICKET DEL ALMACEN ===
+Leche x2 ............. $700.00
+Pan x1 ............... $250.00
+Aceite x1 ............ $600.00
+---------------------------
+Subtotal: $1550.00
+Descuento (10%): -$155.00
+Base imponible: $1395.00
+IVA (21%): $292.95
+---------------------------
+TOTAL: $1687.95
+===========================
+Gracias por su compra!
+```
+
+**Tips**:
+- Usa `padEnd` en el nombre del producto para alinear los puntos: `"Leche".padEnd(20, '.')` → `"Leche..............."`.
+- Recuerda que `toFixed(2)` devuelve un string.
+- Usa template literals con `${}` para armar el ticket.
+
+---
+
+## Como ejecutar
+
+Para resolver cada ejercicio:
+
+1. Navega a la carpeta `01-fundamentos`.
+2. Ejecuta el archivo con Node:
+   ```
+   node ejercicios/ej-01-variables.js
+   ```
+
+Para el proyecto final:
+
+1. Navega a la carpeta `01-fundamentos/proyecto`.
+2. Edita el archivo `ticket.js`.
+3. Ejecuta con Node:
+   ```
+   node ticket.js
+   ```
+
+Compara la salida con el resultado esperado para verificar que todo esta correcto.

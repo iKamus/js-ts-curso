@@ -1,13 +1,13 @@
 /*
 Ejercicio 3 — Factorial (recursion)
-Aca viene lo copado: una funcion que se llama a si misma, como las cajas
-rusas que adentro tienen otra caja mas chica. A eso se le dice recursion.
+Aca viene lo interesante: una funcion que se llama a si misma, como las cajas
+rusas que adentro tienen otra caja mas chica. A eso se le llama recursion.
 
 Primero, que es el factorial? Es multiplicar un numero por todos los
 que le siguen hacia abajo hasta llegar a 1:
   factorial(5) = 5 * 4 * 3 * 2 * 1 = 120
 
-Como lo pensas con recursion? Fijate este truco:
+Como lo piensas con recursion? Observa este truco:
   factorial(5) = 5 * factorial(4)
   factorial(4) = 4 * factorial(3)
   ...
@@ -24,9 +24,9 @@ Por definicion factorial(0) = 1.
 
 Crea factorial(n) con esa logica y muestra los tres resultados.
 Pista: usa return con la formula `n * factorial(n - 1)` y un `if` para
-el caso base. Pensa que tipo de funcion es mejor aqui: arrow o clasica?
+el caso base. Piensa que tipo de funcion es mejor aqui: arrow o clasica?
 
-Probá: factorial(5), factorial(0), factorial(7)
+Prueba: factorial(5), factorial(0), factorial(7)
 
 Resultado esperado:
 factorial(5)=120

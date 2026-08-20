@@ -45,23 +45,23 @@ El script debe:
 
 ## Pasos sugeridos
 
-1. Leé los argumentos con `process.argv.slice(2)`. La ruta es `args[0]`.
-2. Validá que se paso una ruta. Si no, mostrá un mensaje de uso y salí con `process.exit(1)`.
-3. Leé los archivos de la carpeta con `fs.readdirSync`.
-4. Para cada archivo, obtené la extension con `path.extname`.
-5. Definí un mapa de extension → subcarpeta (un objeto o una funcion).
-6. Creá la subcarpeta de destino con `fs.mkdirSync` (recursive: true).
-7. Copiá (o mové) el archivo con `fs.copyFileSync` (o `fs.renameSync`).
-8. Armá el objeto de info y guardalo en un array.
-9. Escribí `reporte.json` con `fs.writeFileSync` y `JSON.stringify`.
-10. Mostrá el resumen por consola.
+1. Lee los argumentos con `process.argv.slice(2)`. La ruta es `args[0]`.
+2. Valida que se paso una ruta. Si no, muestra un mensaje de uso y sal con `process.exit(1)`.
+3. Lee los archivos de la carpeta con `fs.readdirSync`.
+4. Para cada archivo, obtén la extension con `path.extname`.
+5. Define un mapa de extension → subcarpeta (un objeto o una funcion).
+6. Crea la subcarpeta de destino con `fs.mkdirSync` (recursive: true).
+7. Copia (o mueve) el archivo con `fs.copyFileSync` (o `fs.renameSync`).
+8. Arma el objeto de info y guardalo en un array.
+9. Escribe `reporte.json` con `fs.writeFileSync` y `JSON.stringify`.
+10. Muestra el resumen por consola.
 
 ## Tips
 
-- Usá `fs.statSync` para obtener el tamaño de cada archivo (stats.size).
+- Usa `fs.statSync` para obtener el tamaño de cada archivo (stats.size).
 - `path.extname` devuelve la extension con el punto (`.js`, no `js`).
-- Si usás `fs.copyFileSync`, el archivo original queda donde esta. Si usás `fs.renameSync`, se mueve (desaparece de la carpeta original).
-- Para el mapa de extensiones, podes usar un objeto:
+- Si usas `fs.copyFileSync`, el archivo original queda donde esta. Si usas `fs.renameSync`, se mueve (desaparece de la carpeta original).
+- Para el mapa de extensiones, puedes usar un objeto:
   ```js
   const mapa = {
     '.txt': 'texto',
@@ -124,4 +124,4 @@ Y en `ejemplo/reporte.json`:
 
 ---
 
-Si algo te da error, leé el mensaje de Node: te dice donde esta el problema. Y probá primero con una carpeta con pocos archivos para ver que funciona antes de meter una carpeta grande.
+Si algo te da error, lee el mensaje de Node: te dice donde esta el problema. Y prueba primero con una carpeta con pocos archivos para ver que funciona antes de meter una carpeta grande.

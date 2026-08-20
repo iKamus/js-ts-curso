@@ -1,4 +1,5 @@
-// SOLUCION Proyecto — Pipeline de transformacion de datos
+// PROYECTO — Pipeline de transformacion de datos
+// Completa el codigo donde dice // completa aqui
 
 // =============================================
 // Datos de entrada
@@ -16,25 +17,25 @@ const alumnos = [
 // Funciones puras
 // =============================================
 
-// Filtrar aprobados
+// completa aqui: crear esAprobada(nota) que devuelva true si nota >= 6
 function esAprobada(nota) {
-  return nota >= 6;
+  return /* completa aqui */;
 }
 
-// Curvar nota: sumar 1 punto sin pasar de 10
+// completa aqui: crear curvarNota(nota) que sume 1 punto sin pasar de 10
 function curvarNota(nota) {
-  return Math.min(nota + 1, 10);
+  return /* completa aqui */;
 }
 
 // =============================================
 // Closure: contador de aprobados
 // =============================================
 
+// completa aqui: crear crearContador() que devuelva una funcion que cuente
+// La variable cuenta debe ser privada dentro de la funcion
 function crearContador() {
-  let cuenta = 0;
-  return {
-    contar: function () { cuenta++; },
-    ver: function () { return cuenta; },
+  return function() {
+    // completa aqui: incrementar cuenta y devolverla
   };
 }
 
@@ -42,54 +43,45 @@ function crearContador() {
 // Currying: funcion de bonificacion
 // =============================================
 
-const bonificar = (porcentaje) => (nota) => +(nota * (1 + porcentaje / 100)).toFixed(2);
-
-// =============================================
-// Composicion: pipeline de transformacion
-// =============================================
-
-function pipeline(lista, ...fns) {
-  return fns.reduce((resultado, fn) => fn(resultado), lista);
-}
+// completa aqui: crear bonificar(porcentaje)(nota) que aplique bonificacion
+// Ejemplo: bonificar(5)(8) -> 8.4 (5% de 8)
+const bonificar = (porcentaje) => (nota) => { /* completa aqui */ }
 
 // =============================================
 // Procesamiento
 // =============================================
 
-// 1) Filtrar aprobados (inmutabilidad: filter crea array nuevo)
-const aprobados = alumnos.filter(alumno => esAprobada(alumno.nota));
+// 1) Filtrar aprobados (usa esAprobada)
+const aprobados = alumnos.filter((alumno) => { /* completa aqui */ })
 
 // 2) Curvar notas
-const curvadas = aprobados.map(alumno => ({
-  nombre: alumno.nombre,
-  nota: curvarNota(alumno.nota),
-}));
+const curvadas = aprobados.map((alumno) => { /* completa aqui */ })
 
 // 3) Contar aprobados con closure
 const contador = crearContador();
-aprobados.forEach(() => contador.contar());
+aprobados.forEach((alumno) => { /* completa aqui */ })
 
 // 4) Promedio de notas curvadas
-const promedio = curvadas.reduce((acc, a) => acc + a.nota, 0) / curvadas.length;
+const promedio = 0;
 
 // 5) Bonificacion con currying (5% sobre nota de Ana)
-const notaFinalAna = bonificar(5)(curvadas[0].nota);
+const notaFinalAna = bonificar(5)(0);
 
 // =============================================
 // Salida
 // =============================================
 
 console.log('--- Alumnos aprobados (antes de curvar) ---');
-aprobados.forEach(a => console.log(`${a.nombre}: ${a.nota}`));
+aprobados.forEach((alumno) => { /* completa aqui */ })
 
 console.log('\n--- Notas curvadas (+1 punto, max 10) ---');
-curvadas.forEach(a => console.log(`${a.nombre}: ${a.nota}`));
+curvadas.forEach((alumno) => { /* completa aqui */ })
 
 console.log('\n--- Cantidad de aprobados ---');
-console.log(contador.ver());
+console.log(0);
 
 console.log('\n--- Promedio de notas curvadas ---');
-console.log(promedio);
+console.log(0);
 
 console.log('\n--- Nota final con 5% de bonificacion (Ana) ---');
-console.log(notaFinalAna);
+console.log(0);

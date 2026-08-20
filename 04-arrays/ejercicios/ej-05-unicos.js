@@ -6,13 +6,13 @@ Devuelve un array solo con los unicos (cada numero una sola vez),
 respetando el orden en que aparecen. Es como en el album de figuritas:
 una sola por numero, pero no mezclamos el orden.
 
-Tenes DOS caminos posibles, elige el que te resulte mas comodo:
+Tienes DOS caminos posibles, elige el que te resulte mas comodo:
 
 Camino A -- con Set (lo ves a fondo en el modulo 07):
   Un Set es como una bolsa que no deja entrar repetidos: metes el array
   adentro y el solo se queda con un ejemplar de cada valor. Despues
-  tenes que volver a "desparramarlo" en un array. Fijate como se hace
-  en 07-map-set/ejemplos/01-set.js (la parte de "deduplicar un array").
+  tienes que volver a "desparramarlo" en un array. Observa como se hace
+  en el README del modulo 07 (seccion Set, la parte de "deduplicar").
 
 Camino B -- con filter e indexOf:
   indexOf te da la PRIMERA posicion donde aparece un numero. Si la

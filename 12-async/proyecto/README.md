@@ -42,7 +42,7 @@ Armar un monitor de servicios que chequea si varias URLs estan arriba, mide los 
 
 ## Estructura del archivo
 
-El archivo `monitor.js` tiene la plantilla incompleta. Completa las partes marcadas con `// completar aca`.
+El archivo `monitor.js` tiene la plantilla incompleta. Completa las partes marcadas con `// completa aqui`.
 
 ## Pasos sugeridos
 

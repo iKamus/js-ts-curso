@@ -16,7 +16,7 @@ Crear un gestor de contactos que permita agregar, buscar, listar, agrupar y resp
 
 ## Estructura del archivo
 
-El archivo `contactos.js` tiene la plantilla incompleta. Completá las partes marcadas con `// completa aquí`.
+El archivo `contactos.js` tiene la plantilla incompleta. Completa las partes marcadas con `// completa aqui`.
 
 ## Pasos sugeridos
 
@@ -30,9 +30,9 @@ El archivo `contactos.js` tiene la plantilla incompleta. Completá las partes ma
 
 ## Tips
 
-- Para buscar por nombre parcial, usá `.toLowerCase().includes()` para que no importen mayúsculas.
+- Para buscar por nombre parcial, usa `.toLowerCase().includes()` para que no importen mayúsculas.
 - El método `listar` puede devolver strings como `"Ana → 123456"` o `"Ana → 123456 (ana@mail.com)"` si tiene email.
-- Para `grupos`, recordá que `Object.assign({}, obj1, obj2)` fusiona dos objetos.
+- Para `grupos`, recuerda que `Object.assign({}, obj1, obj2)` fusiona dos objetos.
 - El backup debe ser profundo: si hay contactos con email anidado, `structuredClone` lo copia todo.
 
 ## Resultado esperado

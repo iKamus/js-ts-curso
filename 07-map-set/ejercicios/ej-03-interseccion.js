@@ -3,13 +3,14 @@ Ejercicio 3 -- Interseccion con Set
 Tenes dos listas de numeros:
   const a = [1, 2, 3, 4, 5];
   const b = [4, 5, 6, 7];
-Devolve un array con los numeros que estan en AMBOS.
-Como cuando dos amigos van a la misma cancha y queres saber que dias
+Devuelve un array con los numeros que estan en AMBOS.
+Como cuando dos amigos van a la misma cancha y quieres saber que dias
 van los dos: buscas los que aparecen en las dos agendas.
 
 La idea del Set aca: el Set tiene un metodo .has(valor) que te dice
 rapidisimo si un valor esta adentro (true o false). Es como preguntar
-"esta fulanito en la lista de presentes?". Fijate en ejemplos/01-set.js.
+"esta fulanito en la lista de presentes?". Observa en el README del
+modulo (seccion Set).
 
 Paso a paso:
 1) Convierte el array b a Set.
@@ -28,4 +29,4 @@ Resultado esperado:
 const a = [1, 2, 3, 4, 5];
 const b = [4, 5, 6, 7];
 
-// completar aca
+// completa aqui

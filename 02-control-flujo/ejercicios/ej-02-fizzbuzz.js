@@ -19,14 +19,13 @@ Pistas:
    porque ese caso tambien cumple las condiciones de Fizz y Buzz por separado.
    Si preguntas primero por Fizz, el numero 15 nunca llegaria a FizzBuzz.
 3) Imprime cada resultado en su propia linea (console.log por vuelta).
-4) Como practica extra: ANTES del bucle, crea una variable let primerPar; (sin valor).
-   Dentro del bucle, despues de imprimir el numero, usa && (short-circuit) para
-   guardar en "primerPar" el primer numero par que encuentres. La logica es:
-   si el numero es par (numero % 2 === 0) Y primerPar aun no tiene valor
-   (es decir, es undefined), entonces asigna primerPar = numero.
-   Como solo queres el PRIMERO, el short-circuit con && se encarga:
-   si la primera parte es falsa, ni mira la segunda; si es verdadera,
-   sigue y asigna. Despues del bucle imprime: console.log('Primer par:', primerPar);
+4) Practica extra: ANTES del bucle, crea una variable let primerPar; (sin valor inicial).
+   Dentro del bucle, guarda en primerPar el PRIMER numero par del 1 al 20.
+   Pista: usa el short-circuit de &&. La condicion debe comprobar que el numero
+   es par Y que primerPar todavia no tiene valor (undefined). && solo ejecuta
+   lo de la derecha si lo de la izquierda es verdadero: una vez asignado el
+   primer par, primerPar ya no sera undefined y la asignacion no volvera a ocurrir.
+   Despues del bucle imprime el resultado con console.log('Primer par:', primerPar);
 
 Resultado esperado:
 1

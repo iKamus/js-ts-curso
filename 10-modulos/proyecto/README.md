@@ -36,12 +36,12 @@ Armar una mini biblioteca de utilidades que combine los dos sistemas de modulos:
   const { createRequire } = require('module');
   const requireLocal = createRequire(__filename);
   ```
-- `import('./lib/cadenas.mjs')` devuelve una Promise con un objeto que tiene los named exports como propiedades y el default en `.default`. Podes destructurar para quitar el default de un lado:
+- `import('./lib/cadenas.mjs')` devuelve una Promise con un objeto que tiene los named exports como propiedades y el default en `.default`. Puedes destructurar para quitar el default de un lado:
   ```js
   const { default: Descripcion, ...cadenas } = await import('./lib/cadenas.mjs');
   ```
 - La forma mas limpio es envolver todo en un `async` function y usar `await`.
-- `Math.pow(base, exp)` calcula potencias. Tambien podes usar `base ** exp`.
+- `Math.pow(base, exp)` calcula potencias. Tambien puedes usar `base ** exp`.
 - Para `aSnakeCase`, reemplaza los espacios con `_` usando `replace(/\s+/g, '_')`.
 - Para `iniciales`, separa por espacios, toma la primera letra de cada palabra y une con puntos.
 

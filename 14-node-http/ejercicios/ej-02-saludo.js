@@ -11,7 +11,7 @@ La URL se ve asi: /saludo?nombre=Ana
 Paso a paso:
 1) Crea el servidor en el puerto 3000 como en el ejercicio 1.
 2) Adentro, agarra el nombre del query. La URL llega como texto simple,
-   pero la podes transformar en un objeto URL para trabajar comodo:
+   pero la puedes transformar en un objeto URL para trabajar comodo:
    - new URL(la url, 'http://localhost') la convierte en un objeto
      (el segundo argumento es obligatorio: es la "base", no importa cual sea)
    - busca en ese objeto como leer los "query params": hay una
@@ -20,7 +20,7 @@ Paso a paso:
 3) Arma el saludo:
    - si hay nombre -> "Hola, Ana!"
    - si no hay (null) -> "Hola, mundo!"
-   (podes usar el operador || como plan B: si es null, toma el otro)
+   (puedes usar el operador || como plan B: si es null, toma el otro)
 4) Responde con JSON: { saludo: "Hola, Ana!" }
    (Content-Type: 'application/json; charset=utf-8' y JSON.stringify,
    como en el ejercicio 1)
@@ -42,4 +42,4 @@ Resultado esperado:
 
 const http = require('http');
 
-// completá acá
+// completa aqui

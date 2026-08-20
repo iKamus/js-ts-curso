@@ -7,7 +7,7 @@ En este curso usamos extensiones distintas para que sea evidente cual sistema es
 ---
 
 ## CommonJS (require)
-- **Que es**: es la forma clasica de importar modulos en Node. Funciona con `require()` para pedir lo que otro archivo exporto, y `module.exports` para entregar lo que uno tiene. Es como ir al almacen: decis "necesito X", te lo dan, y listo.
+- **Que es**: es la forma clasica de importar modulos en Node. Funciona con `require()` para pedir lo que otro archivo exporto, y `module.exports` para entregar lo que uno tiene. Es como ir al almacen: dices "necesito X", te lo dan, y listo.
 - **Cuando usarlo**: en archivos `.cjs` y en cualquier proyecto Node que no tenga `"type": "module"` en su `package.json`. Es el sistema que existio durante anos antes de que llegara el estandar ESM.
 - **Sintaxis**:
   ```js
@@ -29,7 +29,7 @@ En este curso usamos extensiones distintas para que sea evidente cual sistema es
 ---
 
 ## module.exports
-- **Que es**: es la caja de entrega de un modulo CommonJS. Todo lo que metas en `module.exports` queda disponible para quien haga `require` de ese archivo. Es como armar un paquete para pasar al almacenc: juntas lo que queres dar y lo despachas.
+- **Que es**: es la caja de entrega de un modulo CommonJS. Todo lo que metas en `module.exports` queda disponible para quien haga `require` de ese archivo. Es como armar un paquete para pasar al almacen: juntas lo que quieres dar y lo despachas.
 - **Cuando usarlo**: siempre que un archivo `.cjs` necesite compartir funciones, objetos o valores con otros archivos.
 - **Sintaxis**:
   ```js
@@ -38,7 +38,7 @@ En este curso usamos extensiones distintas para que sea evidente cual sistema es
   const PI = 3.1416;
   module.exports = { sumar, PI };
 
-  // Tambien podes exportar de a una (no es lo comun)
+  // Tambien puedes exportar de a una (no es lo comun)
   module.exports.sumar = sumar;
   ```
 - **Errores comunes**:
@@ -52,7 +52,7 @@ En este curso usamos extensiones distintas para que sea evidente cual sistema es
 
 ## CommonJS (.cjs)
 - **Que es**: es la extension de archivo que le dice a Node "este archivo usa CommonJS". Aunque `.js` tambien puede ser CJS (por defecto en Node), `.cjs` lo hace explisito y queda claro solo con mirar el nombre del archivo.
-- **Cuando usarlo**: cuando queres que sea evidente que un archivo usa CommonJS, o cuando trabajas en un proyecto que tiene `"type": "module"` pero necesitas un archivo CJS particular.
+- **Cuando usarlo**: cuando quieres que sea evidente que un archivo usa CommonJS, o cuando trabajas en un proyecto que tiene `"type": "module"` pero necesitas un archivo CJS particular.
 - **Sintaxis**:
   ```
   mi-modulo.cjs    ← CommonJS (usa require y module.exports)
@@ -91,7 +91,7 @@ En este curso usamos extensiones distintas para que sea evidente cual sistema es
 ---
 
 ## Named exports
-- **Que es**: son las exportaciones que tienen nombre propio. Podes tener varios en el mismo archivo, y el consumidor elige cuales importar con llaves `{ }`. Es como una estanteria con etiquetas: agarras solo lo que necesitas.
+- **Que es**: son las exportaciones que tienen nombre propio. Puedes tener varios en el mismo archivo, y el consumidor elige cuales importar con llaves `{ }`. Es como una estanteria con etiquetas: agarras solo lo que necesitas.
 - **Cuando usarlo**: es la forma mas comun de exportar. Usalo para funciones, constantes o variables que quieras compartir de un modulo.
 - **Sintaxis**:
   ```js
@@ -108,12 +108,12 @@ En este curso usamos extensiones distintas para que sea evidente cual sistema es
   - Renombrar sin usar `as`: `import { sumar as s } from ...` es la forma correcta de renombrar.
 - **Buenas practicas**:
   - Nombralos de forma clara: `sumar`, `restar`, `calcularTotal`.
-  - Podes renombrar al importar: `import { sumar as suma } from ...` cuando el nombre original choca con algo local.
+  - Puedes renombrar al importar: `import { sumar as suma } from ...` cuando el nombre original choca con algo local.
 
 ---
 
 ## Default export
-- **Que es**: es una exportacion "estrella" del archivo, una sola por archivo. Se importa sin llaves, directo con el nombre que le pongas. Es como el plato del dia del comedor: solo hay uno, y lo pedis por nombre.
+- **Que es**: es una exportacion "estrella" del archivo, una sola por archivo. Se importa sin llaves, directo con el nombre que le pongas. Es como el plato del dia del comedor: solo hay uno, y lo pides por nombre.
 - **Cuando usarlo**: cuando un archivo tiene una funcion o valor principal que es lo mas importante que ofrece. No todos los archivos necesitan un default.
 - **Sintaxis**:
   ```js
@@ -171,7 +171,7 @@ En este curso usamos extensiones distintas para que sea evidente cual sistema es
   - Mezclar sistemas en el mismo archivo: `require` en `.mjs` o `import` en `.cjs` no funciona.
   - Asumir que `require` funciona en navegadores: solo existe en Node (a menos que lo polyfilles).
 - **Buenas practicas**:
-  - Para proyectos nuevos, preferi ES Modules.
+  - Para proyectos nuevos, prefiere ES Modules.
   - Si heredas un proyecto que usa CommonJS, no lo cambies todo de golpe: los dos funcionan bien.
   - En este curso usamos `.cjs` y `.mjs` para que quede claro cual es cual, sin vueltas.
 

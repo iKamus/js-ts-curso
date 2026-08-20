@@ -2,19 +2,18 @@
 
 ¡Bienvenido! Aquí vas a aprender JavaScript desde cero, de a poco y paso a paso, y al final del camino te vas a encontrar con TypeScript. Todo se corre con **Node.js** en la terminal, así que no necesitas nada más que una computadora con ganas de aprender.
 
-Piénsalo como un cuaderno de clases: cada tema tiene su explicación en formato referencia (keyword por keyword, con métodos, usos y errores comunes), unos ejemplos que puedes correr para ver qué pasa, ejercicios para practicar, y un mini proyecto integrador al final para asentar todo lo que aprendiste. Si algo no sale a la primera, no te preocupes: **equivocarse es parte de aprender**.
+Piénsalo como un cuaderno de clases: cada tema tiene su explicación en formato referencia (keyword por keyword, con sintaxis, métodos, ejemplos explicados, errores comunes y buenas prácticas), ejercicios prácticos para ejercitar con la ayuda de tips, y un mini proyecto integrador al final para asentar todo lo que aprendiste. Si algo no sale a la primera, no te preocupes: **equivocarse es parte de aprender**.
 
 ## Requisitos
 - Node.js v24+ (ya lo tienes instalado). Verifica con: `node --version`
 
 ## Cómo usar el curso
 1. Entra a un módulo (por ejemplo `01-fundamentos/` o `02-control-flujo/`).
-2. Lee su `README.md`: ahí está la referencia de cada keyword, sus métodos, usos y errores comunes. Está pensado para que lo consultes también después de terminar el módulo.
-3. Corre los ejemplos: `node ejemplos/nombre.js`. Mira qué imprime cada uno y trata de entender por qué.
-4. Resuelve los ejercicios en `ejercicios/`. La consigna está explicada arriba con pasos y tips para llegar a la solución (sin darte la respuesta). El resultado esperado está abajo para que compares. Verificas tú mismo con `node ejercicios/ej-XX.js`.
-5. Cuando termines los ejercicios, enfrenta el **mini proyecto** en `proyecto/`: es un desafío más completo que integra todo lo del módulo. Lee su README para los requisitos.
-6. Cuando termines un módulo, avísanos y lo revisamos juntos antes de seguir con el siguiente.
-7. Las soluciones de ejercicios y proyectos están en `soluciones/` (solo para consulta del instructor, no las mires antes de intentar).
+2. Lee su `README.md`: ahí está la referencia completa con teoría y ejemplos de código integrados. Consúltalo siempre que tengas dudas.
+3. Resuelve los ejercicios en `ejercicios/`. Cada archivo tiene la consigna con pasos detallados y tips que te orientan sin darte la solución directa. El resultado esperado está al final del comentario para que puedas comparar.
+4. Ejecuta tu ejercicio desde la carpeta del módulo con: `node ejercicios/ej-XX.js`.
+5. Cuando termines los ejercicios, resuelve el **mini proyecto** en `proyecto/`: un desafío integrador que une todo lo aprendido en el módulo. Lee `proyecto/README.md` para ver los requisitos.
+6. Las soluciones de ejercicios y proyectos están en `soluciones/` (solo para consulta de referencia del instructor; resuélvelo por tu cuenta antes de mirar).
 
 ## Módulos
 
@@ -37,8 +36,9 @@ Piénsalo como un cuaderno de clases: cada tema tiene su explicación en formato
 | 15-typescript | TypeScript completo | Avanzado |
 
 ## Reglas del curso
-- Cada ejercicio se corre con `node archivo.js` y se verifica comparando con el resultado esperado (que está en los comentarios).
-- Los ejemplos son para **entender**; los ejercicios, para **practicar** con la ayuda de tips (sin mirar las soluciones).
-- Al final de cada módulo, resuelve el **mini proyecto** para integrar todo lo aprendido en algo más completo.
-- Si un ejercicio te da error, no te desesperes: lee el mensaje. Entender los errores es parte de aprender.
-- Los ejercicios de los módulos 13/14/15 son interactivos (archivos y servidores): se prueban con los comandos que explica cada consigna.
+- Cada ejercicio se corre con `node ejercicios/ej-XX.js` y se verifica comparando con el `Resultado esperado` del encabezado.
+- Los ejercicios son plantillas que debes completar donde dice `// completa aquí`.
+- Al final de cada módulo, resuelve el **mini proyecto** para integrar todo lo aprendido en un caso práctico.
+- Si un ejercicio te da error, no te desesperes: lee el mensaje. Entender los errores es parte fundamental del aprendizaje.
+- Los módulos 13 y 14 son interactivos (archivos del sistema y servidores HTTP); se prueban con los comandos explicados en sus consignas.
+- El módulo 15 (TypeScript) se compila con `npm run build`.

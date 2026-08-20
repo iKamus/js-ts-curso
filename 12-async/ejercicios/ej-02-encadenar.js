@@ -1,7 +1,7 @@
 /*
 Ejercicio 2 — Encadenar promesas (preparar comida)
 
-Como cuando cocinas: no podes picar antes de lavar las verduras.
+Como cuando cocinas: no puedes picar antes de lavar las verduras.
 Aca vas a encadenar pasos y cada uno espera a que termine el anterior.
 Encadenar promesas es poner varios .then seguidos, y cada .then puede
 devolver OTRA promesa para que el siguiente espere.
@@ -16,7 +16,7 @@ Paso a paso:
    - paso('lavar verduras', 300)  -> v check lavar verduras
    - despues paso('picar verduras', 400) -> v check picar verduras
    - despues paso('cocinar', 500) -> v check cocinar
-   Fijate en ejemplos/02-promesas.js como se encadenan: cada .then
+   Observa en la seccion Promise del README como se encadenan: cada .then
    puede devolver OTRA promesa, y asi el siguiente .then espera a
    que termine (como la cadena de produccion: cada estacion hace
    su parte y pasa el producto a la siguiente).
@@ -27,4 +27,4 @@ v check picar verduras
 v check cocinar
 */
 
-// completar aca
+// completa aqui

@@ -5,6 +5,7 @@ TypeScript es como tener un corrector ortografico pero para codigo: JavaScript t
 ---
 
 ## Setup
+
 - **Que es**: preparar el entorno para que TS funcione. Es una sola vez: instalar las dependencias y listo.
 - **Cuando usarlo**: al arrancar el modulo. Ya hay un `package.json` y un `tsconfig.json` configurados.
 - **Sintaxis**:
@@ -21,8 +22,9 @@ npm install        # instala TypeScript como devDependency
 ---
 
 ## Tipos basicos
+
 - **Que es**: las etiquetas que le pones a cada variable para decirle a TS que va adentro. Es como ponerle una etiqueta a cada caja del almacen: sabes exactamente que contiene, sin sorpresas.
-- **Cuando usarlo**: siempre. TS funciona mejor cuando le decis los tipos, y `strict: true` lo exige.
+- **Cuando usarlo**: siempre. TS funciona mejor cuando le dices los tipos, y `strict: true` lo exige.
 - **Sintaxis**:
 ```ts
 const nombre: string = 'Ana';
@@ -41,6 +43,7 @@ const cantidades: number[] = [1, 2, 3];
 ---
 
 ## Inferencia
+
 - **Que es**: cuando TS adivina el tipo solo, sin que lo anotes. Es como un profe que sabe de que va tu codigo con solo mirarlo.
 - **Cuando usarlo**: en variables donde el tipo es evidente. No hace falta anotar todo.
 - **Sintaxis**:
@@ -59,6 +62,7 @@ let lista = [1, 2, 3];    // TS infiere number[]
 ---
 
 ## Union types
+
 - **Que es**: un tipo que acepta uno de varios posibles. Es como una caja que tiene espacio para dos formatos distintos: uno u otro, sin vueltas.
 - **Cuando usarlo**: cuando una variable puede ser mas de un tipo (`id` puede ser numero o string), o para crear listas de valores permitidos.
 - **Sintaxis**:
@@ -71,7 +75,7 @@ const estado: Estado = 'activo';
 ```
 - **Errores comunes**:
   - Usar un valor que no esta en la union: `const e: Estado = 'roto'` es error.
-  - No validar el tipo antes de usarlo: si es `number | string`, no podes llamar a `.toUpperCase()` sin antes verificar que es string.
+  - No validar el tipo antes de usarlo: si es `number | string`, no puedes llamar a `.toUpperCase()` sin antes verificar que es string.
 - **Buenas practicas**:
   - Usar union types en vez de `any` cuando la variable puede ser de varios tipos.
   - Las uniones de literales (como `Estado`) son muy utiles para estados y modos.
@@ -79,6 +83,7 @@ const estado: Estado = 'activo';
 ---
 
 ## Literal types
+
 - **Que es**: un tipo que acepta solo un valor exacto, no una categoria. Es como ponerle un candado con codigo: solo entra ese valor especifico.
 - **Cuando usarlo**: para estados, modos, direcciones, o cualquier cosa que tenga un conjunto fijo de valores permitidos.
 - **Sintaxis**:
@@ -99,6 +104,7 @@ const dir: Direccion = 'arriba';
 ---
 
 ## any y void
+
 - **Que es**: `any` es apagar el corrector (cualquier tipo pasa, sin preguntas). `void` es decir "esta funcion no devuelve nada, solo hace el trabajo".
 - **Cuando usarlo**: `any` es un ultimo recurso, algo para evitar. `void` es para funciones que solo imprimen, guardan o modifican algo sin devolver un valor.
 - **Sintaxis**:
@@ -126,6 +132,7 @@ const indefinido: undefined = undefined;
 ---
 
 ## Interfaces
+
 - **Que es**: el plano de un objeto. Le dice a TS que campos tiene que tener, con que tipo y si son obligatorios u opcionales. Es como la ficha de un alumno en la escuela: sabes que tiene nombre y edad, y si falta algo, te avisan.
 - **Cuando usarlo**: siempre que necesites definir la forma de un objeto. Las interfaces son la base de la programacion tipada en TS.
 - **Sintaxis**:
@@ -151,7 +158,8 @@ const ana: Persona = { nombre: 'Ana', edad: 30, id: 1 };
 ---
 
 ## Type aliases
-- **Que es**: una forma de darle nombre a un tipo. Es como ponerle un nombre a un molde: podes reutilizarlo sin tener que repetir la definicion.
+
+- **Que es**: una forma de darle nombre a un tipo. Es como ponerle un nombre a un molde: puedes reutilizarlo sin tener que repetir la definicion.
 - **Cuando usarlo**: para tipos compuestos que reutilizas, uniones, o cuando necesitas algo mas flexible que una interfaz (por ejemplo, tipos primitives con nombre).
 - **Sintaxis**:
 ```ts
@@ -171,6 +179,7 @@ const pos: Coordenada = { x: 10, y: 20 };
 ---
 
 ## Funciones tipadas
+
 - **Que es**: funciones que declaran explicitamente que reciben y que devuelven. Es como una receta que dice los ingredientes (parametros) y el plato final (tipo de retorno).
 - **Cuando usarlo**: siempre. Las funciones son el lugar mas importante para anotar tipos en TS.
 - **Sintaxis**:
@@ -203,8 +212,9 @@ function total(...numeros: number[]): number {
 ---
 
 ## Generics
+
 - **Que es**: tipos parametrizados. Es como una caja que sirve para cualquier contenido: la misma funcion funciona con numeros, strings u objetos, y TS se da cuenta solo de cual estas usando.
-- **Cuando usarlo**: cuando queres crear funciones, clases o interfaces que funcionen con multiples tipos sin perder la seguridad de tipos.
+- **Cuando usarlo**: cuando quieres crear funciones, clases o interfaces que funcionen con multiples tipos sin perder la seguridad de tipos.
 - **Sintaxis**:
 ```ts
 function primero<T>(lista: T[]): T | undefined {
@@ -233,6 +243,7 @@ class Caja<T> {
 ---
 
 ## Utility types (Pick, Partial)
+
 - **Que es**: herramientas que TS te da para transformar tipos existentes. `Pick` elige algunas propiedades de un tipo. `Partial` hace todas las propiedades opcionales.
 - **Cuando usarlo**: cuando necesitas un tipo derivado de otro sin copiar y pegar la definicion. Son como atajos para tipos comunes.
 - **Sintaxis**:
@@ -261,6 +272,7 @@ const nombreSolo: SoloNombre = { nombre: 'Ana' };
 ---
 
 ## tsconfig strict
+
 - **Que es**: el modo mas exigente de TS. Activa todas las verificaciones estrictas de una vez. Es como tener el profe mas riguroso: te corrige todo, pero asi aprendes bien.
 - **Cuando usarlo**: siempre en proyectos nuevos. Ya esta habilitado en este modulo.
 - **Sintaxis**:
@@ -272,7 +284,7 @@ const nombreSolo: SoloNombre = { nombre: 'Ana' };
 }
 ```
 - **Errores comunes**:
-  - Desactivar `strict` para que compile: es como sacarse el corrective眼镜 para no ver los errores.
+  - Desactivar `strict` para que compile: es como sacarse las gafas correctivas para no ver los errores.
   - No leer los mensajes de error: TS te dice exactamente que esta mal y donde.
 - **Buenas practicas**:
   - Mantener `strict: true` siempre.
@@ -284,19 +296,13 @@ const nombreSolo: SoloNombre = { nombre: 'Ana' };
 ## Compilar y correr
 ```bash
 npm run build                          # compila todo a dist/
-node dist/ejemplos/01-tipos-basicos.js # corre un ejemplo compilado
+node dist/ejercicios/ej-XX-tipos.js # corre un ejemplo compilado
 ```
+
 En PowerShell de Windows el `&&` no funciona. Correr los dos comandos por separado (o encadenarlos con `;`). El `dist/` es generado: nunca editarlo directamente.
 
-## Ejemplos
-| Archivo | Tema |
-|---|---|
-| `ejemplos/01-tipos-basicos.ts` | anotaciones, inferencia, union, any, void |
-| `ejemplos/02-interfaces.ts` | interfaces, opcionales, readonly, type alias |
-| `ejemplos/03-funciones.ts` | funciones tipadas, void, rest, opcionales |
-| `ejemplos/04-generics.ts` | genericos, utility types (Pick, Partial) |
-
 ## Ejercicios
+
 | Archivo | Consigna |
 |---|---|
 | `ejercicios/ej-01-tipos.ts` | tipos basicos y union types |
@@ -312,4 +318,14 @@ node dist/ejercicios/ej-XX-tipos.js
 ```
 (En PowerShell no se puede encadenar con `&&`; correr los dos comandos por separado.)
 
-Y si el compilador marca un error, no te asustes: leé el mensaje, es el profe tirandote un centro para que arregles la tarea. Probalo vos mismo, que asi se aprende.
+Y si el compilador marca un error, no te asustes: lee el mensaje, es el profe tirandote un centro para que arregles la tarea. Pruébalo tu mismo, que asi se aprende.
+
+---
+
+## Tip de debugging
+
+Si algo no compila y no entendes el error, usa la opcion `--noEmit`:
+```bash
+npx tsc --noEmit
+```
+Esto te mostrara los errores sin crear archivos .js. Muy util para entender que esta mal.

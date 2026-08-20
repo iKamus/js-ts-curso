@@ -45,7 +45,7 @@ Un array es como una fila de cajas numeradas: cada caja tiene un numero (el indi
   | `unshift(valor)` | agrega al inicio | nueva `length` | agrega |
   | `pop()` | saca del final | el elemento sacado | elimina |
   | `shift()` | saca del inicio | el elemento sacado | elimina |
-- **Errores comunes**: olvidar que `push` y `unshift` devuelven la **longitud**, no el array. No podes encadenar despues de ellos como con `map` o `filter`.
+- **Errores comunes**: olvidar que `push` y `unshift` devuelven la **longitud**, no el array. No puedes encadenar despues de ellos como con `map` o `filter`.
 - **Buenas practicas**: si necesitas agregar elementos pero sin mutar el original, usa spread: `const nuevo = [...original, nuevoElemento]`.
 
 ---
@@ -87,7 +87,7 @@ Un array es como una fila de cajas numeradas: cada caja tiene un numero (el indi
   |---|---|---|
   | `slice(inicio, fin)` | subarray desde `inicio` hasta `fin` (sin incluir fin) | fin es opcional |
   | `slice()` | copia superficial completa | util para copiar arrays |
-- **Errores comunes**: el indice final **no se incluye**. `slice(0, 2)` toma los elementos 0 y 1, no el 2. Tambien olvidar que `slice` no muta; si quieres modificar, tenes que reasignar.
+- **Errores comunes**: el indice final **no se incluye**. `slice(0, 2)` toma los elementos 0 y 1, no el 2. Tambien olvidar que `slice` no muta; si quieres modificar, tienes que reasignar.
 - **Buenas practicas**: usa `slice()` (sin argumentos) para hacer copias rapidas de arrays.
 
 ---
@@ -116,8 +116,8 @@ Un array es como una fila de cajas numeradas: cada caja tiene un numero (el indi
 
 ## for / for...of / forEach
 
-- **Que es**: tres formas de recorrer un array. `for` es la clasica con contador manual, `for...of` recorre directamente los valores, `forEach` le dice al array "haz esto con cada elemento". Es como leer una lista de compras: podes contar los renglones uno por uno, podes ir leyendo de corrido, o podes pedirle a alguien que te lea cada renglon en voz alta.
-- **Cuando usarlo**: siempre que necesites recorrer un array y hacer algo con cada elemento. `for` cuando necesitas el indice, `for...of` cuando solo importa el valor, `forEach` cuando queres sintaxis elegante.
+- **Que es**: tres formas de recorrer un array. `for` es la clasica con contador manual, `for...of` recorre directamente los valores, `forEach` le dice al array "haz esto con cada elemento". Es como leer una lista de compras: puedes contar los renglones uno por uno, puedes ir leyendo de corrido, o puedes pedirle a alguien que te lea cada renglon en voz alta.
+- **Cuando usarlo**: siempre que necesites recorrer un array y hacer algo con cada elemento. `for` cuando necesitas el indice, `for...of` cuando solo importa el valor, `forEach` cuando quieres sintaxis elegante.
 - **Sintaxis**:
   ```js
   const nums = [10, 20, 30];
@@ -163,8 +163,8 @@ Un array es como una fila de cajas numeradas: cada caja tiene un numero (el indi
   |---|---|---|---|
   | `map(fn)` | aplica `fn` a cada elemento | `[1,2,3].map(x => x * 2)` | `[2,4,6]` |
   | con indice | recibe `(valor, indice)` | `['a','b'].map((v,i) => i + ':' + v)` | `['0:a','1:b']` |
-- **Errores comunes**: olvidar el `return` en la callback (si usas `{}` sin `return`, devuelve `undefined` en cada posicion). Usar `map` cuando no necesitas un array nuevo: si solo queres hacer algo con cada elemento, usa `forEach`.
-- **Buenas practicas**: `map` siempre devuelve un array de la misma longitud. Si queres achicar el array, usa `filter`.
+- **Errores comunes**: olvidar el `return` en la callback (si usas `{}` sin `return`, devuelve `undefined` en cada posicion). Usar `map` cuando no necesitas un array nuevo: si solo quieres hacer algo con cada elemento, usa `forEach`.
+- **Buenas practicas**: `map` siempre devuelve un array de la misma longitud. Si quieres achicar el array, usa `filter`.
 
 ---
 
@@ -244,7 +244,7 @@ Un array es como una fila de cajas numeradas: cada caja tiene un numero (el indi
   |---|---|---|---|
   | `some(fn)` | al menos uno cumple `fn`? | `boolean` | `[1,2,3].some(x => x > 2)` -> `true` |
   | `every(fn)` | todos cumplen `fn`? | `boolean` | `[1,2,3].every(x => x > 0)` -> `true` |
-- **Errores comunes**: confundir `some` con `includes`. `some` es mas flexible: podes pasarle cualquier condicion, no solo buscar un valor exacto. `includes` solo busca igualdad estricta.
+- **Errores comunes**: confundir `some` con `includes`. `some` es mas flexible: puedes pasarle cualquier condicion, no solo buscar un valor exacto. `includes` solo busca igualdad estricta.
 - **Buenas practicas**: usa `some` para validaciones rapidas ("hay al menos un error?") y `every` para asegurar que todo cumple ("todos los campos estan completos?").
 
 ---
@@ -281,7 +281,7 @@ Un array es como una fila de cajas numeradas: cada caja tiene un numero (el indi
 ## destructuring
 
 - **Que es**: extraer valores de un array (o objeto) y guardarlos en variables individuales en una sola linea. Es como repartir cartas de a una: en vez de agarrar todo el mazo, sacas las que te interesan y las pones en la mesa.
-- **Cuando usarlo**: cuando queres acceder a elementos especificos de un array sin usar indices uno por uno. Tambien funciona con parametros de funciones y objetos.
+- **Cuando usarlo**: cuando quieres acceder a elementos especificos de un array sin usar indices uno por uno. Tambien funciona con parametros de funciones y objetos.
 - **Sintaxis**:
   ```js
   const [a, b] = [10, 20];          // a=10, b=20
@@ -320,19 +320,153 @@ Un array es como una fila de cajas numeradas: cada caja tiene un numero (el indi
   | sin funcion | ordena lexicograficamente | `[10,2,25].sort()` | `[10,2,25]` (mal) |
   | `(a,b) => a - b` | orden ascendente numerico | `[10,2,25].sort((a,b)=>a-b)` | `[2,10,25]` |
   | `(a,b) => b - a` | orden descendente numerico | `[10,2,25].sort((a,b)=>b-a)` | `[25,10,2]` |
-- **Errores comunes**: el error clasico es `sort()` sin funcion comparadora. `"10"` va antes que `"2"` porque compara el caracter `"1"` contra `"2"`. Tambien olvidar que `sort` **muta** el array original: si no queres modificarlo, copia con spread antes.
+- **Errores comunes**: el error clasico es `sort()` sin funcion comparadora. `"10"` va antes que `"2"` porque compara el caracter `"1"` contra `"2"`. Tambien olvidar que `sort` **muta** el array original: si no quieres modificarlo, copia con spread antes.
 - **Buenas practicas**: siempre pasa una funcion comparadora para numeros. Para no mutar, usa `[...array].sort(fn)`. Para strings, `sort()` sin argumentos funciona bien (ordena alfabeticamente).
 
 ---
 
-## Ejemplos
+## Ejemplos integrados
 
-| Archivo | Tema |
-|---|---|
-| `ejemplos/01-metodos-basicos.js` | crear, acceder, agregar, quitar, buscar y recortar arrays |
-| `ejemplos/02-iteracion.js` | recorrer arrays con for, for...of y forEach |
-| `ejemplos/03-map-filter-reduce.js` | transformar, filtrar, resumir y encadenar metodos funcionales |
-| `ejemplos/04-destructuring-spread.js` | destructuring, spread para copiar y combinar, sort con cuidado |
+Los ejemplos del modulo estan integrados aca, listos para correr con `node`. Cada bloque muestra su salida esperada como comentario.
+
+### Metodos basicos (crear, acceder, agregar, quitar, buscar, recortar)
+
+```js
+// Piensa en un array como la lista de compras: cada cosa tiene su lugar
+// y puedes mirarla, sumarle cosas o sacarle cosas.
+const frutas = ['manzana', 'pera', 'banana'];
+console.log(frutas[0]);                      // manzana
+console.log(frutas.length);                  // 3
+console.log(frutas[frutas.length - 1]);      // banana (ultimo)
+
+// push mete al final de la fila y unshift al principio, como hacer cola en el kiosco.
+frutas.push('uva');      // al final
+frutas.unshift('kiwi');  // al inicio
+console.log(frutas);     // ['kiwi','manzana','pera','banana','uva']
+
+// pop saca al ultimo de la fila y shift al primero.
+frutas.pop();            // saca del final
+frutas.shift();          // saca del inicio
+console.log(frutas);     // ['manzana','pera','banana']
+
+// indexOf te dice en que lugar esta; si no esta, te da -1. includes te responde con si o no.
+console.log(frutas.indexOf('pera'));     // 1
+console.log(frutas.indexOf('melon'));    // -1 (no existe)
+console.log(frutas.includes('banana'));  // true
+
+// slice NO modifica el array original: miras el recorte sin tocar el original.
+console.log(frutas.slice(0, 2));  // ['manzana','pera']
+console.log(frutas);              // intacto
+
+// join: array -> string, uniendo los elementos con el separador que elijas.
+console.log(frutas.join(' - '));  // manzana - pera - banana
+
+// reverse: da vuelta el array. OJO: modifica el original,
+// asi que si lo quieres conservar, copia antes.
+const alReves = ['a', 'b', 'c'].reverse();
+console.log(alReves);             // ['c','b','a']
+
+// Truco: dar vuelta un texto con split + reverse + join.
+const texto = 'hola';
+console.log(texto.split('').reverse().join('')); // aloh
+```
+
+### Recorrer arrays (for, for...of y forEach)
+
+```js
+const nums = [10, 20, 30];
+
+// for clasico (con indice): controlas vos el contador, como contar con los dedos.
+for (let i = 0; i < nums.length; i++) {
+  console.log('for:', nums[i]);
+}
+
+// for...of (mas legible, sin indice): va directo al valor.
+for (const n of nums) {
+  console.log('for...of:', n);
+}
+
+// forEach (con valor e indice): le dice al array "haz esto con cada elemento".
+nums.forEach((n, indice) => {
+  console.log(`forEach posicion ${indice}: ${n}`);
+});
+
+// destructuring en for...of: si cada elemento es un par, puedes "abrirlo" al vuelo.
+const pares = [[1, 'uno'], [2, 'dos']];
+for (const [num, nombre] of pares) {
+  console.log(num, nombre);
+}
+```
+
+### map, filter, reduce, find, some/every y encadenar
+
+```js
+const precios = [100, 250, 40, 300];
+
+// map: transforma cada elemento -> array nuevo (como pasarle la plancha a cada remera)
+const conImpuesto = precios.map(p => p * 1.21);
+console.log(conImpuesto); // [121, 302.5, 48.4, 363]
+
+// filter: deja pasar solo los que cumplen (como el portero del boliche)
+const caros = precios.filter(p => p >= 250);
+console.log(caros); // [250, 300]
+
+// reduce: todo el array -> un unico valor (como sumar todas las boletas del mes)
+const total = precios.reduce((acumulador, p) => acumulador + p, 0);
+console.log(total); // 690
+
+// find: el PRIMERO que cumple (se detiene apenas encuentra el primero)
+const encontrado = precios.find(p => p === 250);
+console.log(encontrado); // 250
+
+// some / every: booleanos. some pregunta "al menos uno cumple?"; every, "todos cumplen?".
+console.log(precios.some(p => p > 500));  // false
+console.log(precios.every(p => p > 0));   // true
+
+// encadenar: pares, doblados, sumados. Puedes combinar los pasos como una receta:
+// filtras, transformas y resumes, en ese orden.
+const numeros = [1, 2, 3, 4, 5, 6];
+const resultado = numeros
+  .filter(n => n % 2 === 0)     // [2,4,6]
+  .map(n => n * 10)             // [20,40,60]
+  .reduce((acc, n) => acc + n, 0); // 120
+console.log(resultado); // 120
+```
+
+### Destructuring, spread y sort
+
+```js
+// Destructuring: abrir el paquete y agarrar directo lo que quieres.
+const [a, b] = [10, 20];
+console.log(a, b); // 10 20
+
+// saltar elementos con comas: si una posicion no te interesa, pasas de largo.
+const [, , tercero] = [1, 2, 3];
+console.log(tercero); // 3
+
+// rest en destructuring: el "..." agarra todo lo que sobra y lo junta en un array.
+const [primero, ...resto] = [1, 2, 3, 4];
+console.log(primero); // 1
+console.log(resto);   // [2, 3, 4]
+
+// spread: "desparrama" los elementos, como vaciar la mochila sobre la mesa.
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+const combinado = [...arr1, ...arr2];
+console.log(combinado); // [1, 2, 3, 4]
+
+// copia (no referencia): copiamos la lista, no pasamos el mismo papel.
+const original = [1, 2, 3];
+const copia = [...original];
+copia.push(4);
+console.log(original); // [1, 2, 3]
+console.log(copia);    // [1, 2, 3, 4]
+
+// sort (OJO: convierte a string por defecto). Sin comparador, los numeros quedan raros.
+const numeros = [10, 2, 25];
+console.log([...numeros].sort());                // [10, 2, 25] mal!
+console.log([...numeros].sort((x, y) => x - y)); // [2, 10, 25] bien
+```
 
 ## Ejercicios
 

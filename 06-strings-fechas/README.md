@@ -1,6 +1,6 @@
 # Modulo 06 -- Strings, fechas y Math
 
-Un string es como un mensaje de WhatsApp: podes hacer un monton de cosas con el, pero cada metodo te devuelve un texto NUEVO, nunca cambia el original. Las fechas son un numero gigante disfrazado de calendario. Y Math es la calculadora de la clase: todo listo para usar.
+Un string es como un mensaje de WhatsApp: puedes hacer un monton de cosas con el, pero cada metodo te devuelve un texto NUEVO, nunca cambia el original. Las fechas son un numero gigante disfrazado de calendario. Y Math es la calculadora de la clase: todo listo para usar.
 
 ---
 
@@ -36,13 +36,13 @@ Un string es como un mensaje de WhatsApp: podes hacer un monton de cosas con el,
   | `.repeat(n)` | repite el string n veces | `'ha'.repeat(3)` | `'hahaha'` |
   | `.toUpperCase()` + `slice` | capitalizar una palabra | `'java'[0].toUpperCase() + 'java'.slice(1)` | `'Java'` |
 - **Errores comunes**: olvidar que los strings son inmutables: `'hola'[0] = 'H'` no tira error pero tampoco hace nada. Tambien confundir `replace` (cambia solo la primera) con `replaceAll` (cambia todas).
-- **Buenas practicas**: para comparar sin importar mayusculas, converti todo a minisculas antes: `str.toLowerCase().includes('algo')`. Para capitalizar, combina `[0].toUpperCase()` + `slice(1)`.
+- **Buenas practicas**: para comparar sin importar mayusculas, convierte todo a minusculas antes: `str.toLowerCase().includes('algo')`. Para capitalizar, combina `[0].toUpperCase()` + `slice(1)`.
 
 ---
 
 ## Date
 
-- **Que es**: un objeto que representa un punto en el tiempo. Internamente es un solo numero: la cantidad de milisegundos que pasaron desde el 1 de enero de 1970 (epoch). Pero con los metodos lo traducis a anno, mes, dia, hora, etc. Es como un cronometro que tambien sabe calendario.
+- **Que es**: un objeto que representa un punto en el tiempo. Internamente es un solo numero: la cantidad de milisegundos que pasaron desde el 1 de enero de 1970 (epoch). Pero con los metodos lo traduces a anno, mes, dia, hora, etc. Es como un cronometro que tambien sabe calendario.
 - **Cuando usarlo**: cuando necesites mostrar fechas, calcular diferencias de tiempo, obtener la fecha actual, o formatear fechas para mostrar.
 - **Sintaxis**:
   ```js
@@ -64,7 +64,7 @@ Un string es como un mensaje de WhatsApp: podes hacer un monton de cosas con el,
   | `.getTime()` | milisegundos desde 1970 | `fecha.getTime()` | `1755216000000` |
   | `.toLocaleDateString()` | formato local | `fecha.toLocaleDateString()` | `'15/8/2026'` |
 - **Errores comunes**: el mes empieza en 0, no en 1. `new Date(2026, 7, 15)` es agosto, no julio. Tambien olvidar que restar dos fechas da milisegundos, no dias: hay que dividir por `1000 * 60 * 60 * 24`.
-- **Buenas practicas**: para dias entre dos fechas: `(fecha2 - fecha1) / (1000 * 60 * 60 * 24)`. Para obterner el tiempo actual sin crear un Date: `Date.now()`.
+- **Buenas practicas**: para dias entre dos fechas: `(fecha2 - fecha1) / (1000 * 60 * 60 * 24)`. Para obtener el tiempo actual sin crear un Date: `Date.now()`.
 
 ---
 
@@ -113,7 +113,7 @@ Un string es como un mensaje de WhatsApp: podes hacer un monton de cosas con el,
   | `num.toFixed(2)` | 2 decimales, redondea | `'3.14'` |
   | `num.toFixed(0)` | sin decimales, redondea | `'3'` |
   | `num.toFixed(5)` | 5 decimales, rellena con ceros | `'3.14159'` |
-- **Errores comunes**: `toFixed` devuelve un **string**, no un numero. Si necesitas hacer cuentas despues, converti con `Number()` o `+`.
+- **Errores comunes**: `toFixed` devuelve un **string**, no un numero. Si necesitas hacer cuentas despues, convierte con `Number()` o `+`.
 - **Buenas practicas**: usa `toFixed` para mostrar, no para calcular. Si necesitas redondear para operar, usa `Math.round`.
 
 ---
@@ -139,13 +139,131 @@ Un string es como un mensaje de WhatsApp: podes hacer un monton de cosas con el,
 
 ---
 
-## Ejemplos
+## Ejemplos integrados
 
-| Archivo | Tema |
-|---|---|
-| `ejemplos/01-strings.js` | metodos de string: trim, case, busqueda, split/join, replace, pad, repeat, inmutabilidad |
-| `ejemplos/02-dates.js` | crear fechas, getters, meses desde 0, milisegundos, diferencia entre fechas |
-| `ejemplos/03-math.js` | max, min, floor, ceil, round, abs, sqrt, pow, random, randomInt, spread con Math.max |
+Todo lo que necesitas para los ejercicios, en un solo lugar. Podes copiar y correr cada bloque para ver la salida.
+
+### 01 -- Metodos de string
+
+```js
+const texto = '  Hola Mundo JavaScript  ';
+
+// trim: le corta los espacios de los bordes, como recortar los margenes de la hoja.
+console.log(texto.trim());             // 'Hola Mundo JavaScript'
+console.log(texto.trim().length);      // 21
+console.log('Hola Mundo'.toUpperCase());  // HOLA MUNDO
+console.log('Hola Mundo'.toLowerCase());  // hola mundo
+
+const email = 'ana@gmail.com';
+// includes, startsWith y endsWith te contestan con si o no.
+console.log(email.includes('@'));         // true
+console.log(email.startsWith('ana'));     // true
+console.log(email.endsWith('.com'));      // true
+console.log(email.indexOf('@'));          // 3
+console.log(email.slice(0, 3));           // ana
+
+// split rompe el texto en pedazos y join vuelve a pegarlos.
+console.log('a,b,c'.split(','));          // ['a','b','c']
+console.log(['a','b','c'].join('-'));     // a-b-c
+
+// OJO con el separador vacio: split('') separa el texto en CADA caracter.
+// Es como cortar la soga con tijera en cada letra: te queda un array de letras.
+console.log('hola'.split(''));            // ['h','o','l','a']
+
+// replace cambia solo la primera aparicion; replaceAll cambia todas, como buscar y reemplazar en Word.
+console.log('hola hola'.replace('hola', 'chau'));     // chau hola (solo la 1a)
+console.log('hola hola'.replaceAll('hola', 'chau'));  // chau chau
+
+// Capitalizar: primera letra en mayuscula + el resto igual
+// Se arma en TRES pasos:
+//   1) agarras la primera letra (con [0] o con charAt)
+//   2) la pones en mayuscula con toUpperCase
+//   3) le sumas el resto con slice(1) (de la letra 1 en adelante)
+// El + junta los dos pedazos como un texto nuevo.
+const palabra = 'javascript';
+const capitalizada = palabra[0].toUpperCase() + palabra.slice(1);
+console.log(capitalizada);                // Javascript
+
+// padStart rellena por izquierda y padEnd por derecha, como completar con ceros un legajo.
+console.log('7'.padStart(3, '0'));    // 007
+console.log('12'.padEnd(4, '.'));     // 12..
+console.log('hi'.repeat(3));          // hihihi
+console.log('Hola'[1]);               // o
+console.log('Hola'.charAt(0));        // H
+
+// Los strings son inmutables.
+// Observa: base no cambio. toUpperCase devolvio otro texto, pero el original quedo intacto.
+const base = 'hola';
+const modificado = base.toUpperCase();
+console.log(base, modificado); // hola HOLA
+```
+
+### 02 -- Date
+
+```js
+// Las fechas en JS se guardan como un numero gigante (milisegundos), pero las lees como calendario.
+const ahora = new Date();
+console.log('ahora:', ahora);
+
+// Meses van de 0 a 11: agosto = 7.
+// Este es el clasico error: enero es 0 y diciembre es 11, como los indices de los arrays.
+const fecha = new Date(2026, 7, 15);
+console.log('anno:', fecha.getFullYear());   // 2026
+console.log('mes:', fecha.getMonth());      // 7 (agosto)
+console.log('dia:', fecha.getDate());       // 15
+console.log('dia semana:', fecha.getDay()); // 6 (sabado; domingo = 0)
+
+// Desde un string ISO
+// El formato estandar tipo "2026-08-15T10:30:00" tambien se entiende perfecto.
+const iso = new Date('2026-08-15T10:30:00');
+console.log(iso.toISOString());         // 2026-08-15T10:30:00.000Z
+console.log(iso.toLocaleDateString());  // formato local (15/8/2026)
+console.log(iso.getTime());             // milisegundos desde 1970
+
+// Diferencia de tiempo en ms
+// Para medir cuanto tardo algo, agarras el tiempo antes y despues, como con un cronometro.
+const inicio = Date.now();
+// ...algo que tarde un poco...
+const fin = Date.now();
+console.log('pasaron', fin - inicio, 'ms');
+
+// Dias entre dos fechas
+// Si restas dos fechas te da milisegundos; divides por los ms que tiene un dia y listo.
+const d1 = new Date(2026, 0, 1);
+const d2 = new Date(2026, 11, 31);
+const dias = (d2 - d1) / (1000 * 60 * 60 * 24);
+console.log('dias entre:', dias); // 364
+```
+
+### 03 -- Math y aleatorios
+
+```js
+// Math es como la calculadora de la clase: un monton de funciones listas para usar.
+console.log(Math.max(4, 9, 2));   // 9
+console.log(Math.min(4, 9, 2));   // 2
+console.log(Math.floor(3.9));     // 3  (hacia abajo)
+console.log(Math.ceil(3.1));      // 4  (hacia arriba)
+console.log(Math.round(3.5));     // 4
+console.log(Math.round(3.4));     // 3
+console.log(Math.abs(-7));        // 7
+console.log(Math.pow(2, 3));      // 8
+console.log(Math.sqrt(81));       // 9
+
+// Aleatorio entre min y max (inclusive)
+// Math.random() te da un numero entre 0 y 1; con esta receta lo conviertes en un entero de tu rango,
+// como tirar un dado pero con el tamaño que elijas.
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+console.log('aleatorio 1-10:', randomInt(1, 10));
+console.log('aleatorio 1-10:', randomInt(1, 10));
+console.log('aleatorio 1-10:', randomInt(1, 10));
+
+// Math.max sobre un array con spread
+// El spread "desparrama" el array y Math.max agarra todos los numeros de una.
+const nums = [3, 7, 2, 9];
+console.log(Math.max(...nums)); // 9
+```
 
 ## Ejercicios
 

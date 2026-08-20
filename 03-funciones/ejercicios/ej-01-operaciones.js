@@ -4,7 +4,7 @@ Armamos la calculadora casera: una funcion por cada operacion, como tener
 cuatro recetas distintas en el cuaderno de cocina.
 
 Paso a paso:
-1) Crea 4 funciones (podes usar arrow o la forma clasica con function):
+1) Crea 4 funciones (puedes usar arrow o la forma clasica con function):
    - sumar(a, b)       -> devuelve a + b
    - restar(a, b)      -> devuelve a - b
    - multiplicar(a, b) -> devuelve a * b

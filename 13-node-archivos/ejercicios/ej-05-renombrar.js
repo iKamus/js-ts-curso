@@ -5,18 +5,18 @@ el mismo, solo cambia el nombre. Cuando renombras, el nombre viejo
 desaparece (no queda una copia).
 
 Paso a paso:
-1) Creá el archivo viejo con algo adentro:
-   - Armá la ruta con path.join: viejo.txt en esta misma carpeta
-   - Escribilo con writeFileSync
-   Tip: si el archivo no existe, writeFileSync lo crea. Fijate en
-   ejemplos/02-fs-basico.js.
+1) Crea el archivo viejo con algo adentro:
+   - Arma la ruta con path.join: viejo.txt en esta misma carpeta
+   - Escribelo con writeFileSync
+   Tip: si el archivo no existe, writeFileSync lo crea. Observa en
+   la seccion fs del README.
 
 2) Renombralo a nuevo.txt:
-   - Armá la ruta nueva: nuevo.txt en esta misma carpeta
+   - Arma la ruta nueva: nuevo.txt en esta misma carpeta
    - Usa fs.renameSync(rutaVieja, rutaNueva)
      (rename = cambiar el nombre, Sync = de una)
 
-3) Mostrá si existe cada uno:
+3) Muestra si existe cada uno:
    - Usa fs.existsSync para cada ruta
    - Mostralo con el formato de abajo
 
@@ -28,4 +28,4 @@ nuevo.txt existe: true
 const fs = require('fs');
 const path = require('path');
 
-// completá acá
+// completa aqui

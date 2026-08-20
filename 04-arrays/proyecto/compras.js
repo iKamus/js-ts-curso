@@ -34,6 +34,7 @@ console.log('--- Ordenada por precio (menor a mayor) ---');
 
 // --- 6. Filtrar productos con precio menor a 200 ---
 // completa aqui: usa filter con condicion precio < 200
+// pista: filtra sobre `ordenada` para que el resultado quede ordenado por precio
 const baratos = []; // reemplaza esta linea
 console.log('--- Menores a $200 ---');
 // completa aqui: muestra con map formateado

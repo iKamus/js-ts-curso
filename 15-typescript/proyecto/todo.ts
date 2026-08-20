@@ -1,23 +1,23 @@
 // todo.ts — TODO list tipada (plantilla)
 // Proyecto integrador del modulo 15: TypeScript
 //
-// Paso 1: Defini las interfaces y types
-// Paso 2: Creá la clase ListaTareas
-// Paso 3: Creá las funciones auxiliares
-// Paso 4: Demostra todo en accion
+// Paso 1: Define las interfaces y types
+// Paso 2: Crea la clase ListaTareas
+// Paso 3: Crea las funciones auxiliares
+// Paso 4: Demuestra todo en accion
 
 // --- Tipos ---
 
-// 1) Defini la interfaz Todo con: id (number, readonly), titulo (string),
+// 1) Define la interfaz Todo con: id (number, readonly), titulo (string),
 //    completado (boolean), prioridad ('baja' | 'media' | 'alta')
 //    Pista: usa type alias para Prioridad
 
-// completá acá
+// completa aqui
 
-// 2) Defini FiltroTodo como Partial<Pick<Todo, 'completado' | 'prioridad'>>
+// 2) Define FiltroTodo como Partial<Pick<Todo, 'completado' | 'prioridad'>>
 //    Pista: Pick elige propiedades, Partial las vuelve opcionales
 
-// completá acá
+// completa aqui
 
 
 // --- Clase generica ---
@@ -31,7 +31,7 @@
 //    - metodo filtrar(filtro: FiltroTodo): T[]
 //    - metodo obtenerTodas(): T[]
 
-// completá acá
+// completa aqui
 
 
 // --- Funciones auxiliares ---
@@ -39,17 +39,17 @@
 // 4) Crea mostrarTareas(tareas: Todo[]): void
 //    Formato: "[x] Titulo (prioridad)" o "[ ] Titulo (prioridad)"
 
-// completá acá
+// completa aqui
 
 // 5) Crea la funcion generica contarPorEstado<T extends Todo>(tareas: T[], completado: boolean): number
 //    Cuenta cuantas tareas tienen completado === el valor dado
 
-// completá acá
+// completa aqui
 
 
 // --- Demo ---
 
-// 6) Demostra todo en accion (copiar el resultado esperado del README):
+// 6) Demuestra todo en accion (copiar el resultado esperado del README):
 //    - Crear una ListaTareas
 //    - Agregar 3 tareas
 //    - Mostrar tareas iniciales
@@ -58,11 +58,11 @@
 //    - Filtrar por completadas y mostrar
 //    - Filtrar por prioridad 'alta' y mostrar
 //    - Contar total, completadas, pendientes
-//    - Eliminar la tarea con id 3
+//    - Eliminar la tarea con id 2
 //    - Mostrar despues de eliminar
 //    - Contar de nuevo
 
 console.log('=== TODO List tipada ===');
 console.log('');
 
-// completá acá
+// completa aqui

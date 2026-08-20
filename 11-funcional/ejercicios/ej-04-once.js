@@ -2,7 +2,7 @@
 Ejercicio 4 — once(fn): ejecutar una sola vez
 
 Imagina la entrada al cine: el ticket sirve para una sola funcion.
-Acas vas a lograr lo mismo, pero con una funcion: que se ejecute una
+Aca vas a lograr lo mismo, pero con una funcion: que se ejecute una
 unica vez y despues "se apague".
 
 Paso a paso:
@@ -30,4 +30,4 @@ Resultado esperado:
 hola
 */
 
-// completá acá
+// completa aqui

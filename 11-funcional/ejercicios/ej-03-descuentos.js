@@ -4,17 +4,17 @@ Ejercicio 3 — Descuentos con funciones puras
 Vamos a simular una liquidacion en un local: todos los precios con 10% off.
 Una funcion pura es una receta: mismos ingredientes -> mismo plato, y no
 ensucia nada de afuera (no toca variables externas, solo recibe
-parametros y devuelve un resultado). Acas vas a usar las tres grandes
+parametros y devuelve un resultado). Aca vas a usar las tres grandes
 juntas: map, reduce y filter.
 
-Tenés los precios:
+Tienes los precios:
   const precios = [100, 200, 150, 80];
 
 Paso a paso:
 1) Crear aplicarDescuento(precio, porcentaje) que devuelva el precio
    con el descuento aplicado. Pensalo asi: un 10% de descuento es
-   pagar el 90%, o sea multiplicar por (1 - porcentaje/100). Escribi
-   la cuenta vos.
+   pagar el 90%, o sea multiplicar por (1 - porcentaje/100). Escribe
+   la cuenta tu mismo.
 2) Aplicar el 10% a CADA precio con map: le pasas cada precio a
    aplicarDescuento (la flecha de map puede llamar a tu funcion).
    El map transforma cada elemento.
@@ -34,4 +34,4 @@ Menores o iguales a 135: [ 90, 135, 72 ]
 
 const precios = [100, 200, 150, 80];
 
-// completá acá
+// completa aqui

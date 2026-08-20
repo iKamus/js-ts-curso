@@ -32,7 +32,7 @@ Armar una calculadora de descuentos usando funciones. El programa debe calcular 
 
 ## Tips
 
-- Para el impuesto, pensa en que 21% sobre 100 es 21, y el precio final seria 121. O sea: `precio * 1.21`.
+- Para el impuesto, piensa en que 21% sobre 100 es 21, y el precio final seria 121. O sea: `precio * 1.21`.
 - Para la variable global `total`, define `let total = 0` al inicio del archivo y dentro de la funcion creala de nuevo con `let total = ...` para que haga shadowing.
 - El envio gratis se activa cuando el subtotal es mayor a 5000 (usar un `if` o un operador ternario).
 

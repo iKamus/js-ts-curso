@@ -11,7 +11,7 @@ Dos pasos, como una cadena de produccion:
 2) DOBLA cada uno con map. El map transforma cada elemento: le pasa
    la plancha a cada uno, pero el array original queda igual.
 
-Ojo con el orden: primero filtrás, despues doblas. Si doblas primero,
+Ojo con el orden: primero filtras, despues doblas. Si doblas primero,
 filtras despues, tambien te daria los pares doblados, pero el ejercicio
 es para practicar la cadena correcta: filter y despues map.
 

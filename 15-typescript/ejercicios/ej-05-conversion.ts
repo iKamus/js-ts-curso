@@ -1,6 +1,6 @@
 /*
 Ejercicio 5 — Migrar un ejercicio de JS a TS
-Imagina que tenes una receta hecha a ojo y ahora le pones medidas
+Imagina que tienes una receta hecha a ojo y ahora le pones medidas
 exactas. Eso es migrar a TypeScript: mismo plato, pero con tipos.
 Toma la clase Rectangulo del modulo 08 y reescribila en TS.
 
@@ -25,4 +25,4 @@ area 4x6=24 perimetro=20 esCuadrado=false
 area 5x5=25 perimetro=20 esCuadrado=true
 */
 
-// completá acá
+// completa aqui

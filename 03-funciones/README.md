@@ -1,7 +1,7 @@
 # Modulo 03 — Funciones
 
 ## function (declaracion)
-- **Que es**: una funcion es una receta de cocina: le pasas ingredientes (los parametros) y te devuelve el plato listo (el `return`). La declaras una vez y la podes usar (llamar) todas las veces que quieras, con distintos ingredientes.
+- **Que es**: una funcion es una receta de cocina: le pasas ingredientes (los parametros) y te devuelve el plato listo (el `return`). La declaras una vez y la puedes usar (llamar) todas las veces que quieras, con distintos ingredientes.
 - **Cuando usarla**: cada vez que necesitas repetir una logica con distintos datos. En vez de copiar y pegar el mismo codigo diez veces, lo encapsulas en una funcion y la llamas.
 - **Sintaxis**:
   ```js
@@ -32,10 +32,10 @@
   - Poner codigo despues de un `return` es codigo muerto: la funcion se corta ahi.
   - Olvidar `return` y despues intentar usar el resultado da `undefined`.
 - **Buenas practicas**:
-  - Podes tener varios `return` para cortar temprano, como salir de la fila cuando ya conseguiste lo que buscabas.
+  - Puedes tener varios `return` para cortar temprano, como salir de la fila cuando ya conseguiste lo que buscabas.
 
 ## hoisting
-- **Que es**: las funciones declaradas con `function` se "elevan" al inicio del archivo, como si la receta ya estuviera pegada en la heladera antes de empezar a cocinar. Podes llamarlas antes de definirlas en el codigo.
+- **Que es**: las funciones declaradas con `function` se "elevan" al inicio del archivo, como si la receta ya estuviera pegada en la heladera antes de empezar a cocinar. Puedes llamarlas antes de definirlas en el codigo.
 - **Cuando usarlo**: no es algo que "elijas" usar, es un comportamiento automatico de las declaraciones de funcion. Es bueno saberlo para no sorprenderte.
 - **Sintaxis**:
   ```js
@@ -45,9 +45,9 @@
   }
   ```
 - **Errores comunes**:
-  - Las arrow functions y las expresiones de funcion NO tienen hoisting. Si declaras `const doble = x => x * 2;` no podes llamar `doble(4)` antes de esa linea.
+  - Las arrow functions y las expresiones de funcion NO tienen hoisting. Si declaras `const doble = x => x * 2;` no puedes llamar `doble(4)` antes de esa linea.
 - **Buenas practicas**:
-  - Aunqe el hoisting existe, es buena costumbre definir las funciones antes de usarlas para que el codigo sea mas legible.
+  - Aunque el hoisting existe, es buena costumbre definir las funciones antes de usarlas para que el codigo sea mas legible.
 
 ## arrow functions
 - **Que es**: son las funciones escritas con la flecha `=>`, la version cortita. Como la receta abreviada que escribe un chef apurado: menos palabras, mismo resultado.
@@ -82,11 +82,11 @@
 - **Errores comunes**:
   - No tiene hoisting: si llamas `duplicar(4)` antes de la asignacion, da error.
 - **Buenas practicas**:
-  - En la mayoria de los casos, preferi la declaracion de funcion o las arrow functions. La expresion de funcion es mas un concepto que conocer que algo que uses a diario.
+  - En la mayoria de los casos, prefiere la declaracion de funcion o las arrow functions. La expresion de funcion es mas un concepto que conocer que algo que uses a diario.
 
 ## parametros por defecto
-- **Que es**: son valores predefinidos que toma un parametro cuando no le pasan nada. Como el plan B de la receta: si no tenes el ingrediente, ya hay uno de reserva.
-- **Cuando usarlo**: cuando queres que un parametro sea opcional sin que el usuario tenga que pasarlo siempre.
+- **Que es**: son valores predefinidos que toma un parametro cuando no le pasan nada. Como el plan B de la receta: si no tienes el ingrediente, ya hay uno de reserva.
+- **Cuando usarlo**: cuando quieres que un parametro sea opcional sin que el usuario tenga que pasarlo siempre.
 - **Sintaxis**:
   ```js
   function saludo(nombre = "Anonimo") {
@@ -115,7 +115,7 @@
 - **Errores comunes**:
   - Solo puede haber un rest param y debe ser el ultimo parametro de la funcion.
 - **Buenas practicas**:
-  - Nombralo de forma clara que indique que es una coleccion: `...numeros`, `...items`, `...nombres`.
+  - Nómbralo de forma clara que indique que es una coleccion: `...numeros`, `...items`, `...nombres`.
 
 ## arguments
 - **Que es**: es un objeto especial (solo en funciones clasicas con `function`) que contiene todos los argumentos que le pasaron a la funcion, sin nombre. Como una bolsa sin etiquetas donde cayeron todos los ingredientes.
@@ -155,7 +155,7 @@
   - Usa `const` por defecto. Usa `let` solo cuando necesites reasignar. Nunca uses `var`.
 
 ## shadowing
-- **Que es**: es cuando una variable local "tapza" a una global con el mismo nombre, como cuando el nombre de tu compañero de banco tapa al del registro. La local se usa dentro de su ambito y la global se usa fuera.
+- **Que es**: es cuando una variable local "tapa" a una global con el mismo nombre, como cuando el nombre de tu compañero de banco tapa al del registro. La local se usa dentro de su ambito y la global se usa fuera.
 - **Cuando usarlo**: no es algo que debas buscar hacer. Es un comportamiento del scope que debes entender para evitar confusiones.
 - **Sintaxis**:
   ```js
@@ -174,14 +174,125 @@
 
 ---
 
-## Ejemplos
+## Ejemplos integrados
 
-| Archivo | Tema |
-|---|---|
-| `ejemplos/01-declaracion.js` | Declaracion, hoisting, return |
-| `ejemplos/02-arrow.js` | Arrow functions |
-| `ejemplos/03-parametros.js` | Parametros por defecto, rest, arguments |
-| `ejemplos/04-scope.js` | Scope y shadowing |
+Los ejemplos del modulo estan integrados aca, listos para correr con `node`. Cada bloque muestra su salida esperada como comentario.
+
+### Declaracion, hoisting y return
+
+```js
+// Declaracion clasica: la receta de cocina, con ingredientes y plato final
+function saludar(nombre) {
+  return `Hola, ${nombre}`;
+}
+console.log(saludar('Ana')); // Hola, Ana
+
+// Hoisting: se puede llamar antes de definirla (la receta ya esta en la heladera)
+console.log(duplicar(4)); // 8
+function duplicar(x) {
+  return x * 2;
+}
+
+// Varios return para cortar temprano (como irse de la fila cuando ya conseguiste)
+function clasificar(edad) {
+  if (edad < 18) return 'menor';
+  if (edad < 65) return 'adulto';
+  return 'jubilado';
+}
+console.log(clasificar(20));  // adulto
+console.log(clasificar(70));  // jubilado
+
+// Sin return -> undefined (el plato sale sin nada, no hay resultado)
+function sinReturn() {}
+console.log(sinReturn()); // undefined
+```
+
+### Arrow functions
+
+```js
+// La version cortita de la funcion, con la flecha => en vez de la palabra function
+const sumar = (a, b) => a + b;
+console.log(sumar(2, 3)); // 5
+
+// Sin parametros (no necesita ingredientes, como la receta de agua tibia)
+const anioActual = () => new Date().getFullYear();
+console.log(anioActual()); // el anio en curso (depende de la fecha)
+
+// Un parametro sin parentesis (opcional, se puede abreviar)
+const doble = x => x * 2;
+console.log(doble(10)); // 20
+
+// Cuerpo con llaves: necesitas return explicito (ahi si que escribir return)
+const mayor = (a, b) => {
+  if (a > b) return a;
+  return b;
+};
+console.log(mayor(3, 7)); // 7
+
+// Las arrows se suelen usar como callbacks (funciones que se pasan como dato)
+const numeros = [1, 2, 3];
+console.log(numeros.map(n => n * n)); // [1, 4, 9]
+
+// NOTA: las arrow NO tienen su propio `this`, lo heredan (lo vemos en clases y callbacks).
+```
+
+### Parametros por defecto, rest y arguments
+
+```js
+// Parametros por defecto: si no te pasan el ingrediente, ya tienes el plan B
+function saludo(nombre = 'Anonimo') {
+  return `Hola, ${nombre}`;
+}
+console.log(saludo());        // Hola, Anonimo
+console.log(saludo('Ana'));   // Hola, Ana
+
+// Rest params: juntan los argumentos extra en un array (como las monedas que sobran en la bolsa)
+function sumarTodos(...numeros) {
+  let total = 0;
+  for (const n of numeros) total += n;
+  return total;
+}
+console.log(sumarTodos(1, 2, 3, 4)); // 10
+console.log(sumarTodos());           // 0
+
+// Arguments (solo en funciones clasicas): tiene todo lo que te pasaron, sin nombre
+function cuantos() {
+  return arguments.length;
+}
+console.log(cuantos(1, 2, 3)); // 3
+```
+
+### Scope y shadowing
+
+```js
+// Scope es hasta donde llega a vivir una variable, como el radio de la mochila: lo que guardas se queda ahi
+let global = 'puedo usarse en todo el archivo';
+
+function ejemplo() {
+  let local = 'solo dentro de la funcion';
+  console.log(global);  // ok (la mochila global se ve desde adentro)
+  console.log(local);   // ok (la local vive aca adentro)
+}
+ejemplo();
+// console.log(local); // ERROR: local no existe aca afuera (se quedo adentro de la funcion)
+
+// Bloques: let/const son de bloque (viven solo dentro de las llaves)
+{
+  let enBloque = 'solo dentro de las llaves';
+  var enVar = 'var escapa del bloque';
+}
+// console.log(enBloque); // ERROR
+console.log(enVar); // 'var escapa del bloque' -> por eso no usamos var (rompe el radio de la mochila)
+
+// Shadowing: una variable local tapa a la global (como el nombre del companero tapa al del registro)
+let mensaje = 'global';
+function otra() {
+  let mensaje = 'local';
+  console.log(mensaje); // local
+}
+otra();
+console.log(mensaje); // global
+```
 
 ## Ejercicios
 
@@ -190,5 +301,5 @@
 | `ejercicios/ej-01-operaciones.js` | Calculadora basica: sumar/restar/multiplicar/dividir |
 | `ejercicios/ej-02-esPar.js` | esPar: decidir si un numero es par |
 | `ejercicios/ej-03-factorial.js` | Factorial recursivo: la funcion que se llama a si misma |
-| `ejercicios/ej-04-maximo.js` | Maximo con rest params: el mas grande de todos |
+| `ejercicios/ej-04-maximo.js` | Maximo entre dos numeros con operador ternario |
 | `ejercicios/ej-05-palindromo.js` | Palindromo: la palabra que se lee igual al derecho y al reves |

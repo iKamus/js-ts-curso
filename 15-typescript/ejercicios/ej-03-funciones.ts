@@ -14,7 +14,7 @@ Paso a paso:
    solo hace el trabajo: imprimir.)
    Pista: forEach((item, indice) => ...) y el numero se muestra
    como indice + 1 (porque el indice arranca en 0).
-4) Usalas asi y mostra los resultados:
+4) Usalas asi y muestra los resultados:
    - esPar(4) y muestra "4 es par: true"
    - maximo(3, 7) y muestra "Maximo: 7"
    - imprimirLista(['manzana', 'pera'])
@@ -26,4 +26,4 @@ Maximo: 7
 2: pera
 */
 
-// completá acá
+// completa aqui

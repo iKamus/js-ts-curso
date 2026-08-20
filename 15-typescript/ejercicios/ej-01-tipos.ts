@@ -1,6 +1,6 @@
 /*
 Ejercicio 1 — Tipos basicos
-Vamos a jugar con las etiquetas de las cajas: le decis a TS que va
+Vamos a jugar con las etiquetas de las cajas: le dices a TS que va
 adentro de cada variable y el te corrige antes de entregar.
 
 Paso a paso:
@@ -14,7 +14,7 @@ Paso a paso:
 4) Declara un union type: resultado: number | string
    (el | significa "uno u otro": la caja acepta un numero O un texto)
    Asignale primero un numero, y despues reasignale un string.
-5) Mostra todo con un solo console.log.
+5) Muestra todo con un solo console.log.
 
 Compila y corre (en PowerShell no usamos &&, son dos comandos separados):
   npm run build
@@ -22,4 +22,4 @@ Compila y corre (en PowerShell no usamos &&, son dos comandos separados):
 Resultado esperado: tus datos por consola.
 */
 
-// completá acá
+// completa aqui

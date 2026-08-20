@@ -51,11 +51,11 @@ Armar un validador de formularios que reciba datos de usuario (nombre, email, ed
 
 ## Tips
 
-- Para crear una clase que hereda de otra, usá `extends`. El constructor del hijo debe llamar a `super(mensaje)` antes de usar `this`.
+- Para crear una clase que hereda de otra, usa `extends`. El constructor del hijo debe llamar a `super(mensaje)` antes de usar `this`.
 - `instanceof` revisa la cadena de herencia: un `ErrorDeLongitud` tambien es `instanceof ErrorDeValidacion` y `instanceof Error`.
-- Para verificar si un password tiene al menos un numero, podes usar un regex: `/\d/.test(password)`.
+- Para verificar si un password tiene al menos un numero, puedes usar un regex: `/\d/.test(password)`.
 - Si no sabes que tipo de error es el que llego, re-lanzalo: `throw e` en el ultimo `else` del `catch`.
-- El try/catch de JSON.parse es un caso practico de cuando la data viene de afuera (un archivo, una API, el usuario) y no podes confiar en que sea valida.
+- El try/catch de JSON.parse es un caso practico de cuando la data viene de afuera (un archivo, una API, el usuario) y no puedes confiar en que sea valida.
 
 ## Resultado esperado
 

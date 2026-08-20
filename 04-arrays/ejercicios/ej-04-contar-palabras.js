@@ -1,13 +1,13 @@
 /*
 Ejercicio 4 -- Contar palabras (reduce a objeto)
-Tenés estas frases:
+Tienes estas frases:
   const frases = ['hola mundo', 'hola de nuevo', 'mundo mundo'];
 Cuenta cuantas veces aparece cada palabra y devuelve un objeto con ese
 conteo. Es como contar votos: cada palabra es un candidato y sumas
 uno cada vez que aparece.
 
 Paso a paso:
-1) Primero tenes que pasar de "frases" a "palabras sueltas". Pensalo en
+1) Primero tienes que pasar de "frases" a "palabras sueltas". Piénsalo en
    dos pasos con los metodos de string que ya conoces: juntar todas las
    frases en un solo texto, y despues cortarlo por espacios. Te queda
    un array con todas las palabras.
@@ -15,7 +15,7 @@ Paso a paso:
    numero: es un OBJETO vacio {}. En cada vuelta:
    - si la palabra todavia no esta en el objeto, agregala con valor 1
    - si ya esta, sumale 1 al valor que tenia
-   Ojo: al final del reduce tenes que devolver el acumulador, sino
+   Ojo: al final del reduce tienes que devolver el acumulador, sino
    el objeto se pierde.
 3) Muestra el objeto con console.log.
 

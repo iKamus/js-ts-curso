@@ -15,7 +15,9 @@ Paso a paso:
    - nota >= 4  -> "Regular"
    - si ninguna se cumplio (nota menor a 4) -> "Desaprobado"
 2) Crear una variable "aprobado" con un ternario: si nota >= 4 guarda true,
-   si no guarda false. Es decir: const aprobado = nota >= 4 ? true : false;
+   si no guarda false.
+   Pista: la expresion nota >= 4 ya te devuelve true o false por si sola.
+   Usala como condicion del ternario y elige que valor devolver en cada rama.
 3) Imprimir el resultado con el formato: "nota -> concepto" y luego
    "Ternario: esta -> aprobado" o "Ternario: esta -> reprobado"
    (usando un ternario que muestre "aprobado" si aprobado es true, o "reprobado" si es false).

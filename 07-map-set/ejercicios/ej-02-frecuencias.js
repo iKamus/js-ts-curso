@@ -2,13 +2,14 @@
 Ejercicio 2 -- Frecuencias con Map
 Tenes esta lista de palabras:
   const palabras = ['hola', 'chau', 'hola', 'hola', 'adios'];
-Conta con un Map cuantas veces aparece cada palabra y muestra cada
+Cuenta con un Map cuantas veces aparece cada palabra y muestra cada
 entrada como "palabra: cantidad".
 
 Que es un Map? Es como un diccionario: guardas pares clave -> valor.
 Aca la clave va a ser la palabra y el valor la cantidad de veces que aparece.
 Es como contar votos: cada palabra es un candidato y sumas uno
-cada vez que aparece. Fijate como se usa en ejemplos/02-map.js.
+cada vez que aparece. Observa como se usa en el README del modulo
+(seccion Map).
 
 Paso a paso:
 1) Crea un Map vacio.
@@ -17,9 +18,9 @@ Paso a paso:
    - si todavia no existe, te da undefined. Usa el "plan B"
      con || (como en el modulo 05): undefined || 0 es 0.
    Escribe la linea con las operaciones del Map (get y set).
-3) Despues de recorrer todo, muestra cada entrada. Fijate como se
-   recorre un Map en ejemplos/02-map.js (te da cada par
-   clave -> valor, que podes "abrir" con la coma, como en el
+3) Despues de recorrer todo, muestra cada entrada. Observa como se
+   recorre un Map en el README del modulo (seccion Map; te da cada par
+   clave -> valor, que puedes "abrir" con la coma, como en el
    destructuring del modulo 04). Muestra `${palabra}: ${cantidad}`
    (una linea por entrada).
 
@@ -31,4 +32,4 @@ adios: 1
 
 const palabras = ['hola', 'chau', 'hola', 'hola', 'adios'];
 
-// completar aca
+// completa aqui

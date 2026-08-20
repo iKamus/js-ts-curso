@@ -3,9 +3,11 @@
 Mini proyecto integrador del modulo 15 (TypeScript).
 
 ## Consigna
+
 Armar una lista de tareas (TODO list) completamente tipada usando los conceptos del modulo: interfaces, type aliases, genericos, funciones con tipos, y utility types (Pick, Partial).
 
 ## Requisitos
+
 1. Definir una interfaz `Todo` con campos: `id` (number, readonly), `titulo` (string), `completado` (boolean), `prioridad` (literal type: 'baja' | 'media' | 'alta').
 2. Definir un type alias `FiltroTodo` como `Partial<Pick<Todo, 'completado' | 'prioridad'>>`.
 3. Crear una clase generica `ListaTareas<T extends Todo>` que guarde un array de tareas.
@@ -27,14 +29,16 @@ proyecto/
 ```
 
 ## Pasos
+
 1. Leer este README y entender los requisitos.
-2. Abrir `todo.ts` y completar donde dice `// completá acá`.
+2. Abrir `todo.ts` y completar donde dice `// completa aqui`.
 3. Correr con: `npm run build; node dist/proyecto/todo.js`
 4. Comparar la salida con el resultado esperado de abajo.
 
 ## Tips
+
 - Primero define las interfaces y types antes de la clase.
-- Usá `Partial<Pick<Todo, ...>>` para el tipo FiltroTodo.
+- Usa `Partial<Pick<Todo, ...>>` para el tipo FiltroTodo.
 - El metodo `filtrar` puede usar `Object.keys()` y comparar propiedades.
 - `prioridad` tiene valor por defecto `'media'` si no se pasa.
 

@@ -55,7 +55,7 @@ const alumnos = [
 - Las funciones puras no tocan el array original: `filter` y `map` devuelven arrays nuevos.
 - El closure para el contador es igual al ejercicio 1: una variable privada dentro de una funcion.
 - Currying: `bonificar(5)(8)` aplica 5% sobre 8, o sea `8 * 1.05 = 8.4`.
-- Para componer: podes crear una funcion `pipeline` que ejecute filter y despues map en orden.
+- Para componer: puedes crear una funcion `pipeline` que ejecute filter y despues map en orden.
 - `Math.min(nota + 1, 10)` evita que la nota pase de 10 al curvar.
 
 ## Resultado esperado

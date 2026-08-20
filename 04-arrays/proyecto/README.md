@@ -40,13 +40,13 @@ Crear un programa que gestione una lista de compras con las siguientes operacion
 5. Muestra la lista formateada con `map` (algo como `"manzana: $120"`).
 6. Filtra productos con precio menor a 200.
 7. Calcula el total con `reduce`.
-8. Crea una segunda lista y combinala con la primera usando spread.
+8. Crea una segunda lista y combínala con la primera usando spread.
 9. Muestra el total de la lista combinada.
 
 ## Tips
 
-- Para buscar un producto por nombre, podes usar `find` con `toLowerCase()` para que no importen mayusculas/minusculas.
-- `sort` muta el array: si no queres modificar el original, copia con spread antes de ordenar.
+- Para buscar un producto por nombre, puedes usar `find` con `toLowerCase()` para que no importen mayusculas/minusculas.
+- `sort` muta el array: si no quieres modificar el original, copia con spread antes de ordenar.
 - El acumulador de `reduce` para el total arranca en `0`.
 - Para combinar listas: `const listaCompleta = [...lista1, ...lista2]`.
 - Para formatear precios: `"${producto.nombre}: $${producto.precio}"`.

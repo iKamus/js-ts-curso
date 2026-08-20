@@ -4,7 +4,7 @@
 Viste Set y Map: dos colecciones especiales para guardar valores unicos y pares clave-valor. Ahora es momento de juntar todo en algo practico: analizar un texto, contar cuantas veces aparece cada palabra, encontrar la mas comun, y sacar las letras repetidas con Set.
 
 ## Que vas a hacer
-Vas a crear un programa que tome un texto, cuente la frecuencia de cada palabra con Map, encuentre la palabra mas comun, y deduplic las letras del texto con Set.
+Vas a crear un programa que tome un texto, cuente la frecuencia de cada palabra con Map, encuentre la palabra mas comun, y deduplica las letras del texto con Set.
 
 ## Requisitos funcionales
 1. Declara un texto con const:
@@ -27,7 +27,7 @@ Vas a crear un programa que tome un texto, cuente la frecuencia de cada palabra 
 - Para dividir el texto en palabras: `texto.split(' ')`.
 - Para sacar los espacios del texto (para las letras): `texto.replaceAll(' ', '')` o `texto.split('').filter(c => c !== ' ')`.
 - El Set automaticamente elimina duplicados: si el texto tiene "h" tres veces, el Set solo guarda una.
-- Para encontrar el maximo, podes ir comparando con una variable que guarde el maximo hasta el momento.
+- Para encontrar el maximo, puedes ir comparando con una variable que guarde el maximo hasta el momento.
 - No olvides que `Set` no tiene `.length`, usa `.size`.
 - Primero divide, despues cuenta, despues busca el maximo. Paso a paso.
 

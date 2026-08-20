@@ -13,14 +13,16 @@ para mostrarlo como lo entendemos nosotros.
 
 Paso a paso:
 1) Agarra el dia, el mes y el anno con los metodos getter que viste en
-   ejemplos/02-dates.js (cada uno se llama "get" + el dato en ingles).
+   el README del modulo (seccion Date; cada uno se llama "get" + el
+   dato en ingles).
 2) Ojo con el mes: los getter te devuelven el mes como lo maneja JS
-   (de 0 a 11), pero vos queres mostrarlo como lo entendemos nosotros.
-   Pensa que le tenes que hacer al numero para pasar de un lado al otro.
+   (de 0 a 11), pero tu quieres mostrarlo como lo entendemos nosotros.
+   Piensa que le tienes que hacer al numero para pasar de un lado al otro.
 3) Para que el mes y el dia tengan el cero adelante cuando son de un
    solo digito (como '08'), hay un metodo que rellena por izquierda
-   hasta el largo que le digas. Esta en ejemplos/01-strings.js.
-4) Arma el texto "15/08/2026" juntando las partes con '/' y mostralo.
+   hasta el largo que le digas. Esta en el README del modulo
+   (seccion string).
+4) Arma el texto "15/08/2026" juntando las partes con '/' y muestralo.
 
 Resultado esperado:
 15/08/2026
@@ -28,4 +30,4 @@ Resultado esperado:
 
 const d = new Date(2026, 7, 15);
 
-// completa aca
+// completa aqui

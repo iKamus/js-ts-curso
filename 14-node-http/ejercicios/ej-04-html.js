@@ -22,8 +22,8 @@ PARTE 2 — Servirla:
 3) Cuando te pidan '/' (req.url === '/'):
    - Lee el archivo con fs.readFileSync. La ruta se arma con path.join:
      __dirname es la carpeta del archivo actual, o sea ejercicios, y
-     ahi esta tu pagina.html. (Fijate como se lee y como se arma la
-     ruta en 13-node-archivos/ejemplos/02-fs-basico.js)
+     ahi esta tu pagina.html. (Observa como se lee y como se arma la
+     ruta en el README del modulo 13, seccion fs)
    - Responde con Content-Type 'text/html; charset=utf-8'
      (le avisas al navegador "esto es una pagina web, no texto plano")
    - Manda el contenido con res.end(contenidoHtml)
@@ -47,4 +47,4 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-// completá acá
+// completa aqui

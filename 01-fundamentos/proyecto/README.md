@@ -18,7 +18,11 @@ Vas a crear un programa que calcule el ticket de compra de 3 productos, aplique 
 
 3. Si el subtotal supera los 1000, aplica un 10% de descuento.
    Si es 1000 o menos, no hay descuento (descuento = 0).
-   Usa un if y operadores de comparacion.
+   IMPORTANTE: no uses if (eso es del módulo 02). Puedes lograr el mismo
+   resultado con operadores: en JS, `true` se comporta como 1 y `false`
+   como 0 al multiplicar. Entonces (subtotal > 1000) te da true o false,
+   y al multiplicarlo por el subtotal y por 0.10 obtienes el descuento
+   (0 si no supera los 1000).
 
 4. Calcula el IVA (21% del subtotal - descuento).
    base imponible = subtotal - descuento

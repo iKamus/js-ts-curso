@@ -6,14 +6,14 @@ es opcional).
 
 Paso a paso:
 1) Define una interface Producto con las casillas que pide el
-   ejercicio. Fijate la sintaxis en ejemplos/02-interfaces.ts:
+   ejercicio. Observa la sintaxis en la seccion Interfaces del README:
    nombre y precio son obligatorias; stock es OPCIONAL (hay un
    simbolo para eso, el mismo que viste para los parametros
    opcionales).
 2) Crea dos productos que cumplan el plano:
    - { nombre: 'Mouse', precio: 150, stock: 3 }   (con stock)
    - { nombre: 'Teclado', precio: 300 }            (sin stock, y esta bien)
-   Podes declararlos con el tipo: const mouse: Producto = { ... }
+   Puedes declararlos con el tipo: const mouse: Producto = { ... }
 3) Crea totalInventario(productos: Producto[]): number que:
    - reciba un array de productos (eso es Producto[])
    - sume, para cada producto, precio * stock
@@ -28,4 +28,4 @@ Resultado esperado:
 Total inventario: 750
 */
 
-// completá acá
+// completa aqui

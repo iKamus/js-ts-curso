@@ -2,7 +2,7 @@ import { curso } from './content/indice.js'
 import { renderizarSidebar, renderizarInicio, renderizarLeccion } from './render.js'
 import { crearEditorApp, destruirTodosLosEditores, actualizarTemaEditores } from './editor.js'
 import { ejecutar } from './runner.js'
-import { aplicarTema, temaActual, cambiarTema, marcarEjercicio, ejercicioResuelto, guardarCodigo, cargarCodigo, primerEjercicioPendiente } from './state.js'
+import { aplicarTema, temaActual, cambiarTema, marcarEjercicio, ejercicioResuelto, guardarCodigo, cargarCodigo, primerEjercicioPendiente, leccionTieneProgreso } from './state.js'
 
 const contenido = document.getElementById('contenido')
 const editores = new Map()
@@ -212,12 +212,14 @@ function mostrarLeccion(id) {
   renderizarSidebar(curso, leccion.id)
   contenido.scrollTop = 0
   
-  // Hacer scroll al primer ejercicio pendiente
-  const pendiente = primerEjercicioPendiente(leccion)
-  if (pendiente) {
-    const ejercicioElemento = document.getElementById(`ejercicio-${leccion.id}-${pendiente.indice}`)
-    if (ejercicioElemento) {
-      ejercicioElemento.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  // Solo scrollear al ejercicio pendiente si la lección ya tiene progreso
+  if (leccionTieneProgreso(leccion)) {
+    const pendiente = primerEjercicioPendiente(leccion)
+    if (pendiente) {
+      const ejercicioElemento = document.getElementById(`ejercicio-${leccion.id}-${pendiente.indice}`)
+      if (ejercicioElemento) {
+        ejercicioElemento.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
     }
   }
 }

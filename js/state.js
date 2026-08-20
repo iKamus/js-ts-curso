@@ -104,3 +104,8 @@ export function primerEjercicioPendiente(leccion) {
   }
   return null
 }
+
+export function leccionTieneProgreso(leccion) {
+  if (!leccion.ejercicios || leccion.ejercicios.length === 0) return false
+  return leccion.ejercicios.some((_, i) => ejercicioResuelto(leccion.id, i))
+}

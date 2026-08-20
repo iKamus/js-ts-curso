@@ -37,9 +37,9 @@
   --error-suave: #7f1d1d;
   --advertencia: #fbbf24;
   --advertencia-suave: #78350f;
-  --codigo-fondo: #0a0f1c;
+  --codigo-fondo: #141d33;
   --codigo-texto: #dbe4f3;
-  --salida-fondo: #0f1a2e;
+  --salida-fondo: #101b2e;
   --sombra: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
@@ -345,6 +345,23 @@ html, body {
   padding: 14px 16px;
   overflow-x: auto;
   margin: 12px 0;
+  position: relative;
+}
+
+.bloque-codigo::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff5f56;
+  margin-right: 6px;
+  box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #27c93f;
+  opacity: 0.7;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  pointer-events: none;
 }
 
 .bloque-codigo pre {
@@ -352,7 +369,30 @@ html, body {
   font-family: "Cascadia Code", Consolas, "Courier New", monospace;
   font-size: 13.5px;
   line-height: 1.6;
+  padding-top: 8px;
 }
+
+.bloque-codigo code {
+  font-family: "Cascadia Code", Consolas, "Courier New", monospace;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+/* Syntax highlighting para bloques de código en lecciones */
+.bloque-codigo .kw { color: #c586c0; font-weight: 600; }           /* keywords */
+.bloque-codigo .cm { color: #6a7a9e; font-style: italic; }         /* comments */
+.bloque-codigo .str { color: #ce9178; }                            /* strings */
+.bloque-codigo .num { color: #b5cea8; }                            /* numbers */
+.bloque-codigo .fn { color: #dcdcaa; }                             /* functions */
+.bloque-codigo .cls { color: #4ec9b0; }                            /* classes/types */
+.bloque-codigo .prop { color: #9cdcfe; }                           /* properties */
+.bloque-codigo .op { color: #d4d4d4; }                             /* operators */
+.bloque-codigo .pun { color: #d4d4d4; }                            /* punctuation */
+.bloque-codigo .var { color: #d4d4d4; }                            /* variables */
+.bloque-codigo .regex { color: #d16969; }                          /* regexp */
+.bloque-codigo .esc { color: #d7ba7d; }                            /* escape sequences */
+.bloque-codigo .meta { color: #9b9b9b; }                           /* meta */
+.bloque-codigo .invalid { color: #f44747; }                        /* invalid */
 
 .bloque-codigo .etiqueta-salida {
   display: block;

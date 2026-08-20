@@ -1,10 +1,120 @@
 import { progresoModulo, progresoGlobal, leccionCompleta, primeraLeccionPendiente, temaActual, primerEjercicioPendiente } from './state.js'
 
+const PALABRAS_CLAVE_JS = new Set([
+  'break', 'case', 'catch', 'class', 'const', 'continue', 'debugger', 'default',
+  'delete', 'do', 'else', 'export', 'extends', 'finally', 'for', 'function',
+  'if', 'import', 'in', 'instanceof', 'new', 'return', 'super', 'switch',
+  'this', 'throw', 'try', 'typeof', 'var', 'void', 'while', 'with', 'yield',
+  'await', 'async', 'let', 'static', 'get', 'set', 'of', 'from', 'as',
+  'interface', 'type', 'implements', 'enum', 'declare', 'abstract', 'private',
+  'public', 'protected', 'readonly', 'override', 'constructor', 'typeof',
+  'keyof', 'infer', 'extends', 'never', 'unknown', 'any', 'void', 'null',
+  'undefined', 'boolean', 'number', 'string', 'symbol', 'bigint', 'object',
+  'Array', 'Object', 'String', 'Number', 'Boolean', 'Date', 'RegExp', 'Error',
+  'Promise', 'Map', 'Set', 'WeakMap', 'WeakSet', 'JSON', 'Math', 'console',
+  'document', 'window', 'fetch', 'setTimeout', 'clearTimeout', 'setInterval',
+  'clearInterval', 'localStorage', 'sessionStorage', 'addEventListener',
+  'removeEventListener', 'querySelector', 'querySelectorAll', 'getElementById',
+  'createElement', 'appendChild', 'console.log', 'console.error', 'console.warn'
+])
+
+function resaltarCodigo(codigo) {
+  const lineas = codigo.split('\n')
+  return lineas.map(linea => {
+    let resultado = ''
+    let i = 0
+    while (i < linea.length) {
+      const char = linea[i]
+      
+      // Comentarios de línea //
+      if (char === '/' && i + 1 < linea.length && linea[i + 1] === '/') {
+        resultado += `<span class="cm">${escapeHtml(linea.slice(i))}</span>`
+        break
+      }
+      
+      // Strings con comillas dobles
+      if (char === '"' || char === "'" || char === '`') {
+        const quote = char
+        let j = i + 1
+        let contenido = char
+        let escaped = false
+        while (j < linea.length) {
+          const c = linea[j]
+          contenido += c
+          if (c === quote && !escaped) {
+            j++
+            break
+          }
+          escaped = c === '\\' && !escaped
+          j++
+        }
+        resultado += `<span class="str">${escapeHtml(contenido)}</span>`
+        i = j
+        continue
+      }
+      
+      // Números
+      if (/\d/.test(char) && (i === 0 || !/[a-zA-Z_$]/.test(linea[i - 1]))) {
+        let j = i
+        while (j < linea.length && /[\d._]/.test(linea[j])) j++
+        while (j < linea.length && /[eE][+-]?\d/.test(linea.slice(j, j + 3))) j += 3
+        const num = linea.slice(i, j)
+        resultado += `<span class="num">${escapeHtml(num)}</span>`
+        i = j
+        continue
+      }
+      
+      // Palabras (identificadores y keywords)
+      if (/[a-zA-Z_$]/.test(char)) {
+        let j = i
+        while (j < linea.length && /[a-zA-Z0-9_$]/.test(linea[j])) j++
+        const palabra = linea.slice(i, j)
+        const esKeyword = PALABRAS_CLAVE_JS.has(palabra)
+        const esFuncion = j < linea.length && linea[j] === '(' && !esKeyword
+        const esClase = /^[A-Z]/.test(palabra) && (i === 0 || /[.\s(]/.test(linea[i - 1] || ''))
+        
+        if (esKeyword) {
+          resultado += `<span class="kw">${escapeHtml(palabra)}</span>`
+        } else if (esFuncion) {
+          resultado += `<span class="fn">${escapeHtml(palabra)}</span>`
+        } else if (esClase) {
+          resultado += `<span class="cls">${escapeHtml(palabra)}</span>`
+        } else {
+          resultado += `<span class="var">${escapeHtml(palabra)}</span>`
+        }
+        i = j
+        continue
+      }
+      
+      // Operadores y puntuación
+      if (/[+\-*/%<>=!&|^~?:.,;{}()[\]@]/.test(char)) {
+        resultado += `<span class="op">${escapeHtml(char)}</span>`
+        i++
+        continue
+      }
+      
+      // Espacios y otros
+      resultado += escapeHtml(char)
+      i++
+    }
+    return resultado
+  }).join('\n')
+}
+
+function escapeHtml(text) {
+  return text
+    .replace(/&/g, '&')
+    .replace(/</g, '<')
+    .replace(/>/g, '>')
+    .replace(/"/g, '"')
+    .replace(/'/g, '&#039;')
+}
+
 export function crearBloqueCodigo(codigo, salida) {
   const bloque = document.createElement('div')
   bloque.className = 'bloque-codigo'
   const pre = document.createElement('pre')
-  pre.textContent = codigo.replace(/\n$/, '')
+  pre.innerHTML = resaltarCodigo(codigo.replace(/\n$/, ''))
   bloque.appendChild(pre)
   if (salida !== undefined && salida !== null) {
     const etiqueta = document.createElement('span')

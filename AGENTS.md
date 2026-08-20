@@ -25,9 +25,9 @@ tools/smoke.mjs            → Smoke test jsdom del motor
 ```
 
 ## Comandos
-- `npm start` → sirve la app en `http://localhost:3000` (los ES modules exigen HTTP; doble clic en index.html NO funciona).
-- `npm run qa` → valida estructura de todas las lecciones y ejecuta las 189 soluciones contra sus tests. **Correrlo tras cualquier cambio de contenido.**
-- `npm run vendor` → regenera `vendor/` (solo si cambian las dependencias de editor).
+- `pnpm start` → sirve la app en `http://localhost:3000` (los ES modules exigen HTTP; doble clic en index.html NO funciona).
+- `pnpm run qa` → valida estructura de todas las lecciones y ejecuta las 189 soluciones contra sus tests. **Correrlo tras cualquier cambio de contenido.**
+- `pnpm run vendor` → regenera `vendor/` (solo si cambian las dependencias de editor).
 - `node tools/smoke.mjs` → smoke test de main.js (sidebar + contenido renderizan).
 - Windows + PowerShell: encadenar con `;` o `if ($?)`, nunca `&&`.
 
@@ -77,4 +77,4 @@ Reglas de tests: las regex de `codigo` deben validar la SOLUCIÓN correcta (que 
 - Archivos de lección: `js/content/modulo-XX/01-....js` en orden; id `mX-lNN` coincide con `numero`.
 
 ## Entorno
-Windows + PowerShell. Sin lint/test global: la verificación es `npm run qa` + `node tools/smoke.mjs` + prueba manual en navegador (`npm start`).
+Windows + PowerShell. Sin lint/test global: la verificación es `pnpm run qa` + `node tools/smoke.mjs` + prueba manual en navegador (`pnpm start`).

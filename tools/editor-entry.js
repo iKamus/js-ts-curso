@@ -1,12 +1,168 @@
 import { EditorView, lineNumbers, highlightActiveLineGutter, highlightSpecialChars, drawSelection, dropCursor, rectangularSelection, crosshairCursor, highlightActiveLine, keymap } from '@codemirror/view'
 import { EditorState, Compartment } from '@codemirror/state'
 import { defaultKeymap, history, historyKeymap, indentWithTab } from '@codemirror/commands'
-import { bracketMatching, indentOnInput, syntaxHighlighting, defaultHighlightStyle, foldGutter, foldKeymap } from '@codemirror/language'
+import { bracketMatching, indentOnInput, syntaxHighlighting, defaultHighlightStyle, foldGutter, foldKeymap, HighlightStyle } from '@codemirror/language'
+import { tags as t } from '@lezer/highlight'
 import { searchKeymap, highlightSelectionMatches } from '@codemirror/search'
 import { closeBrackets, closeBracketsKeymap, completionKeymap, autocompletion } from '@codemirror/autocomplete'
 import { lintKeymap } from '@codemirror/lint'
 import { javascript } from '@codemirror/lang-javascript'
 import { oneDark } from '@codemirror/theme-one-dark'
+
+const highlightStyleApp = HighlightStyle.define([
+  { tag: t.comment, color: '#6a7a9e', fontStyle: 'italic' },
+  { tag: [t.variableName, t.attributeName], color: '#d4d4d4' },
+  { tag: [t.string, t.special(t.string)], color: '#ce9178' },
+  { tag: [t.number, t.bool, t.null], color: '#b5cea8' },
+  { tag: t.keyword, color: '#c586c0' },
+  { tag: [t.operator, t.punctuation], color: '#d4d4d4' },
+  { tag: [t.function(t.variableName), t.function(t.propertyName)], color: '#dcdcaa' },
+  { tag: [t.className, t.typeName], color: '#4ec9b0' },
+  { tag: [t.self, t.namespace], color: '#9cdcfe' },
+  { tag: [t.propertyName, t.labelName], color: '#9cdcfe' },
+  { tag: [t.escape, t.special(t.string)], color: '#d7ba7d' },
+  { tag: [t.regexp], color: '#d16969' },
+  { tag: [t.meta, t.processingInstruction], color: '#9b9b9b' },
+  { tag: [t.invalid], color: '#f44747' },
+  { tag: [t.inserted], color: '#b5cea8' },
+  { tag: [t.deleted], color: '#f44747' },
+])
+
+const temaAppOscuro = EditorView.theme({
+  '&': {
+    backgroundColor: 'var(--codigo-fondo)',
+    color: 'var(--codigo-texto)'
+  },
+  '.cm-content': {
+    backgroundColor: 'var(--codigo-fondo)',
+    color: 'var(--codigo-texto)'
+  },
+  '.cm-gutters': {
+    backgroundColor: 'var(--fondo-suave)',
+    color: 'var(--texto-suave)',
+    borderRight: '1px solid var(--borde)'
+  },
+  '.cm-lineNumbers': {
+    color: 'var(--texto-suave)'
+  },
+  '.cm-line': {
+    color: 'var(--codigo-texto)'
+  },
+  '.cm-cursor': {
+    color: 'var(--texto)'
+  },
+  '.cm-selectionBackground': {
+    backgroundColor: 'var(--acento-suave)'
+  },
+  '.cm-activeLine': {
+    backgroundColor: 'var(--fondo-suave)'
+  },
+  '.cm-matchingBracket': {
+    color: 'var(--ok)'
+  },
+  '.cm-nonmatchingBracket': {
+    color: 'var(--error)'
+  },
+  '.cm-tooltip': {
+    backgroundColor: 'var(--superficie)',
+    color: 'var(--texto)',
+    border: '1px solid var(--borde)'
+  },
+  '.cm-tooltip-autocomplete': {
+    '& > ul': {
+      backgroundColor: 'var(--superficie)',
+      color: 'var(--texto)',
+      border: '1px solid var(--borde)'
+    },
+    '& > ul > li': {
+      color: 'var(--texto)'
+    },
+    '& > ul > li.cm-completionMatchedText': {
+      color: 'var(--acento-texto)'
+    },
+    '& > ul > li.cm-completionSelected': {
+      backgroundColor: 'var(--acento-suave)'
+    }
+  },
+  '.cm-diagnostic': {
+    color: 'var(--error)'
+  },
+  '.cm-diagnostic-error': {
+    color: 'var(--error)'
+  },
+  '.cm-diagnostic-warning': {
+    color: 'var(--advertencia)'
+  }
+}, { dark: true })
+
+const temaAppClaro = EditorView.theme({
+  '&': {
+    backgroundColor: 'var(--codigo-fondo)',
+    color: 'var(--codigo-texto)'
+  },
+  '.cm-content': {
+    backgroundColor: 'var(--codigo-fondo)',
+    color: 'var(--codigo-texto)'
+  },
+  '.cm-gutters': {
+    backgroundColor: 'var(--fondo-suave)',
+    color: 'var(--texto-suave)',
+    borderRight: '1px solid var(--borde)'
+  },
+  '.cm-lineNumbers': {
+    color: 'var(--texto-suave)'
+  },
+  '.cm-line': {
+    color: 'var(--codigo-texto)'
+  },
+  '.cm-cursor': {
+    color: 'var(--texto)'
+  },
+  '.cm-selectionBackground': {
+    backgroundColor: 'var(--acento-suave)'
+  },
+  '.cm-activeLine': {
+    backgroundColor: 'var(--fondo-suave)'
+  },
+  '.cm-matchingBracket': {
+    color: 'var(--ok)'
+  },
+  '.cm-nonmatchingBracket': {
+    color: 'var(--error)'
+  },
+  '.cm-tooltip': {
+    backgroundColor: 'var(--superficie)',
+    color: 'var(--texto)',
+    border: '1px solid var(--borde)'
+  },
+  '.cm-tooltip-autocomplete': {
+    '& > ul': {
+      backgroundColor: 'var(--superficie)',
+      color: 'var(--texto)',
+      border: '1px solid var(--borde)'
+    },
+    '& > ul > li': {
+      color: 'var(--texto)'
+    },
+    '& > ul > li.cm-completionMatchedText': {
+      color: 'var(--acento-texto)'
+    },
+    '& > ul > li.cm-completionSelected': {
+      backgroundColor: 'var(--acento-suave)'
+    }
+  },
+  '.cm-diagnostic': {
+    color: 'var(--error)'
+  },
+  '.cm-diagnostic-error': {
+    color: 'var(--error)'
+  },
+  '.cm-diagnostic-warning': {
+    color: 'var(--advertencia)'
+  }
+}, { dark: false })
+
+const temaCompartimento = new Compartment()
 
 // Mapa de globales comunes con sus métodos/propiedades
 const GLOBAL_COMPLETIONS = {
@@ -147,7 +303,7 @@ const GLOBAL_COMPLETIONS = {
       'getUTCMilliseconds', 'getUTCMinutes', 'getUTCMonth', 'getUTCSeconds',
       'setDate', 'setFullYear', 'setHours', 'setMilliseconds',
       'setMinutes', 'setMonth', 'setSeconds', 'setTime',
-      'setUTCDate', 'setUTCFullYear', 'setUTCHours', 'setUTCMilliseconds',
+      'setUTCDate', 'setUTCFullYear', 'setUTCHours', 'setUTCMilliSeconds',
       'setUTCMinutes', 'setUTCMonth', 'setUTCSeconds',
       'toDateString', 'toISOString', 'toJSON', 'toLocaleDateString',
       'toLocaleString', 'toLocaleTimeString', 'toString', 'toTimeString',
@@ -174,60 +330,51 @@ const GLOBAL_COMPLETIONS = {
   }
 }
 
-// Lista de globales para completado de nivel superior
 const GLOBAL_NAMES = Object.keys(GLOBAL_COMPLETIONS).sort()
 
-// Completion source único que maneja todos los globales
 function completacionesGlobales(context) {
   const state = context.state
   const pos = context.pos
 
-  // 1. Detectar contexto de acceso a propiedad (obj.prop|)
-  // Buscar hacia atrás hasta 60 caracteres para encontrar un punto válido
   const lookback = Math.min(60, pos)
   const textBefore = state.doc.sliceString(pos - lookback, pos)
-  
-  // Buscar el último punto que parece ser acceso a propiedad (identificador.punto)
-  // Patrones válidos: console., document., Math., Array., etc.
+
   const dotMatches = [...textBefore.matchAll(/([\w$]+)\.([\w$]*)$/g)]
   if (dotMatches.length > 0) {
     const lastMatch = dotMatches[dotMatches.length - 1]
     const globalName = lastMatch[1]
     const query = (lastMatch[2] || "").toLowerCase()
     const global = GLOBAL_COMPLETIONS[globalName]
-    
+
     if (global) {
       const options = []
 
-      // Métodos
       if (global.methods) {
         for (const m of global.methods) {
           if (m.toLowerCase().startsWith(query)) {
-            options.push({ 
-              label: m, 
-              type: 'function', 
+            options.push({
+              label: m,
+              type: 'function',
               info: `Método ${globalName}.${m}()`,
-              apply: m + "()"
+              apply: { text: m + "()", cursor: m.length + 1 }
             })
           }
         }
       }
 
-      // Métodos estáticos
       if (global.staticMethods) {
         for (const m of global.staticMethods) {
           if (m.toLowerCase().startsWith(query)) {
-            options.push({ 
-              label: m, 
-              type: 'function', 
+            options.push({
+              label: m,
+              type: 'function',
               info: `Método estático ${globalName}.${m}()`,
-              apply: m + "()"
+              apply: { text: m + "()", cursor: m.length + 1 }
             })
           }
         }
       }
 
-      // Propiedades
       if (global.props) {
         for (const p of global.props) {
           if (p.toLowerCase().startsWith(query)) {
@@ -236,7 +383,6 @@ function completacionesGlobales(context) {
         }
       }
 
-      // Tipos de error
       if (global.types) {
         for (const t of global.types) {
           if (t.toLowerCase().startsWith(query)) {
@@ -246,14 +392,12 @@ function completacionesGlobales(context) {
       }
 
       if (options.length > 0) {
-        // from = posición donde empieza la query (después del punto)
         const from = pos - (lastMatch[2] ? lastMatch[2].length : 0)
         return { from, options }
       }
     }
   }
 
-  // 2. Completado de nombres globales (console, document, etc.) al escribir letras
   const word = context.matchBefore(/[\w$]*/)
   if (word && word.from !== word.to) {
     const matches = GLOBAL_NAMES
@@ -274,81 +418,10 @@ function completacionesGlobales(context) {
   return null
 }
 
-// Tema personalizado que usa las variables CSS del app
-const temaAppOscuro = EditorView.theme({
-  '&': {
-    backgroundColor: 'var(--codigo-fondo)',
-    color: 'var(--codigo-texto)'
-  },
-  '.cm-content': {
-    backgroundColor: 'var(--codigo-fondo)',
-    color: 'var(--codigo-texto)'
-  },
-  '.cm-gutters': {
-    backgroundColor: 'var(--fondo-suave)',
-    color: 'var(--texto-suave)',
-    borderRight: '1px solid var(--borde)'
-  },
-  '.cm-lineNumbers': {
-    color: 'var(--texto-suave)'
-  },
-  '.cm-line': {
-    color: 'var(--codigo-texto)'
-  },
-  '.cm-cursor': {
-    color: 'var(--texto)'
-  },
-  '.cm-selectionBackground': {
-    backgroundColor: 'var(--acento-suave)'
-  },
-  '.cm-activeLine': {
-    backgroundColor: 'var(--fondo-suave)'
-  },
-  '.cm-matchingBracket': {
-    color: 'var(--ok)'
-  },
-  '.cm-nonmatchingBracket': {
-    color: 'var(--error)'
-  },
-  '.cm-tooltip': {
-    backgroundColor: 'var(--superficie)',
-    color: 'var(--texto)',
-    border: '1px solid var(--borde)'
-  },
-  '.cm-tooltip-autocomplete': {
-    '& > ul': {
-      backgroundColor: 'var(--superficie)',
-      color: 'var(--texto)',
-      border: '1px solid var(--borde)'
-    },
-    '& > ul > li': {
-      color: 'var(--texto)'
-    },
-    '& > ul > li.cm-completionMatchedText': {
-      color: 'var(--acento-texto)'
-    },
-    '& > ul > li.cm-completionSelected': {
-      backgroundColor: 'var(--acento-suave)'
-    }
-  },
-  '.cm-diagnostic': {
-    color: 'var(--error)'
-  },
-  '.cm-diagnostic-error': {
-    color: 'var(--error)'
-  },
-  '.cm-diagnostic-warning': {
-    color: 'var(--advertencia)'
-  }
-}, { dark: true })
-
-const temaCompartimento = new Compartment()
-
 function extensionesLenguaje(lenguaje) {
   const jsSupport = lenguaje === 'typescript'
     ? javascript({ typescript: true, jsx: false })
     : javascript()
-  // Añadimos nuestra fuente de completado global como dato del lenguaje
   const extra = jsSupport.language.data.of({ autocomplete: completacionesGlobales })
   return [jsSupport, extra]
 }
@@ -366,7 +439,7 @@ function crearEditor({ padre, codigo, lenguaje = 'javascript', oscuro = false, o
       dropCursor(),
       EditorState.allowMultipleSelections.of(true),
       indentOnInput(),
-      syntaxHighlighting(defaultHighlightStyle, { fallback: true }),
+      syntaxHighlighting(highlightStyleApp, { fallback: true }),
       bracketMatching(),
       closeBrackets(),
       rectangularSelection(),
@@ -376,7 +449,7 @@ function crearEditor({ padre, codigo, lenguaje = 'javascript', oscuro = false, o
       keymap.of([...closeBracketsKeymap, ...defaultKeymap, ...searchKeymap, ...historyKeymap, ...foldKeymap, ...completionKeymap, ...lintKeymap, indentWithTab]),
       ...extensionesLenguaje(lenguaje),
       autocompletion({ activateOnTyping: true }),
-      temaCompartimento.of(oscuro ? [temaAppOscuro] : []),
+      temaCompartimento.of(oscuro ? [temaAppOscuro] : [temaAppClaro]),
       EditorView.updateListener.of((update) => {
         if (update.docChanged && onCambio) {
           onCambio(update.state.doc.toString())
@@ -393,7 +466,7 @@ function crearEditor({ padre, codigo, lenguaje = 'javascript', oscuro = false, o
       return vista.state.doc.toString()
     },
     cambiarTema(nuevoOscuro) {
-      vista.dispatch({ effects: temaCompartimento.reconfigure(nuevoOscuro ? [temaAppOscuro] : []) })
+      vista.dispatch({ effects: temaCompartimento.reconfigure(nuevoOscuro ? [temaAppOscuro] : [temaAppClaro]) })
     }
   }
 }

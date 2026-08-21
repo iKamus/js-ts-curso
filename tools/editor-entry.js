@@ -352,11 +352,18 @@ function completacionesGlobales(context) {
       if (global.methods) {
         for (const m of global.methods) {
           if (m.toLowerCase().startsWith(query)) {
+            const insertText = m + "()"
+            const cursorOffset = m.length + 1
             options.push({
               label: m,
               type: 'function',
               info: `Método ${globalName}.${m}()`,
-              apply: { text: m + "()", cursor: m.length + 1 }
+              apply: (view, completion, from, to) => {
+                view.dispatch({
+                  changes: { from, to, insert: insertText },
+                  selection: { anchor: from + cursorOffset }
+                })
+              }
             })
           }
         }
@@ -365,11 +372,18 @@ function completacionesGlobales(context) {
       if (global.staticMethods) {
         for (const m of global.staticMethods) {
           if (m.toLowerCase().startsWith(query)) {
+            const insertText = m + "()"
+            const cursorOffset = m.length + 1
             options.push({
               label: m,
               type: 'function',
               info: `Método estático ${globalName}.${m}()`,
-              apply: { text: m + "()", cursor: m.length + 1 }
+              apply: (view, completion, from, to) => {
+                view.dispatch({
+                  changes: { from, to, insert: insertText },
+                  selection: { anchor: from + cursorOffset }
+                })
+              }
             })
           }
         }
@@ -448,7 +462,7 @@ function crearEditor({ padre, codigo, lenguaje = 'javascript', oscuro = false, o
       highlightSelectionMatches(),
       keymap.of([...closeBracketsKeymap, ...defaultKeymap, ...searchKeymap, ...historyKeymap, ...foldKeymap, ...completionKeymap, ...lintKeymap, indentWithTab]),
       ...extensionesLenguaje(lenguaje),
-      autocompletion({ activateOnTyping: true }),
+      autocompletion({ activateOnTyping: /[\w$\.]/ }),
       temaCompartimento.of(oscuro ? [temaAppOscuro] : [temaAppClaro]),
       EditorView.updateListener.of((update) => {
         if (update.docChanged && onCambio) {

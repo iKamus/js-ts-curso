@@ -75,7 +75,7 @@ export default {
     {
       titulo: 'Saludo personalizado',
       dificultad: 'Fácil',
-      consigna: ['Declara una constante nombre con tu nombre y otra ciudad con tu ciudad. Luego imprime, con un template literal, el mensaje: "Hola, soy [nombre] y vivo en [ciudad]."'],
+      consigna: ['Declara una constante nombre con tu nombre y otra ciudad con tu ciudad (los valores que tú quieras). Luego imprime, con un template literal, el mensaje: "Hola, soy [nombre] y vivo en [ciudad]." interpolando ambas variables con ${}.'],
       pasos: [
         'Declara const nombre = "tu nombre".',
         'Declara const ciudad = "tu ciudad".',
@@ -84,8 +84,9 @@ export default {
       codigoInicial: '// Declara las constantes e imprime el saludo\n',
       pista: 'El template usa backticks: `Hola, soy ${nombre} y vivo en ${ciudad}.`',
       tests: [
-        { tipo: 'output', nombre: 'Mensaje correcto', esperado: ['Hola, soy Ana y vivo en Rosario.'], mensaje: 'El mensaje debe usar las variables nombre y ciudad interpoladas con ${}.' },
-        { tipo: 'valor', nombre: 'nombre es texto', expr: 'typeof nombre', esperado: 'string', mensaje: 'Debe existir una constante nombre de tipo string.' }
+        { tipo: 'valor', nombre: 'nombre es texto', expr: 'typeof nombre', esperado: 'string', mensaje: 'Debe existir una constante nombre de tipo string.' },
+        { tipo: 'valor', nombre: 'ciudad es texto', expr: 'typeof ciudad', esperado: 'string', mensaje: 'Debe existir una constante ciudad de tipo string.' },
+        { tipo: 'codigo', nombre: 'Saludo con interpolación', explicacion: 'El mensaje debe imprimirse con console.log usando un template literal que interpole ${nombre} y ${ciudad}: `Hola, soy ${nombre} y vivo en ${ciudad}.`', requerido: ['`Hola, soy \\$\\{nombre\\} y vivo en \\$\\{ciudad\\}\\.', 'console\\.log\\s*\\('], prohibido: [], mensaje: 'El saludo debe usar backticks e interpolar nombre y ciudad con ${}, sin importar qué valores hayas elegido.' }
       ],
       solucion: 'const nombre = "Ana";\nconst ciudad = "Rosario";\nconsole.log(`Hola, soy ${nombre} y vivo en ${ciudad}.`);'
     },

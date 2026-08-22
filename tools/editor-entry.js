@@ -1,61 +1,54 @@
 import { EditorView, lineNumbers, highlightActiveLineGutter, highlightSpecialChars, drawSelection, dropCursor, rectangularSelection, crosshairCursor, highlightActiveLine, keymap } from '@codemirror/view'
 import { EditorState, Compartment } from '@codemirror/state'
 import { defaultKeymap, history, historyKeymap, indentWithTab } from '@codemirror/commands'
-import { bracketMatching, indentOnInput, syntaxHighlighting, defaultHighlightStyle, foldGutter, foldKeymap, HighlightStyle } from '@codemirror/language'
-import { tags as t } from '@lezer/highlight'
+import { bracketMatching, indentOnInput, syntaxHighlighting, foldGutter, foldKeymap } from '@codemirror/language'
+import { classHighlighter } from '@lezer/highlight'
 import { searchKeymap, highlightSelectionMatches } from '@codemirror/search'
 import { closeBrackets, closeBracketsKeymap, completionKeymap, autocompletion } from '@codemirror/autocomplete'
 import { lintKeymap } from '@codemirror/lint'
 import { javascript } from '@codemirror/lang-javascript'
 import { oneDark } from '@codemirror/theme-one-dark'
 
-const highlightStyleApp = HighlightStyle.define([
-  { tag: t.comment, color: '#6a7a9e', fontStyle: 'italic' },
-  { tag: [t.variableName, t.attributeName], color: '#d4d4d4' },
-  { tag: [t.string, t.special(t.string)], color: '#ce9178' },
-  { tag: [t.number, t.bool, t.null], color: '#b5cea8' },
-  { tag: t.keyword, color: '#c586c0' },
-  { tag: [t.operator, t.punctuation], color: '#d4d4d4' },
-  { tag: [t.function(t.variableName), t.function(t.propertyName)], color: '#dcdcaa' },
-  { tag: [t.className, t.typeName], color: '#4ec9b0' },
-  { tag: [t.self, t.namespace], color: '#9cdcfe' },
-  { tag: [t.propertyName, t.labelName], color: '#9cdcfe' },
-  { tag: [t.escape, t.special(t.string)], color: '#d7ba7d' },
-  { tag: [t.regexp], color: '#d16969' },
-  { tag: [t.meta, t.processingInstruction], color: '#9b9b9b' },
-  { tag: [t.invalid], color: '#f44747' },
-  { tag: [t.inserted], color: '#b5cea8' },
-  { tag: [t.deleted], color: '#f44747' },
-])
+// Resaltado de sintaxis via classHighlighter: los tokens reciben clases
+// estables (tok-keyword, tok-string, ...) y los colores viven como CSS normal
+// en css/styles.css, garantizando que se apliquen en cualquier navegador.
 
 const temaAppOscuro = EditorView.theme({
   '&': {
-    backgroundColor: 'var(--codigo-fondo)',
-    color: 'var(--codigo-texto)'
+    backgroundColor: 'var(--editor-fondo)',
+    color: 'var(--editor-texto)'
   },
   '.cm-content': {
-    backgroundColor: 'var(--codigo-fondo)',
-    color: 'var(--codigo-texto)'
+    backgroundColor: 'transparent',
+    color: 'var(--editor-texto)',
+    fontWeight: '500'
   },
   '.cm-gutters': {
-    backgroundColor: 'var(--fondo-suave)',
-    color: 'var(--texto-suave)',
-    borderRight: '1px solid var(--borde)'
+    backgroundColor: 'var(--editor-gutter)',
+    color: '#55617a',
+    borderRight: '1px solid rgba(23, 38, 63, 0.14)'
+  },
+  '.cm-activeLineGutter': {
+    backgroundColor: 'var(--editor-linea-activa)',
+    color: '#1d4ed8'
   },
   '.cm-lineNumbers': {
-    color: 'var(--texto-suave)'
+    color: '#55617a'
   },
   '.cm-line': {
-    color: 'var(--codigo-texto)'
+    color: 'var(--editor-texto)'
   },
   '.cm-cursor': {
-    color: 'var(--texto)'
+    borderLeftColor: 'var(--editor-cursor)'
   },
   '.cm-selectionBackground': {
-    backgroundColor: 'var(--acento-suave)'
+    backgroundColor: 'var(--editor-seleccion)'
+  },
+  '&.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground': {
+    backgroundColor: 'var(--editor-seleccion)'
   },
   '.cm-activeLine': {
-    backgroundColor: 'var(--fondo-suave)'
+    backgroundColor: 'var(--editor-linea-activa)'
   },
   '.cm-matchingBracket': {
     color: 'var(--ok)'
@@ -97,32 +90,40 @@ const temaAppOscuro = EditorView.theme({
 
 const temaAppClaro = EditorView.theme({
   '&': {
-    backgroundColor: 'var(--codigo-fondo)',
-    color: 'var(--codigo-texto)'
+    backgroundColor: 'var(--editor-fondo)',
+    color: 'var(--editor-texto)'
   },
   '.cm-content': {
-    backgroundColor: 'var(--codigo-fondo)',
-    color: 'var(--codigo-texto)'
+    backgroundColor: 'transparent',
+    color: 'var(--editor-texto)',
+    fontWeight: '500'
   },
   '.cm-gutters': {
-    backgroundColor: 'var(--fondo-suave)',
-    color: 'var(--texto-suave)',
-    borderRight: '1px solid var(--borde)'
+    backgroundColor: 'var(--editor-gutter)',
+    color: '#55617a',
+    borderRight: '1px solid rgba(23, 38, 63, 0.14)'
+  },
+  '.cm-activeLineGutter': {
+    backgroundColor: 'var(--editor-linea-activa)',
+    color: '#1d4ed8'
   },
   '.cm-lineNumbers': {
-    color: 'var(--texto-suave)'
+    color: '#55617a'
   },
   '.cm-line': {
-    color: 'var(--codigo-texto)'
+    color: 'var(--editor-texto)'
   },
   '.cm-cursor': {
-    color: 'var(--texto)'
+    borderLeftColor: 'var(--editor-cursor)'
   },
   '.cm-selectionBackground': {
-    backgroundColor: 'var(--acento-suave)'
+    backgroundColor: 'var(--editor-seleccion)'
+  },
+  '&.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground': {
+    backgroundColor: 'var(--editor-seleccion)'
   },
   '.cm-activeLine': {
-    backgroundColor: 'var(--fondo-suave)'
+    backgroundColor: 'var(--editor-linea-activa)'
   },
   '.cm-matchingBracket': {
     color: 'var(--ok)'
@@ -453,7 +454,7 @@ function crearEditor({ padre, codigo, lenguaje = 'javascript', oscuro = false, o
       dropCursor(),
       EditorState.allowMultipleSelections.of(true),
       indentOnInput(),
-      syntaxHighlighting(highlightStyleApp, { fallback: true }),
+      syntaxHighlighting(classHighlighter, { fallback: true }),
       bracketMatching(),
       closeBrackets(),
       rectangularSelection(),

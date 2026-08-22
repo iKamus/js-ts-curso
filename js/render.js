@@ -1,121 +1,53 @@
 import { progresoModulo, progresoGlobal, leccionCompleta, primeraLeccionPendiente, temaActual, primerEjercicioPendiente } from './state.js'
 
-const PALABRAS_CLAVE_JS = new Set([
-  'break', 'case', 'catch', 'class', 'const', 'continue', 'debugger', 'default',
-  'delete', 'do', 'else', 'export', 'extends', 'finally', 'for', 'function',
-  'if', 'import', 'in', 'instanceof', 'new', 'return', 'super', 'switch',
-  'this', 'throw', 'try', 'typeof', 'var', 'void', 'while', 'with', 'yield',
-  'await', 'async', 'let', 'static', 'get', 'set', 'of', 'from', 'as',
-  'interface', 'type', 'implements', 'enum', 'declare', 'abstract', 'private',
-  'public', 'protected', 'readonly', 'override', 'constructor', 'typeof',
-  'keyof', 'infer', 'extends', 'never', 'unknown', 'any', 'void', 'null',
-  'undefined', 'boolean', 'number', 'string', 'symbol', 'bigint', 'object',
-  'Array', 'Object', 'String', 'Number', 'Boolean', 'Date', 'RegExp', 'Error',
-  'Promise', 'Map', 'Set', 'WeakMap', 'WeakSet', 'JSON', 'Math', 'console',
-  'document', 'window', 'fetch', 'setTimeout', 'clearTimeout', 'setInterval',
-  'clearInterval', 'localStorage', 'sessionStorage', 'addEventListener',
-  'removeEventListener', 'querySelector', 'querySelectorAll', 'getElementById',
-  'createElement', 'appendChild', 'console.log', 'console.error', 'console.warn'
-])
+const LENGUAJE_MAP = {
+  javascript: 'javascript',
+  typescript: 'typescript',
+  json: 'json',
+  css: 'css',
+  html: 'markup',
+  markup: 'markup'
+}
 
-function resaltarCodigo(codigo) {
-  const lineas = codigo.split('\n')
-  return lineas.map(linea => {
-    let resultado = ''
-    let i = 0
-    while (i < linea.length) {
-      const char = linea[i]
-      
-      // Comentarios de línea //
-      if (char === '/' && i + 1 < linea.length && linea[i + 1] === '/') {
-        resultado += `<span class="cm">${escapeHtml(linea.slice(i))}</span>`
-        break
-      }
-      
-      // Strings con comillas dobles
-      if (char === '"' || char === "'" || char === '`') {
-        const quote = char
-        let j = i + 1
-        let contenido = char
-        let escaped = false
-        while (j < linea.length) {
-          const c = linea[j]
-          contenido += c
-          if (c === quote && !escaped) {
-            j++
-            break
-          }
-          escaped = c === '\\' && !escaped
-          j++
-        }
-        resultado += `<span class="str">${escapeHtml(contenido)}</span>`
-        i = j
-        continue
-      }
-      
-      // Números
-      if (/\d/.test(char) && (i === 0 || !/[a-zA-Z_$]/.test(linea[i - 1]))) {
-        let j = i
-        while (j < linea.length && /[\d._]/.test(linea[j])) j++
-        while (j < linea.length && /[eE][+-]?\d/.test(linea.slice(j, j + 3))) j += 3
-        const num = linea.slice(i, j)
-        resultado += `<span class="num">${escapeHtml(num)}</span>`
-        i = j
-        continue
-      }
-      
-      // Palabras (identificadores y keywords)
-      if (/[a-zA-Z_$]/.test(char)) {
-        let j = i
-        while (j < linea.length && /[a-zA-Z0-9_$]/.test(linea[j])) j++
-        const palabra = linea.slice(i, j)
-        const esKeyword = PALABRAS_CLAVE_JS.has(palabra)
-        const esFuncion = j < linea.length && linea[j] === '(' && !esKeyword
-        const esClase = /^[A-Z]/.test(palabra) && (i === 0 || /[.\s(]/.test(linea[i - 1] || ''))
-        
-        if (esKeyword) {
-          resultado += `<span class="kw">${escapeHtml(palabra)}</span>`
-        } else if (esFuncion) {
-          resultado += `<span class="fn">${escapeHtml(palabra)}</span>`
-        } else if (esClase) {
-          resultado += `<span class="cls">${escapeHtml(palabra)}</span>`
-        } else {
-          resultado += `<span class="var">${escapeHtml(palabra)}</span>`
-        }
-        i = j
-        continue
-      }
-      
-      // Operadores y puntuación
-      if (/[+\-*/%<>=!&|^~?:.,;{}()[\]@]/.test(char)) {
-        resultado += `<span class="op">${escapeHtml(char)}</span>`
-        i++
-        continue
-      }
-      
-      // Espacios y otros
-      resultado += escapeHtml(char)
-      i++
-    }
-    return resultado
-  }).join('\n')
+const ETIQUETA_LENGUAJE = {
+  javascript: 'JavaScript',
+  typescript: 'TypeScript',
+  json: 'JSON',
+  css: 'CSS',
+  markup: 'HTML'
 }
 
 function escapeHtml(text) {
   return text
-    .replace(/&/g, '&')
-    .replace(/</g, '<')
-    .replace(/>/g, '>')
-    .replace(/"/g, '"')
-    .replace(/'/g, '&#039;')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
 }
 
-export function crearBloqueCodigo(codigo, salida) {
+export function crearBloqueCodigo(codigo, salida, lenguaje = 'javascript') {
   const bloque = document.createElement('div')
   bloque.className = 'bloque-codigo'
+
+  const prismLang = LENGUAJE_MAP[lenguaje] || 'javascript'
   const pre = document.createElement('pre')
-  pre.innerHTML = resaltarCodigo(codigo.replace(/\n$/, ''))
+  const code = document.createElement('code')
+  code.className = `language-${prismLang}`
+
+  if (typeof window !== 'undefined' && window.Prism && window.Prism.languages[prismLang]) {
+    code.textContent = codigo.replace(/\n$/, '')
+    window.Prism.highlightElement(code)
+  } else {
+    pre.innerHTML = escapeHtml(codigo.replace(/\n$/, ''))
+  }
+  pre.appendChild(code)
   bloque.appendChild(pre)
+
+  const badge = document.createElement('span')
+  badge.className = 'badge-lenguaje'
+  badge.textContent = ETIQUETA_LENGUAJE[prismLang] || 'Código'
+  bloque.appendChild(badge)
+
   if (salida !== undefined && salida !== null) {
     const etiqueta = document.createElement('span')
     etiqueta.className = 'etiqueta-salida'
@@ -127,6 +59,7 @@ export function crearBloqueCodigo(codigo, salida) {
   }
   return bloque
 }
+
 
 function crearTabla(tabla) {
   const tablaEl = document.createElement('table')
@@ -166,7 +99,7 @@ function crearLista(items) {
   return ul
 }
 
-export function renderizarSeccion(seccion) {
+export function renderizarSeccion(seccion, lenguaje = 'javascript') {
   const seccionEl = document.createElement('section')
   seccionEl.className = 'seccion-teoria'
   const h2 = document.createElement('h2')
@@ -177,13 +110,13 @@ export function renderizarSeccion(seccion) {
     p.textContent = parrafo
     seccionEl.appendChild(p)
   }
-  if (seccion.codigo) seccionEl.appendChild(crearBloqueCodigo(seccion.codigo, seccion.salida))
+  if (seccion.codigo) seccionEl.appendChild(crearBloqueCodigo(seccion.codigo, seccion.salida, seccion.lenguaje || lenguaje))
   if (seccion.tabla) seccionEl.appendChild(crearTabla(seccion.tabla))
   if (seccion.lista) seccionEl.appendChild(crearLista(seccion.lista))
   return seccionEl
 }
 
-function renderizarEjemplo(ejemplo) {
+function renderizarEjemplo(ejemplo, lenguaje = 'javascript') {
   const contenedor = document.createElement('div')
   contenedor.className = 'ejemplo'
   const titulo = document.createElement('div')
@@ -192,7 +125,7 @@ function renderizarEjemplo(ejemplo) {
   contenedor.appendChild(titulo)
   const cuerpo = document.createElement('div')
   cuerpo.className = 'ej-cuerpo'
-  cuerpo.appendChild(crearBloqueCodigo(ejemplo.codigo, ejemplo.salida))
+  cuerpo.appendChild(crearBloqueCodigo(ejemplo.codigo, ejemplo.salida, ejemplo.lenguaje || lenguaje))
   const explicacion = document.createElement('p')
   explicacion.className = 'ej-explicacion'
   explicacion.textContent = ejemplo.explicacion
@@ -357,14 +290,14 @@ export function renderizarLeccion(modulo, leccion) {
   intro.appendChild(renderizarGlosario(leccion.palabrasClave))
   contenedor.appendChild(intro)
 
-  for (const seccion of leccion.secciones) contenedor.appendChild(renderizarSeccion(seccion))
+  for (const seccion of leccion.secciones) contenedor.appendChild(renderizarSeccion(seccion, leccion.lenguaje))
 
   if (leccion.ejemplos && leccion.ejemplos.length) {
     const tituloEjemplos = document.createElement('h2')
     tituloEjemplos.className = 'seccion-teoria'
     tituloEjemplos.textContent = 'Ejemplos comentados'
     contenedor.appendChild(tituloEjemplos)
-    for (const ejemplo of leccion.ejemplos) contenedor.appendChild(renderizarEjemplo(ejemplo))
+    for (const ejemplo of leccion.ejemplos) contenedor.appendChild(renderizarEjemplo(ejemplo, leccion.lenguaje))
   }
 
   if (leccion.proyecto && leccion.proyecto.objetivos) {

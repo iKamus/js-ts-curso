@@ -1,12 +1,12 @@
 :root {
-  --fondo: #f5f6fa;
-  --fondo-suave: #eceef4;
+  --fondo: #f4f6fb;
+  --fondo-suave: #eaedf5;
   --superficie: #ffffff;
-  --texto: #1c2333;
-  --texto-suave: #5a6478;
-  --borde: #d9dde8;
+  --texto: #232c40;
+  --texto-suave: #5d6880;
+  --borde: #dbe1ee;
   --acento: #2563eb;
-  --acento-suave: #dbe7fe;
+  --acento-suave: #dbeafe;
   --acento-texto: #1d4ed8;
   --ok: #16a34a;
   --ok-suave: #dcfce7;
@@ -14,22 +14,50 @@
   --error-suave: #fee2e2;
   --advertencia: #b45309;
   --advertencia-suave: #fef3c7;
-  --codigo-fondo: #0f172a;
-  --codigo-texto: #e2e8f0;
-  --salida-fondo: #f8fafc;
+  /* Bloque de codigo: azul claro con texto azul marino */
+  --codigo-fondo: #e9f1fd;
+  --codigo-texto: #274067;
+  --salida-fondo: #f2f6fd;
+  /* Paleta de sintaxis Prism sobre fondo azul claro */
+  --tok-comentario: #8792a8;
+  --tok-puntuacion: #55617a;
+  --tok-clave: #7c3aed;
+  --tok-cadena: #15803d;
+  --tok-numero: #c2410c;
+  --tok-funcion: #2563eb;
+  --tok-tipo: #0e7490;
+  --tok-propiedad: #0369a1;
+  --tok-operador: #475569;
+  --tok-tag: #be123c;
+  --badge-lenguaje-texto: #3b6cc7;
+  --badge-lenguaje-fondo: rgba(37, 99, 235, 0.07);
+  --badge-lenguaje-borde: rgba(37, 99, 235, 0.25);
+  --etiqueta-salida: #1d4ed8;
+  /* Tarjetas de ejercicios: gris oscuro identico en ambos temas */
+  --ejercicio-fondo: #30353e;
+  --ejercicio-cabecera: #262b33;
+  --ejercicio-borde: #20242b;
+  --ejercicio-texto: #eef1f6;
+  /* Editor de codigo: igual en ambos temas (marco gris claro, escritura gris mas oscuro) */
+  --editor-gutter: #d3d8e0;
+  --editor-fondo: #b8bec9;
+  --editor-texto: #17263f;
+  --editor-cursor: #111318;
+  --editor-seleccion: rgba(37, 99, 235, 0.30);
+  --editor-linea-activa: rgba(37, 99, 235, 0.10);
   --sombra: 0 1px 3px rgba(15, 23, 42, 0.08);
   --radio: 10px;
 }
 
 [data-tema="oscuro"] {
-  --fondo: #0b1220;
-  --fondo-suave: #101a2e;
-  --superficie: #16213a;
-  --texto: #e6ebf5;
-  --texto-suave: #9aa7bd;
-  --borde: #2a3a5c;
+  --fondo: #191a1f;
+  --fondo-suave: #212228;
+  --superficie: #26282f;
+  --texto: #e8eaed;
+  --texto-suave: #9ba3ae;
+  --borde: #3a3d45;
   --acento: #60a5fa;
-  --acento-suave: #1e3a5f;
+  --acento-suave: #1c2e47;
   --acento-texto: #93c5fd;
   --ok: #4ade80;
   --ok-suave: #14532d;
@@ -37,10 +65,27 @@
   --error-suave: #7f1d1d;
   --advertencia: #fbbf24;
   --advertencia-suave: #78350f;
-  --codigo-fondo: #141d33;
-  --codigo-texto: #dbe4f3;
-  --salida-fondo: #101b2e;
-  --sombra: 0 1px 3px rgba(0, 0, 0, 0.4);
+  /* Bloque de codigo: gris mas claro que el fondo */
+  --codigo-fondo: #2c2f36;
+  --codigo-texto: #e4e6ea;
+  --salida-fondo: #22242a;
+  /* Paleta de sintaxis Prism sobre gris oscuro */
+  --tok-comentario: #8b93a1;
+  --tok-puntuacion: #99a1b0;
+  --tok-clave: #c792ea;
+  --tok-cadena: #98c379;
+  --tok-numero: #f78c6c;
+  --tok-funcion: #82aaff;
+  --tok-tipo: #56b6c2;
+  --tok-propiedad: #7dcfff;
+  --tok-operador: #89ddff;
+  --tok-tag: #f07178;
+  --badge-lenguaje-texto: #aebdd8;
+  --badge-lenguaje-fondo: rgba(255, 255, 255, 0.05);
+  --badge-lenguaje-borde: rgba(255, 255, 255, 0.12);
+  --etiqueta-salida: #7dd3fc;
+  /* Las tarjetas de ejercicio usan las mismas variables que en claro */
+  --sombra: 0 1px 3px rgba(0, 0, 0, 0.45);
 }
 
 * { box-sizing: border-box; }
@@ -367,36 +412,46 @@ html, body {
 .bloque-codigo pre {
   margin: 0;
   font-family: "Cascadia Code", Consolas, "Courier New", monospace;
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.6;
   padding-top: 8px;
 }
 
 .bloque-codigo code {
   font-family: "Cascadia Code", Consolas, "Courier New", monospace;
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.6;
 }
 
-/* Syntax highlighting para bloques de código en lecciones */
-.bloque-codigo .kw { color: #c586c0; font-weight: 600; }           /* keywords */
-.bloque-codigo .cm { color: #6a7a9e; font-style: italic; }         /* comments */
-.bloque-codigo .str { color: #ce9178; }                            /* strings */
-.bloque-codigo .num { color: #b5cea8; }                            /* numbers */
-.bloque-codigo .fn { color: #dcdcaa; }                             /* functions */
-.bloque-codigo .cls { color: #4ec9b0; }                            /* classes/types */
-.bloque-codigo .prop { color: #9cdcfe; }                           /* properties */
-.bloque-codigo .op { color: #d4d4d4; }                             /* operators */
-.bloque-codigo .pun { color: #d4d4d4; }                            /* punctuation */
-.bloque-codigo .var { color: #d4d4d4; }                            /* variables */
-.bloque-codigo .regex { color: #d16969; }                          /* regexp */
-.bloque-codigo .esc { color: #d7ba7d; }                            /* escape sequences */
-.bloque-codigo .meta { color: #9b9b9b; }                           /* meta */
-.bloque-codigo .invalid { color: #f44747; }                        /* invalid */
+/* Desactivar ligaduras tipograficas: sin esto, fuentes como Cascadia Code
+   muestran === >= => !== como un unico simbolo pegado */
+pre,
+code,
+.editor-contenedor .cm-editor {
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+/* Badge de lenguaje (esquina superior derecha del bloque) */
+.badge-lenguaje {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--badge-lenguaje-texto);
+  background: var(--badge-lenguaje-fondo);
+  border: 1px solid var(--badge-lenguaje-borde);
+  padding: 3px 9px;
+  border-radius: 999px;
+  pointer-events: none;
+}
 
 .bloque-codigo .etiqueta-salida {
   display: block;
-  color: #7dd3fc;
+  color: var(--etiqueta-salida);
   font-size: 11px;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -436,10 +491,15 @@ html, body {
 
 .ejemplo .ej-explicacion { font-size: 14px; line-height: 1.6; margin: 10px 0 0; }
 
-/* Ejercicios */
+/* Ejercicios: tarjeta gris oscuro con letras bold, identica en ambos temas */
 .ejercicio { margin: 22px 0; }
 
-.ejercicio .ejercicio-tarjeta { border: 2px solid var(--borde); border-radius: var(--radio); overflow: hidden; background: var(--superficie); }
+.ejercicio .ejercicio-tarjeta {
+  border: 2px solid var(--ejercicio-borde);
+  border-radius: var(--radio);
+  overflow: hidden;
+  background: var(--ejercicio-fondo);
+}
 
 .ejercicio.resuelto .ejercicio-tarjeta { border-color: var(--ok); }
 
@@ -449,11 +509,11 @@ html, body {
   justify-content: space-between;
   gap: 10px;
   padding: 12px 16px;
-  background: var(--fondo-suave);
-  border-bottom: 1px solid var(--borde);
+  background: var(--ejercicio-cabecera);
+  border-bottom: 1px solid var(--ejercicio-borde);
 }
 
-.ejercicio .ejercicio-cabecera h3 { margin: 0; font-size: 15.5px; }
+.ejercicio .ejercicio-cabecera h3 { margin: 0; font-size: 15.5px; font-weight: 700; color: #ffffff; }
 
 .ejercicio .dificultad { font-size: 11.5px; padding: 2px 9px; border-radius: 20px; background: var(--advertencia-suave); color: var(--advertencia); }
 
@@ -465,25 +525,67 @@ html, body {
 
 .ejercicio .ejercicio-cuerpo { padding: 16px; }
 
-.ejercicio .consigna p { margin: 0 0 8px; font-size: 14.5px; line-height: 1.6; }
+.ejercicio .consigna p { margin: 0 0 8px; font-size: 14.5px; line-height: 1.6; color: var(--ejercicio-texto); font-weight: 600; }
 
-.ejercicio .pasos { margin: 8px 0; padding-left: 20px; font-size: 14px; line-height: 1.65; }
+.ejercicio .pasos { margin: 8px 0; padding-left: 20px; font-size: 14px; line-height: 1.65; color: #dde2ea; font-weight: 600; }
 
 .ejercicio .pista { margin: 10px 0; }
 
 .ejercicio details {
-  border: 1px dashed var(--borde);
+  border: 1px dashed rgba(255, 255, 255, 0.28);
   border-radius: 8px;
   padding: 8px 12px;
   font-size: 13.5px;
-  color: var(--texto-suave);
+  color: #c6cdd8;
 }
 
-.ejercicio details summary { cursor: pointer; font-weight: 600; }
+.ejercicio details summary { cursor: pointer; font-weight: 700; color: var(--ejercicio-texto); }
+
+.ejercicio .editor-contenedor { border-color: rgba(255, 255, 255, 0.18); }
 
 .editor-contenedor { border: 1px solid var(--borde); border-radius: 8px; overflow: hidden; margin: 12px 0; }
 
-.editor-contenedor .cm-editor { font-size: 13.5px; }
+.editor-contenedor .cm-editor { font-size: 14.5px; }
+
+.editor-contenedor .cm-editor .cm-scroller { font-family: "Cascadia Code", Consolas, "Courier New", monospace; }
+
+/* Sintaxis del editor: clases estables tok-* de classHighlighter.
+   Paleta azules sobre gris, identica en ambos temas. */
+.editor-contenedor .tok-comment { color: #626d7d; font-style: italic; }
+
+.editor-contenedor .tok-variableName,
+.editor-contenedor .tok-atom { color: #17263f; font-weight: 500; }
+
+.editor-contenedor .tok-keyword,
+.editor-contenedor .tok-definition { color: #1d4ed8; font-weight: 700; }
+
+.editor-contenedor .tok-string,
+.editor-contenedor .tok-string2 { color: #0e7490; font-weight: 600; }
+
+.editor-contenedor .tok-number,
+.editor-contenedor .tok-bool { color: #6d28d9; font-weight: 600; }
+
+.editor-contenedor .tok-operator,
+.editor-contenedor .tok-punctuation { color: #3f4c63; font-weight: 600; }
+
+.editor-contenedor .tok-function,
+.editor-contenedor .tok-macroName { color: #2563eb; font-weight: 600; }
+
+.editor-contenedor .tok-propertyName,
+.editor-contenedor .tok-labelName,
+.editor-contenedor .tok-variableName2,
+.editor-contenedor .tok-namespace { color: #4f46e5; font-weight: 600; }
+
+.editor-contenedor .tok-typeName,
+.editor-contenedor .tok-className { color: #155e75; font-weight: 700; }
+
+.editor-contenedor .tok-meta { color: #5b6572; }
+
+.editor-contenedor .tok-invalid { color: #dc2626; }
+
+.editor-contenedor .tok-inserted { color: #15803d; }
+
+.editor-contenedor .tok-deleted { color: #dc2626; }
 
 .editor-contenedor .cm-editor.cm-focused { outline: 2px solid var(--acento); outline-offset: -1px; }
 

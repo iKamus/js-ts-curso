@@ -1,0 +1,108 @@
+/* Tema de sintaxis para bloques de teoria. La paleta vive en variables CSS
+   definidas por tema en css/styles.css (:root = claro, [data-tema=oscuro]):
+   los mismos selectores sirven para el bloque azul claro y el gris oscuro. */
+
+.bloque-codigo code[class*="language-"],
+.bloque-codigo pre[class*="language-"] {
+  color: var(--codigo-texto);
+  background: none;
+  text-shadow: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  white-space: pre;
+  tab-size: 2;
+}
+
+/* Comentarios: neutro discreto, italico */
+.bloque-codigo .token.comment,
+.bloque-codigo .token.prolog,
+.bloque-codigo .token.doctype,
+.bloque-codigo .token.cdata {
+  color: var(--tok-comentario);
+  font-style: italic;
+}
+
+/* Puntuacion: un paso por debajo del texto base */
+.bloque-codigo .token.punctuation {
+  color: var(--tok-puntuacion);
+}
+
+/* Keywords y at-rules */
+.bloque-codigo .token.keyword,
+.bloque-codigo .token.atrule,
+.bloque-codigo .token.rule {
+  color: var(--tok-clave);
+  font-weight: 600;
+}
+
+/* Strings y valores */
+.bloque-codigo .token.string,
+.bloque-codigo .token.char,
+.bloque-codigo .token.template-string,
+.bloque-codigo .token.attr-value {
+  color: var(--tok-cadena);
+}
+
+/* Numeros, booleanos, constantes y regex */
+.bloque-codigo .token.number,
+.bloque-codigo .token.boolean,
+.bloque-codigo .token.constant,
+.bloque-codigo .token.regex {
+  color: var(--tok-numero);
+}
+
+/* Funciones y metodos */
+.bloque-codigo .token.function,
+.bloque-codigo .token.method {
+  color: var(--tok-funcion);
+}
+
+/* Tipos, clases y builtins */
+.bloque-codigo .token.class-name,
+.bloque-codigo .token.maybe-class-name,
+.bloque-codigo .token.builtin {
+  color: var(--tok-tipo);
+}
+
+/* Propiedades, atributos y parametros */
+.bloque-codigo .token.property,
+.bloque-codigo .token.attr-name,
+.bloque-codigo .token.parameter {
+  color: var(--tok-propiedad);
+}
+
+/* Operadores: tenues para no competir con keywords */
+.bloque-codigo .token.operator {
+  color: var(--tok-operador);
+  background: none;
+}
+
+/* Markup (HTML): etiquetas rojo suave */
+.bloque-codigo .token.tag {
+  color: var(--tok-tag);
+}
+.bloque-codigo .token.tag .token.punctuation {
+  color: var(--tok-puntuacion);
+}
+
+/* CSS: selectores rojo suave, unidades como numeros */
+.bloque-codigo .token.selector {
+  color: var(--tok-tag);
+}
+.bloque-codigo .token.unit {
+  color: var(--tok-numero);
+}
+
+/* Extras */
+.bloque-codigo .token.important {
+  color: var(--tok-clave);
+  font-weight: 600;
+}
+.bloque-codigo .token.entity {
+  color: var(--tok-propiedad);
+  cursor: help;
+}
+.bloque-codigo .token.namespace {
+  opacity: 0.8;
+}

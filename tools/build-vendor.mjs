@@ -21,6 +21,21 @@ await esbuild.build({
 
 copyFileSync(resolve(raiz, 'node_modules', 'typescript', 'lib', 'typescript.js'), resolve(vendor, 'typescript.js'))
 
+await esbuild.build({
+  entryPoints: [resolve(raiz, 'tools', 'prism-entry.js')],
+  outfile: resolve(vendor, 'prism.bundle.js'),
+  bundle: true,
+  format: 'iife',
+  platform: 'browser',
+  target: ['es2020'],
+  minify: false,
+  sourcemap: false
+})
+
+copyFileSync(resolve(raiz, 'tools', 'prism-theme.css'), resolve(vendor, 'prism-theme.css'))
+
 console.log('Vendor generado en vendor/:')
 console.log('  - vendor/codemirror.bundle.js')
 console.log('  - vendor/typescript.js')
+console.log('  - vendor/prism.bundle.js')
+console.log('  - vendor/prism-theme.css')
